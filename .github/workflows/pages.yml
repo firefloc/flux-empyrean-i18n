@@ -48,12 +48,7 @@ jobs:
       # Un garde-fou, pas une formalité : la page ne doit jamais embarquer de
       # prose du jeu. Si `web/index/` en contenait, on refuserait de publier.
       - name: Contrôler que la page ne publie aucun texte du jeu
-        run: |
-          if grep -rlE '"[A-Za-z][^"]{80,}"' web/index/ 2>/dev/null; then
-            echo "web/index/ contient des chaînes longues : vérifie qu'aucune n'est du texte du jeu" >&2
-            exit 1
-          fi
-          echo "web/index/ ne contient que des nombres et des empreintes"
+        run: python3 tools/check_web_index.py
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
