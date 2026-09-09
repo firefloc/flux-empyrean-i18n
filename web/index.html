@@ -46,6 +46,8 @@
   .titre { position: relative; }
   .titre .flux { color: var(--accent); }
   .langue-ui { position: absolute; top: 26px; right: 20px; font-size: 12px; }
+  .langue-avis { position: absolute; top: 56px; right: 20px; font-size: 11px;
+    color: var(--alerte); max-width: 34ch; text-align: right; margin: 0; }
   .etiquette {
     font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
     color: var(--alerte); border: 1px solid currentColor; border-radius: 3px;
@@ -174,6 +176,7 @@
     <span class="etiquette" data-t="entete.etiquette"></span></h1>
   <p data-t="entete.accroche"></p>
   <select id="langue-ui" class="langue-ui" aria-label="Interface language"></select>
+  <p id="langue-avis" class="langue-avis" hidden></p>
 </div>
 
 <nav>
@@ -325,7 +328,7 @@ winmm.dll</pre>
     }
     select.value = LANGUE;
     select.onchange = (e) => changerLangue(e.target.value);
-    appliquerLangue();
+    demarrerI18n();
   })();
 </script>
 <script src="installeur.js"></script>
