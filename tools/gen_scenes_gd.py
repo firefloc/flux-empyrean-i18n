@@ -264,10 +264,17 @@ func _fabriquer_les_scenes() -> void:
 \t\tf.store_string(attendue)
 \t\tf.close()
 
-\tvar p := FileAccess.open(_fichier_des_paires(), FileAccess.WRITE)
-\tif p:
-\t\tp.store_string(JSON.stringify(paires))
-\t\tp.close()
+\t# Ne jamais remplacer un relevé valide par un relevé vide. Effacer la seule
+\t# marque de fraîcheur laisse les `.scn` traduits en place : on relit alors du
+\t# français, on ne releve rien, et écraser le fichier tuerait la bascule des
+\t# libellés sans que rien ne casse visiblement.
+\tif paires.size() > 0 or not FileAccess.file_exists(_fichier_des_paires()):
+\t\tvar p := FileAccess.open(_fichier_des_paires(), FileAccess.WRITE)
+\t\tif p:
+\t\t\tp.store_string(JSON.stringify(paires))
+\t\t\tp.close()
+\telse:
+\t\tprint("SCENES paires VO conservees : le releve de ce lancement etait vide")
 
 \tprint("SCENES %d scenes ecrites, %d chaines, %d hors champ, %d echecs"
 \t\t% [ecrites, chaines, hors_champ, echecs])

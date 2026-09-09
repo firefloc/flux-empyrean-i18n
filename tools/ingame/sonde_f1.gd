@@ -117,5 +117,12 @@ func _sonde_f1() -> void:
 
 	print("SONDE disques (%d) intacts = %s" % [disques_avant.size(), str(disques_ok)])
 	print("SONDE cle 'The Great Joke' presente = ", cle_ok)
+	# Un retour « faux » ne veut pas forcément dire que la bascule est cassée :
+	# si une position partait en anglais parce que la traduction l'a manquée,
+	# l'aller-retour la traduit et l'état final diffère de l'état initial. Le
+	# symptôme est un trou de couverture, pas un défaut de F1 — on le distingue.
+	if not retour_ok:
+		print("SONDE retour != depart : comparer les comptes ci-dessus. Des")
+		print("SONDE positions parties en anglais signalent une traduction manquante.")
 	print("SONDE BILAN aller=%s retour=%s disques=%s cle=%s"
 		% [str(ok), str(retour_ok), str(disques_ok), str(cle_ok)])
