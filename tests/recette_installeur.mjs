@@ -58,12 +58,14 @@ async function scenario(nav, noms, titre) {
   const plateforme = await page.getAttribute('#install-plateforme', 'data-plateforme');
   const libelle = await page.textContent('#install-plateforme');
   const steamVisible = await page.locator('#install-steam').isVisible();
+  const protonVisible = await page.locator('#install-proton').isVisible();
 
   console.log(`\n── ${titre}`);
   console.log(`   bouton      : ${bouton}`);
   console.log(`   plateforme  : ${plateforme || '(aucune)'}  « ${libelle} »`);
   console.log(`   étapes 3/4  : suite ${suiteVisible ? 'affichée' : 'masquée'}, ` +
-              `Steam ${steamVisible ? 'affiché' : 'masqué'}`);
+              `Steam ${steamVisible ? 'affiché' : 'masqué'}, ` +
+              `Proton ${protonVisible ? 'affiché' : 'masqué'}`);
   console.log(`   écrits      : ${Object.keys(ecrits).length} fichier(s)`);
   for (const [chemin, taille] of Object.entries(ecrits)) {
     console.log(`      ${chemin}  ${taille} o`);
@@ -71,7 +73,7 @@ async function scenario(nav, noms, titre) {
   console.log(`   journal     : ${journal.slice(0, 100)}`);
   if (erreurs.length) console.log(`   ERREURS     : ${erreurs.join(' | ')}`);
   await page.close();
-  return { ecrits, journal, plateforme, steamVisible, erreurs };
+  return { ecrits, journal, plateforme, steamVisible, protonVisible, erreurs };
 }
 
 const nav = await chromium.launch();
@@ -89,16 +91,18 @@ verifier(
   'arborescence GDPatch/mods/flux_fr/ attendue'
 );
 verifier(linux.steamVisible, 'la ligne Steam doit être affichée sous Linux');
+verifier(!linux.protonVisible, 'pas de consigne Proton pour un jeu Linux natif');
 verifier(/manque le chargeur/.test(linux.journal), 'le chargeur absent doit être signalé');
 verifier(linux.erreurs.length === 0, 'aucune erreur de page attendue');
 
 // 2. Un dossier de jeu Windows, chargeur déjà en place.
 const windows = await scenario(
-  nav, ['Flux Empyrean.exe', 'gdpatch_loader.dll'], 'dossier Windows, chargeur présent'
+  nav, ['Flux Empyrean.exe', 'winmm.dll'], 'dossier Windows, chargeur en place sous son vrai nom'
 );
 verifier(windows.plateforme === 'windows', 'plateforme mal détectée');
 verifier(Object.keys(windows.ecrits).length === 5, '5 fichiers attendus');
 verifier(!windows.steamVisible, 'pas de ligne Steam sous Windows');
+verifier(windows.protonVisible, 'la consigne Proton doit être affichée sous Windows');
 verifier(/en place/.test(windows.journal), 'le chargeur présent doit être reconnu');
 verifier(windows.erreurs.length === 0, 'aucune erreur de page attendue');
 

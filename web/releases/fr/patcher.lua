@@ -19,7 +19,13 @@ GDPatch.patch_script_as_text("Scripts/texts.gdc", function(ctx, src)
 	f:close()
 	-- Seul le patcher connait le chemin du mod ; le GDScript en a besoin pour y
 	-- ecrire les scenes qu'il fabrique.
-	fr = fr:gsub("@@MOD_DIR@@", (dir:gsub("%%", "%%%%")))
+	--
+	-- Sous Windows ce chemin porte des antislashs, et "C:\Users\..." donne \U, \m,
+	-- \f : des echappements invalides en GDScript. Le script entier etait rejete,
+	-- donc ni corpus traduit ni scenes fabriquees -- en silence, comme toujours.
+	-- Godot accepte les slashes avant sur toutes les plateformes, on normalise.
+	local chemin = dir:gsub("\\", "/")
+	fr = fr:gsub("@@MOD_DIR@@", (chemin:gsub("%%", "%%%%")))
 	print("CORPUS-FR " .. #fr .. " octets")
 	return fr
 end)

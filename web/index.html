@@ -138,6 +138,22 @@
           style="color:var(--accent)"></span>.
         </div>
       </div>
+      <div class="etape" id="install-proton" hidden>
+        <span class="num">4.</span>
+        <div class="corps">
+          <strong>Si tu joues sous Proton ou Wine</strong>, une ligne à coller dans les
+          options de lancement Steam du jeu :<br>
+          <span class="commande">WINEDLLOVERRIDES="winmm=n,b" %command%</span><br>
+          <span style="font-size:12px;color:var(--alerte)">Sans elle, Wine ne charge
+          jamais le mod — et ne dit rien. Sous Windows véritable, il n'y a rien à
+          faire.<br>
+          <strong>Attention :</strong> sous Proton, le jeu lui-même souffre d'un défaut
+          d'entrée — les clics ne répondent pas dans les menus. C'est vérifié sans le
+          mod : ce n'est pas la traduction. Essaie de maintenir le clic droit pendant le
+          clic gauche, désactive Steam Input, ou change de version de Proton. Le dépôt
+          Linux natif, lui, fonctionne.</span>
+        </div>
+      </div>
       <div class="etape" id="install-steam" hidden>
         <span class="num">4.</span>
         <div class="corps">

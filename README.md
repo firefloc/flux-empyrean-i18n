@@ -215,8 +215,11 @@ The rest of this section is the same thing done by hand.
 
 1. **The loader.** Get it for your platform from
    [the GDPatch releases](https://github.com/GDPatch/GDPatch/releases/latest) and drop
-   it in the game folder — `libgdpatch_loader.so`, `gdpatch_loader.dll` or
-   `libgdpatch_loader.dylib`. It is not redistributed here; it belongs to its authors.
+   it in the game folder. It is not redistributed here; it belongs to its authors.
+
+   On Windows — **including under Proton or Wine** — `gdpatch_loader.dll` must be
+   **renamed to `winmm.dll`**: that is the name Windows loads it under. Left as-is, it
+   never runs and says nothing. `install.sh` and the web page rename it for you.
 2. On Linux and macOS, also get `run_with_gdpatch.sh` from
    [gdpatch.dev](https://gdpatch.dev/) and put it in the same place. It is required
    because the Steam install path contains a space and `LD_PRELOAD` splits on it.
@@ -228,8 +231,20 @@ The rest of this section is the same thing done by hand.
 
    Or copy the folder by hand to `<game folder>/GDPatch/mods/flux_fr`. That is all the
    script does, plus a couple of checks.
-4. Steam launch options, on Linux and macOS: `./run_with_gdpatch.sh %command%`.
-   On Windows there is nothing to do — the loader hooks itself.
+4. Steam launch options:
+
+   | Your game | What to paste |
+   |---|---|
+   | Linux native | `./run_with_gdpatch.sh %command%` |
+   | Windows under Proton or Wine | `WINEDLLOVERRIDES="winmm=n,b" %command%` |
+   | Windows native | nothing — the loader hooks itself |
+
+> **Known issue under Proton, unrelated to this patch.** The game's menus do not
+> respond to clicks when run through Proton. This was verified **with the loader
+> removed and the override off**: it is the game, not the translation. Workarounds
+> reported for this class of Godot-under-Proton bug: hold right-click while
+> left-clicking, disable Steam Input, or try another Proton build. The Linux native
+> depot works, and is where everything here was validated.
 
 **Launch the game twice.** The first launch builds the translated scenes from your own
 copy — a few seconds, once — and the interface turns French on the second. They rebuild

@@ -15,8 +15,8 @@
 				},
 				{
 					"chemin": "patcher.lua",
-					"octets": 2145,
-					"sha256": "a8e83c39d54a4908"
+					"octets": 2506,
+					"sha256": "343225b1f2d66ab1"
 				},
 				{
 					"chemin": "strings.lua",
@@ -29,7 +29,7 @@
 					"sha256": "d4bfcb9d0134e558"
 				}
 			],
-			"octets": 215466
+			"octets": 215827
 		}
 	]
 }

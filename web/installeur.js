@@ -62,9 +62,11 @@ function plateformeDuDossier(noms) {
   return null;
 }
 
+// Sous Windows — Proton compris — GDPatch se charge en se faisant passer pour
+// winmm.dll. Posé sous son nom d'origine il n'est jamais chargé, sans un mot.
 const CHARGEURS = {
   linux: "libgdpatch_loader.so",
-  windows: "gdpatch_loader.dll",
+  windows: "winmm.dll",
 };
 
 const LIBELLES = {
@@ -261,6 +263,7 @@ $$("install-poser").onclick = async () => {
     $$("install-plateforme").textContent = LIBELLES[bilan.plateforme];
     $$("install-plateforme").dataset.plateforme = bilan.plateforme;
     $$("install-steam").hidden = bilan.plateforme !== "linux";
+    $$("install-proton").hidden = bilan.plateforme !== "windows";
   } catch (e) {
     if (e.name === "AbortError") return;
     dire(e.message, "erreur");

@@ -47,15 +47,22 @@ fi
 
 # GDPatch : le chargeur, à récupérer une fois. Un seul des trois suffit — celui
 # de la plateforme du joueur.
+# Sous Windows — Proton compris — GDPatch se charge en se faisant passer pour
+# winmm.dll. Posé sous son nom d'origine, il n'est jamais chargé, en silence.
 charge=""
-for c in libgdpatch_loader.so gdpatch_loader.dll libgdpatch_loader.dylib; do
+for c in libgdpatch_loader.so winmm.dll libgdpatch_loader.dylib; do
 	[ -f "$jeu/$c" ] && charge="$c"
 done
+if [ -z "$charge" ] && [ -f "$jeu/gdpatch_loader.dll" ]; then
+	mv "$jeu/gdpatch_loader.dll" "$jeu/winmm.dll"
+	charge="winmm.dll"
+	echo "chargeur renommé en winmm.dll — c'est sous ce nom que Windows le charge"
+fi
 if [ -z "$charge" ]; then
 	echo "Le chargeur GDPatch est absent du dossier du jeu."
 	echo "Récupère-le pour ta plateforme : https://github.com/GDPatch/GDPatch/releases/latest"
 	echo "  Linux   : libgdpatch_loader.so"
-	echo "  Windows : gdpatch_loader.dll"
+	echo "  Windows : gdpatch_loader.dll — à renommer en winmm.dll, ce script le fait"
 	echo "  macOS   : libgdpatch_loader.dylib"
 	exit 1
 fi
@@ -72,7 +79,8 @@ echo "copie du jeu — quelques secondes, une seule fois. L'interface passe en f
 echo "au lancement suivant. Elles se refont toutes seules quand le jeu se met à jour."
 echo
 echo "Il reste à mettre ceci dans les options de lancement Steam du jeu :"
-echo "  Linux / macOS : ./run_with_gdpatch.sh %command%"
+echo "  Linux natif     : ./run_with_gdpatch.sh %command%"
+echo "  Proton / Wine   : WINEDLLOVERRIDES=\"winmm=n,b\" %command%"
 echo "  Windows       : rien à faire, le chargeur se branche seul"
 echo
 echo "Sur Linux et macOS, télécharge aussi run_with_gdpatch.sh depuis gdpatch.dev"
