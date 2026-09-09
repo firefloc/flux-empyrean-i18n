@@ -8,6 +8,7 @@ par une source GDScript equivalente, que le moteur compile au chargement.
 Usage: gen_texts_gd.py <corpus.json> <sortie.gd> [<traduction.json>]
 """
 import json
+import os
 import sys
 
 
@@ -84,6 +85,59 @@ func _basculer_langue() -> void:
 		+ " (" + str(texts.size()) + " documents, "
 		+ str(libelles) + " libelles)")
 	_rafraichir_le_journal()
+	_afficher_la_langue()
+
+
+# Un bandeau qui dit dans quelle langue on est.
+#
+# Il ne sert pas qu'à faire joli. Certains textes sont figés au moment où on les
+# ouvre — le texte d'un disque est recopié dans une variable au clic, et F1 ne
+# le rattrape plus. Sans indicateur, le joueur voit de l'anglais et ne sait pas
+# s'il regarde la version originale ou un trou de traduction.
+#
+# Le libellé est le code de langue, pas une phrase : le mod est bâti par langue
+# et n'a pas de texte d'interface à lui. « EN » et « FR » se lisent partout.
+const CODE_LANGUE := "@@CODE_LANGUE@@"
+
+var _bandeau: CanvasLayer = null
+var _bandeau_etiquette: Label = null
+var _bandeau_generation := 0
+
+
+func _preparer_le_bandeau() -> void:
+	if is_instance_valid(_bandeau):
+		return
+	_bandeau = CanvasLayer.new()
+	# Au-dessus de l'interface du jeu, qui n'utilise pas de couche aussi haute.
+	_bandeau.layer = 128
+	var boite := PanelContainer.new()
+	boite.set_anchors_preset(Control.PRESET_TOP_LEFT)
+	boite.offset_top = 16
+	boite.offset_left = 16
+	# On ne veut pas intercepter les clics du joueur.
+	boite.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var fond := StyleBoxFlat.new()
+	fond.bg_color = Color(0, 0, 0, 0.65)
+	fond.set_corner_radius_all(6)
+	fond.set_content_margin_all(8)
+	boite.add_theme_stylebox_override("panel", fond)
+	_bandeau_etiquette = Label.new()
+	_bandeau_etiquette.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	boite.add_child(_bandeau_etiquette)
+	_bandeau.add_child(boite)
+	get_tree().root.add_child(_bandeau)
+
+
+func _afficher_la_langue() -> void:
+	_preparer_le_bandeau()
+	if not is_instance_valid(_bandeau_etiquette):
+		return
+	var traduite := CODE_LANGUE.to_upper()
+	_bandeau_etiquette.text = ("F1  " + traduite + "  [EN]" if _en_version_originale
+		else "F1  [" + traduite + "]  EN") + "    F2  \u21bb"
+	_bandeau_etiquette.modulate = (Color(1, 0.85, 0.4) if _en_version_originale
+		else Color(1, 1, 1, 0.75))
+	_bandeau.visible = true
 
 
 # Le journal garde le document affiché dans `last_text` et sait se redessiner.
@@ -109,6 +163,34 @@ func _unhandled_input(evenement: InputEvent) -> void:
 		if evenement.keycode == KEY_F1:
 			_basculer_langue()
 			get_viewport().set_input_as_handled()
+		elif evenement.keycode == KEY_F2:
+			_recharger_la_scene()
+			get_viewport().set_input_as_handled()
+
+
+# F2 recharge le lieu courant.
+#
+# Certains textes sont lus une seule fois et recopiés : le texte d'un disque est
+# pris au clic, l'animation machine à écrire le réécrit derrière nous. F1 ne les
+# rattrape pas. Recharger la scène les fait relire, dans la langue courante.
+#
+# Ce qui est perdu : la position dans le lieu. Ce qui ne l'est pas : les
+# découvertes et le journal, qui vivent dans des autoloads et survivent au
+# rechargement. C'est pour cela qu'on peut se le permettre.
+func _recharger_la_scene() -> void:
+	if get_tree().current_scene == null:
+		print("VO F2 : aucune scene courante a recharger")
+		return
+	print("VO F2 rechargement de " + str(get_tree().current_scene.scene_file_path))
+	get_tree().reload_current_scene()
+	# La scène repart de zéro : les libellés reviennent dans la langue du mod,
+	# et il faut rebasculer si on était en version originale.
+	if _en_version_originale:
+		await get_tree().process_frame
+		await get_tree().process_frame
+		if has_method("basculer_les_scenes"):
+			call("basculer_les_scenes", true)
+	_afficher_la_langue()
 '''
 
 
@@ -134,7 +216,8 @@ def main() -> None:
     for name in ("texts", "discoveries", "authors", "favorites"):
         lines.append(f"var {name} = {gd_value(data[name])}")
         lines.append("")
-    lines.append(BASCULE)
+    langue = os.environ.get("LOCALE", "fr")
+    lines.append(BASCULE.replace("@@CODE_LANGUE@@", langue))
     open(sys.argv[2], "w", encoding="utf-8").write("\n".join(lines))
     print(f"{sys.argv[2]}: {len(data['texts'])} documents")
 

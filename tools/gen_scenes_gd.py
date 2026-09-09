@@ -159,6 +159,7 @@ var _fr_scenes := {{}}  # anglais -> français
 func _ready() -> void:
 \t_fabriquer_les_scenes()
 \t_charger_les_paires()
+\tcall_deferred("_afficher_la_langue")
 
 
 # La cible réelle d'une scène. Godot remplace chaque `.tscn` par un renvoi vers
