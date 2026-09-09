@@ -529,11 +529,14 @@
 		"5": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
 	},
 	"res://Scenes/pause_screen.tscn": {
+		"10": "En pause",
 		"11": " Reprendre ",
+		"12": "Réglages",
 		"13": "Sauvegarder",
 		"14": "Retour au menu",
 		"15": "Quitter le jeu",
 		"16": "Le journal et la position du bateau seront sauvegardés !",
+		"17": "Bugs / Retours ?",
 		"18": "https://docs.google.com/forms/d/e/1FAIpQLSek7oDtTmmUJfPNAPf_7CKF1L4w0WD__bDo_5PcODO7b33dIA/viewform?usp=header",
 		"20": "Mode dieu",
 		"22": "Lissage caméra",
@@ -548,6 +551,7 @@
 		"33": "Masque les entités qui foncent sur toi.",
 		"34": "Inverser la minicarte",
 		"35": "Inverse la rotation de la minicarte.",
+		"36": "Plein écran",
 		"37": "Passe le jeu en plein écran !",
 		"38": "Sensibilité souris",
 		"41": "Règle le volume des différentes sources sonores,",
@@ -563,9 +567,8 @@
 		"58": "Volume du jeu",
 		"59": "Volume musique",
 		"60": "Volume interface",
-		"10": "En pause",
-		"17": "Bugs / Retours ?",
-		"62": "[Fermer]"
+		"62": "[Fermer]",
+		"64": "[Appliquer]"
 	},
 	"res://Scenes/planet_manager.tscn": {
 		"68": "-Ulm",
