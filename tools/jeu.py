@@ -133,10 +133,16 @@ def lancer_le_jeu(dossier: Path, executable: Path, secondes: int = 180,
     env = dict(os.environ)
     if plateforme_du_jeu(executable) != "Windows":
         # Sous Linux le chargeur s'injecte à l'exécution. Le chemin d'un dossier
-        # Steam contient une espace, et LD_PRELOAD découpe dessus — d'où le
-        # passage par un chemin absolu et un répertoire de travail placé sur le
-        # dossier du jeu.
-        env["LD_PRELOAD"] = str(chargeur)
+        # Steam contient une espace — « common/Flux Empyrean » — et LD_PRELOAD
+        # découpe dessus : le chemin absolu y devenait deux entrées, toutes deux
+        # introuvables, et ld.so se contentait de le dire sur stderr avant de
+        # lancer le jeu sans mod. On ne met donc dans LD_PRELOAD qu'un nom de
+        # fichier nu, et le dossier dans LD_LIBRARY_PATH, séparé par des
+        # deux-points où l'espace ne gêne pas. C'est ce que fait le lanceur
+        # officiel, et ce que cette fonction ne faisait pas.
+        env["LD_PRELOAD"] = os.pathsep.join(
+            [chargeur.name, env.get("LD_PRELOAD", "")]
+        ).strip(os.pathsep)
         env["LD_LIBRARY_PATH"] = os.pathsep.join(
             [str(dossier), env.get("LD_LIBRARY_PATH", "")]
         ).strip(os.pathsep)
