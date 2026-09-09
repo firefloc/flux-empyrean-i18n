@@ -1,0 +1,63 @@
+# Publie web/ sur GitHub Pages.
+#
+# La page fait deux choses, et aucune n'a besoin de serveur :
+#
+#   Installer  elle écrit GDPatch/mods/flux_<langue>/ dans le dossier du jeu
+#              choisi par le joueur (File System Access API, Chrome et Edge), ou
+#              livre un zip déjà arborescent (Firefox, Safari).
+#   Traduire   elle lit le pack du jeu du joueur dans son navigateur — 167
+#              documents, 445 chaînes de scène, 426 chaînes de code — et rend
+#              les trois fichiers de langue à proposer en pull request.
+#
+# Rien n'est téléversé : le pack est lu par tranches avec File.slice(), le texte
+# reste dans l'onglet. Le dépôt ne publie aucun texte anglais du jeu, seulement
+# `web/index/`, une carte faite de nombres de pages et d'empreintes SHA-1.
+#
+# `web/releases/` contient les mods construits, déposés par
+# `tools/publish_web_release.py`. C'est du texte et du Lua : aucun fichier du jeu
+# ne voyage, les scènes traduites étant fabriquées par le jeu lui-même chez le
+# joueur.
+
+name: Publier la page
+
+on:
+  push:
+    branches: [main]
+    paths: ["web/**", ".github/workflows/pages.yml"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Une seule publication à la fois ; on ne coupe pas celle qui est en cours.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publier:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploiement.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Un garde-fou, pas une formalité : la page ne doit jamais embarquer de
+      # prose du jeu. Si `web/index/` en contenait, on refuserait de publier.
+      - name: Contrôler que la page ne publie aucun texte du jeu
+        run: |
+          if grep -rlE '"[A-Za-z][^"]{80,}"' web/index/ 2>/dev/null; then
+            echo "web/index/ contient des chaînes longues : vérifie qu'aucune n'est du texte du jeu" >&2
+            exit 1
+          fi
+          echo "web/index/ ne contient que des nombres et des empreintes"
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: web
+      - id: deploiement
+        uses: actions/deploy-pages@v4

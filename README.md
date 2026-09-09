@@ -412,6 +412,64 @@ functions.
 
 ---
 
+## What has not been tested on Windows
+
+This section exists because the alternative is someone losing a day to it. Everything
+below is stated from the platform it was actually run on.
+
+### What *is* verified
+
+| | Linux native | Windows under Proton | Windows native |
+|---|---|---|---|
+| pack extraction (browser and Python) | ✅ | ✅ same 21/21 frozen, 426/426 code strings | ✅ same binary, same reader |
+| the mod applying in game | ✅ 261 strings, 0 misses | ✅ corpus, 47 scenes built, 261 strings | ❌ never run |
+| scenes built by the game at first launch | ✅ 180/205 in tree | ✅ 47 files written, 0 failures | ❌ never run |
+| `build.sh` / `install.sh` | ✅ | n/a | ❌ **cannot run at all** |
+
+The pack reader is genuinely platform-independent: the same file, read from the Linux
+`.x86_64` and the Windows `.exe`, yields identical results. That part is not a guess.
+
+### What is not verified, and what could go wrong
+
+**Windows native has never been run.** Proton is Wine, not Windows. Three things could
+differ, in falling order of likelihood:
+
+- **File paths.** One backslash bug already cost a full debugging cycle: the mod
+  directory was injected into GDScript as `"C:\Users\..."`, and `\U`, `\m`, `\f`
+  are invalid escapes — the whole script was rejected, silently, so neither the corpus
+  nor the scenes ever loaded. It is fixed by normalising to forward slashes, but it is
+  exactly the class of bug that hides in a second place.
+- **`ResourceSaver` writing the 47 scenes.** It works under Wine. Real Windows has
+  different path length limits, different locking semantics, and a different notion of
+  what a writable directory is. If the game is installed under `Program Files`, writing
+  into its own mod folder may need elevation — and the mod would then silently ship an
+  English interface.
+- **Antivirus.** A game process writing 6 MB of files into its own folder at startup is
+  precisely what heuristic scanners flag.
+
+**The tooling does not run on Windows at all.** Six shell scripts, 298 lines, orchestrate
+the pipeline. Two of them inject GDPatch with `LD_PRELOAD`, which does not exist on
+Windows — there, the loader is injected by renaming it to `winmm.dll`, a completely
+different mechanism. The 30 Python tools are already portable (their `/` are Godot
+resource paths, which are forward-slash on every platform, and every subprocess call
+passes an argument list rather than a shell string), so the work is bounded: rewrite the
+orchestration in Python. It is planned, it is not done.
+
+Until then, a Windows fork can edit translations in the browser and install them, but
+cannot rebuild the mod.
+
+### A known bug that is not ours
+
+**Under Proton, the game's menus do not respond to clicks.** This was verified with the
+loader removed and the DLL override disabled: it is the game, not the translation. It
+belongs to a documented class of Godot-under-Proton input bugs. Reported workarounds:
+hold right-click while left-clicking, disable Steam Input, or try another Proton build.
+
+The Linux native depot has none of this, and is where the six in-game puzzle checks were
+validated.
+
+---
+
 ## Licence and respect for the game
 
 **The tooling** redistributes no game content. It reads the pack of your own copy, and
