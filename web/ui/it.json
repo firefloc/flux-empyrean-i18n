@@ -72,5 +72,7 @@
 	"intro.2": "Apri il file del gioco: flux-empyrean.x86_64 su Linux, Flux Empyrean.exe su Windows, o il .pck se è separato. La pagina legge l'indice del pacchetto ed estrae solo le poche centinaia di kilobyte che contengono testo — il file pesa 827 MB e non viene mai caricato per intero.",
 	"intro.3": "Modifica la colonna di destra, poi Proponi al progetto: i tuoi tre file vengono scaricati e GitHub apre la pagina di caricamento, che crea la pull request per te.",
 	"intro.gel": "Le righe in ambra sono congelate: blocchi cifrati, lingua costruita, rebus. Il gioco toglie tutto ciò che non è una lettera prima di decifrare — una lettera in più sposta l'intero messaggio. L'editor le rende in sola lettura.",
-	"ui.non_relue": "Questa interfaccia è stata tradotta automaticamente e non è stata revisionata. Correzioni benvenute."
+	"ui.non_relue": "Questa interfaccia è stata tradotta automaticamente e non è stata revisionata. Correzioni benvenute.",
+	"inst.5.titre": "Bloccato? Premi F1",
+	"inst.5.corps": "F1 riporta il diario all'inglese originale, e indietro. Una traduzione può sbagliare una parola-risposta; così vedi l'originale, ti sblocchi e segnali cosa non va. Il testo inglese non viene mai distribuito con la mod — è letto dalla tua copia all'avvio."
 }

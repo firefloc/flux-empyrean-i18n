@@ -72,5 +72,7 @@
 	"intro.2": "Öffne die Spieldatei: flux-empyrean.x86_64 unter Linux, Flux Empyrean.exe unter Windows, oder die .pck, falls sie separat liegt. Die Seite liest das Inhaltsverzeichnis des Pakets und holt nur die paar hundert Kilobyte heraus, die Text enthalten — die Datei ist 827 MB groß und wird nie ganz geladen.",
 	"intro.3": "Bearbeite die rechte Spalte, dann Dem Projekt vorschlagen: deine drei Dateien werden heruntergeladen und GitHub öffnet die Upload-Seite, die den Pull Request für dich anlegt.",
 	"intro.gel": "Bernsteinfarbene Zeilen sind eingefroren: Chiffreblöcke, Kunstsprache, Rebusse. Das Spiel entfernt vor dem Entschlüsseln alles, was kein Buchstabe ist — ein Buchstabe mehr verschiebt die ganze Nachricht. Der Editor macht sie schreibgeschützt.",
-	"ui.non_relue": "Diese Oberfläche wurde maschinell übersetzt und nicht geprüft. Korrekturen willkommen."
+	"ui.non_relue": "Diese Oberfläche wurde maschinell übersetzt und nicht geprüft. Korrekturen willkommen.",
+	"inst.5.titre": "Feststeckend? Drücke F1",
+	"inst.5.corps": "F1 schaltet das Journal auf das englische Original um und wieder zurück. Eine Übersetzung kann ein Antwortwort verfehlen; so siehst du das Original, kommst weiter und kannst melden, was nicht stimmt. Der englische Text wird nie mit der Mod ausgeliefert — er wird beim Start aus deiner eigenen Kopie gelesen."
 }

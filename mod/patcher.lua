@@ -26,6 +26,19 @@ GDPatch.patch_script_as_text("Scripts/texts.gdc", function(ctx, src)
 	-- Godot accepte les slashes avant sur toutes les plateformes, on normalise.
 	local chemin = dir:gsub("\\", "/")
 	fr = fr:gsub("@@MOD_DIR@@", (chemin:gsub("%%", "%%%%")))
+
+	-- Le texte d'origine, pris dans le pack du joueur et gardé sous un autre nom.
+	-- C'est ce qui permet la bascule F1 sans distribuer une ligne de l'anglais :
+	-- il ne quitte jamais sa machine. La declaration tient sur une seule ligne.
+	local vo = src:match("\n(var texts[^\n]*)")
+	if vo then
+		vo = vo:gsub("^var texts", "var texts_vo", 1)
+		fr = fr:gsub("@@TEXTS_VO@@", (vo:gsub("%%", "%%%%")), 1)
+		print("VO texte d'origine conserve (" .. #vo .. " octets), F1 pour basculer")
+	else
+		fr = fr:gsub("@@TEXTS_VO@@", "var texts_vo: Dictionary = {}", 1)
+		print("VO texte d'origine introuvable, bascule F1 desactivee")
+	end
 	print("CORPUS-FR " .. #fr .. " octets")
 	return fr
 end)

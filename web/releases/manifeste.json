@@ -30,8 +30,8 @@
 				},
 				{
 					"chemin": "patcher.lua",
-					"octets": 2506,
-					"sha256": "343225b1f2d66ab1"
+					"octets": 3132,
+					"sha256": "f69061f01fed5e51"
 				},
 				{
 					"chemin": "strings.lua",
@@ -40,11 +40,11 @@
 				},
 				{
 					"chemin": "texts.gd",
-					"octets": 159323,
-					"sha256": "d4bfcb9d0134e558"
+					"octets": 160683,
+					"sha256": "3b66163965194fda"
 				}
 			],
-			"octets": 215827
+			"octets": 217813
 		},
 		{
 			"langue": "it",

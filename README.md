@@ -246,6 +246,16 @@ The rest of this section is the same thing done by hand.
 > left-clicking, disable Steam Input, or try another Proton build. The Linux native
 > depot works, and is where everything here was validated.
 
+**Stuck on a puzzle? Press F1.** The journal switches back to the original English
+and back again, live. A translation can get an answer word wrong, and then you cannot
+tell whether it is the puzzle or the patch — this settles it, and lets you report what
+is off.
+
+The English text is **never shipped with the mod**: `patcher.lua` takes it from the
+original `Scripts/texts.gdc` in your own pack as it replaces it, keeps it under another
+name, and hands it to the runtime. 105 KB of English that never leaves your machine,
+and the distributed mod grows by 2 KB of GDScript.
+
 **Launch the game twice.** The first launch builds the translated scenes from your own
 copy — a few seconds, once — and the interface turns French on the second. They rebuild
 themselves whenever the game updates, so you never have to think about it again.

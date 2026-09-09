@@ -72,5 +72,7 @@
 	"intro.2": "Open het spelbestand: flux-empyrean.x86_64 op Linux, Flux Empyrean.exe op Windows, of de .pck als die apart staat. De pagina leest de inhoudsopgave van het pakket en haalt alleen de paar honderd kilobyte eruit die tekst bevatten — het bestand is 827 MB groot en wordt nooit volledig geladen.",
 	"intro.3": "Bewerk de rechterkolom en kies dan Aan het project voorstellen: je drie bestanden worden gedownload en GitHub opent de uploadpagina, die de pull request voor je aanmaakt.",
 	"intro.gel": "Amberkleurige regels zijn bevroren: cijferblokken, kunsttaal, rebussen. Het spel verwijdert alles wat geen letter is voordat het ontcijfert — één letter extra verschuift het hele bericht. De editor maakt ze alleen-lezen.",
-	"ui.non_relue": "Deze interface is machinaal vertaald en niet nagekeken. Correcties welkom."
+	"ui.non_relue": "Deze interface is machinaal vertaald en niet nagekeken. Correcties welkom.",
+	"inst.5.titre": "Vast? Druk op F1",
+	"inst.5.corps": "F1 zet het dagboek terug naar het Engelse origineel, en weer terug. Een vertaling kan een antwoordwoord missen; zo zie je het origineel, kom je verder en meld je wat niet klopt. De Engelse tekst wordt nooit met de mod meegeleverd — hij wordt bij het opstarten uit je eigen kopie gelezen."
 }

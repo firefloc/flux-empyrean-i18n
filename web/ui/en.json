@@ -72,5 +72,7 @@
 	"intro.2": "Open the game file: flux-empyrean.x86_64 on Linux, Flux Empyrean.exe on Windows, or the .pck if it sits separately. The page reads the pack directory and pulls out only the few hundred kilobytes that carry text — the file is 827 MB and is never loaded whole.",
 	"intro.3": "Edit the right-hand column, then Propose to the project: your three files download and GitHub opens on the upload page, which creates the pull request for you.",
 	"intro.gel": "Rows in amber are frozen: cipher blocks, constructed language, rebuses. The game strips everything that is not a letter before decrypting — one extra letter shifts the whole message. The editor makes them read-only.",
-	"ui.non_relue": "This interface was machine-translated and has not been reviewed. Corrections welcome."
+	"ui.non_relue": "This interface was machine-translated and has not been reviewed. Corrections welcome.",
+	"inst.5.titre": "Stuck? Press F1",
+	"inst.5.corps": "F1 switches the journal back to the original English, and back again. A translation can get a puzzle word wrong; this lets you see the original, get unstuck, and report what is off. The English text is never shipped with the mod — it is read from your own copy at startup."
 }

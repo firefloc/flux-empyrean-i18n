@@ -72,5 +72,7 @@
 	"intro.2": "Otwórz plik gry: flux-empyrean.x86_64 na Linuksie, Flux Empyrean.exe na Windowsie, albo .pck, jeśli leży osobno. Strona czyta spis pakietu i wyjmuje tylko te kilkaset kilobajtów, które niosą tekst — plik ma 827 MB i nigdy nie jest ładowany w całości.",
 	"intro.3": "Edytuj prawą kolumnę, potem Zaproponuj projektowi: twoje trzy pliki się pobiorą, a GitHub otworzy stronę wysyłania, która utworzy pull request za ciebie.",
 	"intro.gel": "Wiersze w kolorze bursztynu są zamrożone: bloki szyfru, język sztuczny, rebusy. Gra przed odszyfrowaniem usuwa wszystko, co nie jest literą — jedna litera więcej przesuwa całą wiadomość. Edytor ustawia je tylko do odczytu.",
-	"ui.non_relue": "Ten interfejs przetłumaczyła maszyna i nie został sprawdzony. Poprawki mile widziane."
+	"ui.non_relue": "Ten interfejs przetłumaczyła maszyna i nie został sprawdzony. Poprawki mile widziane.",
+	"inst.5.titre": "Utknąłeś? Naciśnij F1",
+	"inst.5.corps": "F1 przełącza dziennik na oryginalny angielski i z powrotem. Tłumaczenie może pomylić słowo-odpowiedź; dzięki temu widzisz oryginał, ruszasz dalej i zgłaszasz, co nie gra. Angielski tekst nigdy nie jest dostarczany z modem — jest czytany z twojej kopii przy starcie."
 }

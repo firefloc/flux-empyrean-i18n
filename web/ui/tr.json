@@ -72,5 +72,7 @@
 	"intro.2": "Oyun dosyasını aç: Linux'ta flux-empyrean.x86_64, Windows'ta Flux Empyrean.exe, ayrıysa .pck. Sayfa paketin dizinini okur ve yalnızca metin taşıyan birkaç yüz kilobaytı çeker — dosya 827 MB ve asla tamamen yüklenmez.",
 	"intro.3": "Sağ sütunu düzenle, sonra Projeye öner: üç dosyan indirilir ve GitHub yükleme sayfasını açar, pull request'i senin için oluşturur.",
 	"intro.gel": "Kehribar renkli satırlar dondurulmuştur: şifre blokları, yapay dil, bilmeceler. Oyun çözmeden önce harf olmayan her şeyi çıkarır — bir harf fazlası tüm iletiyi kaydırır. Düzenleyici onları salt okunur yapar.",
-	"ui.non_relue": "Bu arayüz makineyle çevrildi ve gözden geçirilmedi. Düzeltmeler memnuniyetle karşılanır."
+	"ui.non_relue": "Bu arayüz makineyle çevrildi ve gözden geçirilmedi. Düzeltmeler memnuniyetle karşılanır.",
+	"inst.5.titre": "Takıldın mı? F1'e bas",
+	"inst.5.corps": "F1 günlüğü özgün İngilizceye çevirir ve geri döndürür. Bir çeviri cevap kelimesini kaçırabilir; böylece özgün metni görür, ilerler ve neyin yanlış olduğunu bildirirsin. İngilizce metin modla birlikte asla dağıtılmaz — açılışta kendi kopyandan okunur."
 }

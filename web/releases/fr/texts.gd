@@ -2050,6 +2050,48 @@ var authors = {
 var favorites = []
 
 
+@@TEXTS_VO@@
+
+var _en_version_originale := false
+
+
+func _basculer_langue() -> void:
+	if not has_meta("texts_vo") and not ("texts_vo" in self):
+		print("VO indisponible : le texte d'origine n'a pas été injecté")
+		return
+	_en_version_originale = not _en_version_originale
+	var echange = texts
+	texts = texts_vo
+	texts_vo = echange
+	print("VO " + ("version originale" if _en_version_originale else "traduction"))
+	_rafraichir_le_journal()
+
+
+# Le journal garde le document affiché dans `last_text` et sait se redessiner.
+# Sans ça il faudrait fermer et rouvrir, ce qui rend la bascule inutilisable
+# pour comparer deux formulations.
+func _rafraichir_le_journal() -> void:
+	for noeud in get_tree().get_nodes_in_group("journal"):
+		if noeud.has_method("set_displayed_text") and noeud.get("last_text"):
+			noeud.set_displayed_text(noeud.last_text)
+			return
+	var pile: Array[Node] = [get_tree().root]
+	while not pile.is_empty():
+		var n: Node = pile.pop_back()
+		if n.has_method("set_displayed_text") and n.get("last_text"):
+			n.set_displayed_text(n.last_text)
+			return
+		for enfant in n.get_children():
+			pile.append(enfant)
+
+
+func _unhandled_input(evenement: InputEvent) -> void:
+	if evenement is InputEventKey and evenement.pressed and not evenement.echo:
+		if evenement.keycode == KEY_F1:
+			_basculer_langue()
+			get_viewport().set_input_as_handled()
+
+
 # --- Scènes traduites, fabriquées par le jeu lui-même -----------------------
 #
 # Généré par tools/gen_scenes_gd.py — ne pas éditer à la main.
