@@ -1,0 +1,12 @@
+{
+	"_note": "Rattachements que le relevé automatique ne peut pas trouver : une réponse portée par un acrostiche n'apparaît nulle part en clair dans le texte.",
+	"points": [
+		{
+			"script": "Locations/Superserver/super_terminal.gdc",
+			"ajouter_tokens": ["biibiyt"],
+			"documents_source": {"biibiyt": ["Witness"]},
+			"tokens_par_acrostiche": ["biibiyt"],
+			"motif": "Les initiales des sept pages de Witness épellent la réponse du Well of Uplifting, et la page 7 dit au joueur de lire les initiales. Le script du Superserver sert aussi ce lieu."
+		}
+	]
+}

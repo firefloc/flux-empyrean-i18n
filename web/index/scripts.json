@@ -1,0 +1,830 @@
+{
+	"Locations/Archive of the Unrealized/archive_of_the_unrealized.gdc": {
+		"3": [
+			"#185f4d7022ea7fe2"
+		],
+		"5": [
+			"#185f4d7022ea7fe2"
+		]
+	},
+	"Locations/Atrae Shrine/atrae_shrine.gdc": {
+		"6": [
+			"#f98ed3f6f6a57a9f"
+		],
+		"8": [
+			"#f98ed3f6f6a57a9f"
+		]
+	},
+	"Locations/Constellation/constellation.gdc": {
+		"2": [
+			"#37fcfbf176522b61",
+			"#b90801f224f27d35",
+			"#d778e2300045e8a3",
+			"#83e99d117298c5be",
+			"#da5501d017809196",
+			"#6fac5ea043f791dc",
+			"#427297a88baf73c0",
+			"#a07fb7bbaaf66e7e",
+			"#ab72de78d8d2eec9",
+			"#454691fcea6406cb",
+			"#4e4d49930ad2da5d",
+			"#097f5d31744994ac",
+			"#f8bdde3c94df4877",
+			"#f807e7970c5c76d0",
+			"#ee27de379495093f",
+			"#c2aa007f46b922e3",
+			"#be97e9fd09118987",
+			"#f0329e1f6f4b20d7",
+			"#7a6b8cba736f1c00",
+			"#72b3bfa0f3071e79",
+			"#aaa91532aab9fb30",
+			"#02c9abaf3038d06f",
+			"#b419f7033f53f00b",
+			"#58f0c8bd3737bf31",
+			"#7a62f8142858d5bf",
+			"#7110639aa51752f8",
+			"#39b8c3004e8ebe7a",
+			"#cd256fa4f90d92c1"
+		]
+	},
+	"Locations/Hall of Forms/hall_of_forms.gdc": {
+		"4": [
+			"#76f1803ddc0ef760"
+		],
+		"6": [
+			"#76f1803ddc0ef760"
+		],
+		"13": [
+			"#76f1803ddc0ef760"
+		]
+	},
+	"Locations/Hall of Judgment/hall_of_judgment.gdc": {
+		"3": [
+			"#898aeb602a0bf436"
+		],
+		"5": [
+			"#898aeb602a0bf436"
+		],
+		"7": [
+			"#898aeb602a0bf436"
+		],
+		"9": [
+			"#898aeb602a0bf436"
+		],
+		"11": [
+			"#898aeb602a0bf436"
+		],
+		"20": [
+			"#0427b0f33fcc8c3f"
+		],
+		"21": [
+			"#b6f6971ebebed10a"
+		],
+		"22": [
+			"#c8ce2c2288113b79"
+		]
+	},
+	"Locations/Hall of Judgment/hall_of_judgment_extension.gdc": {
+		"5": [
+			"#6da174e86bab2041"
+		]
+	},
+	"Locations/Home of Minos/home_of_minos.gdc": {
+		"3": [
+			"#81b0d4f283bf9eb3"
+		],
+		"5": [
+			"#81b0d4f283bf9eb3"
+		]
+	},
+	"Locations/Hypercube/door_seal.gdc": {
+		"11": [
+			"#8c3abca18dc5e9e0",
+			"#34f3292087d24b5e"
+		]
+	},
+	"Locations/Isle of Change/isle_of_change.gdc": {
+		"20": [
+			"#c6ab28dc35c5c6c7"
+		],
+		"22": [
+			"#c6ab28dc35c5c6c7"
+		]
+	},
+	"Locations/Memorial to Inexistance/memorial_to_inexistance.gdc": {
+		"3": [
+			"#99b4db3d9e0e7788"
+		],
+		"5": [
+			"#99b4db3d9e0e7788"
+		],
+		"7": [
+			"#99b4db3d9e0e7788"
+		]
+	},
+	"Locations/Memorial to the Lost/memorial_to_the_lost.gdc": {
+		"13": [
+			"#87a7c5a79b4707f5"
+		],
+		"15": [
+			"#87a7c5a79b4707f5"
+		]
+	},
+	"Locations/Monolith to Cora/monolith_to_cora.gdc": {
+		"16": [
+			"#24274cc8aba40555"
+		],
+		"31": [
+			"#24274cc8aba40555"
+		],
+		"33": [
+			"#24274cc8aba40555"
+		],
+		"35": [
+			"#24274cc8aba40555"
+		],
+		"48": [
+			"#24274cc8aba40555"
+		]
+	},
+	"Locations/Monument to Consciousness/monument_to_consciousness.gdc": {
+		"6": [
+			"#6f338a54960d676e"
+		]
+	},
+	"Locations/Park of Solitude/park_of_solitude.gdc": {
+		"6": [
+			"#5d7aac506307e772"
+		],
+		"8": [
+			"#5d7aac506307e772"
+		]
+	},
+	"Locations/Shrine of Siciphos/shrine_of_siciphos.gdc": {
+		"7": [
+			"#82218c2a052d6cb6"
+		],
+		"15": [
+			"#82218c2a052d6cb6"
+		]
+	},
+	"Locations/Shrine of the Hidden/shrine_of_the_hidden.gdc": {
+		"8": [
+			"#b1aa16aa243a03ca"
+		]
+	},
+	"Locations/Superserver/superserver.gdc": {
+		"21": [
+			"#38fd3f463e311043"
+		]
+	},
+	"Locations/Tower of Languages/tower_of_languages.gdc": {
+		"3": [
+			"#e3199facab9448c5"
+		]
+	},
+	"Locations/Umai Shrine/umai_shrine.gdc": {
+		"3": [
+			"#7f240cf38479dab9"
+		],
+		"5": [
+			"#7f240cf38479dab9"
+		]
+	},
+	"Locations/Wim Shrine/wim_shrine.gdc": {
+		"3": [
+			"#8f337f1cc13c6de2"
+		],
+		"5": [
+			"#8f337f1cc13c6de2"
+		]
+	},
+	"Scenes/Boat/radar.gdc": {
+		"28": [
+			"#4fb96234cd9c4422"
+		]
+	},
+	"Scenes/Boat/shortwave_radio.gdc": {
+		"21": [
+			"#ad50489054ddaae0"
+		]
+	},
+	"Scenes/Entities/cuffs.gdc": {
+		"15": [
+			"#4ce0dd59f115d4fc"
+		],
+		"17": [
+			"#2f068b5f3d171e7f"
+		],
+		"20": [
+			"#756088098413ae8a"
+		]
+	},
+	"Scenes/Fishing/fish_caught_screen.gdc": {
+		"7": [
+			"#1437200b5028fbec"
+		],
+		"8": [
+			"#7169eca1eee4e8b3"
+		],
+		"14": [
+			"#8a32a80423ac8f19"
+		],
+		"15": [
+			"#7169eca1eee4e8b3"
+		]
+	},
+	"Scenes/Fishing/fish_data.gdc": {
+		"2": [
+			"#88247380410f9d23",
+			"#2805e1a74be6a281",
+			"#899553ae04c835a1",
+			"#9e6c64936d5de41f",
+			"#7d09cf74438bee32",
+			"#9d612c35adf973cc",
+			"#830e23e43578d2f4",
+			"#0111c4aaac442444",
+			"#52cda99c55a9cc33",
+			"#57f4901a368afe9a",
+			"#638bb1b61bfbff36",
+			"#98f992b3fe9a6f48",
+			"#27824f9352f0b717",
+			"#36995322624b692f",
+			"#008585abf47d4c5f",
+			"#c4733d83eb01ad5a",
+			"#f6fc10ad496d142a",
+			"#25c4e4b1312a169c",
+			"#4d897e1028ccb55c",
+			"#c8c62fd153883340",
+			"#383992fb5cdcb5a4",
+			"#c3e6cb619ad8b0a4",
+			"#ac82f1dc5f19a71f",
+			"#63d8ca65ea8e87b3"
+		]
+	},
+	"Scenes/Portal/portal.gdc": {
+		"119": [
+			"#8b2c09adc64d123d"
+		]
+	},
+	"Scripts/chime.gdc": {
+		"43": [
+			"#b934bdbed82e9b4e"
+		]
+	},
+	"Scripts/fish_scanner.gdc": {
+		"25": [
+			"#4fb96234cd9c4422"
+		],
+		"29": [
+			"#0fa3d6843f5d2adf"
+		],
+		"31": [
+			"#082ae124ded6aeec"
+		]
+	},
+	"Scripts/journal.gdc": {
+		"146": [
+			"#5ff5406a50f975af"
+		],
+		"333": [
+			"#0db1de39ec3f55ab"
+		],
+		"341": [
+			"#0db1de39ec3f55ab"
+		],
+		"349": [
+			"#0db1de39ec3f55ab"
+		]
+	},
+	"Scripts/loading_screen.gdc": {
+		"6": [
+			"#a1e90769fe763316",
+			"#ae6b9c236966bc79",
+			"#7e6d18581960e7c9",
+			"#6b303ed822c280af",
+			"#7ad20fcb49ed88de",
+			"#e37cfc4fbc9864ab",
+			"#a96991045d1699aa",
+			"#41100809882f98a7",
+			"#4c2e39aa2ed252a3",
+			"#4aa8b9435c5cb2f8",
+			"#67b578d121ac7f31"
+		]
+	},
+	"Scripts/location_manager.gdc": {
+		"52": [
+			"#ea6085ebecfba734"
+		],
+		"65": [
+			"#37b6f62c5317012f"
+		]
+	},
+	"Scripts/locations.gdc": {
+		"2": [
+			"#1268f9c48735e497",
+			"#7e03f7b5afcd4674",
+			"#f36106369d612d93",
+			"#144bc65eb9034eeb",
+			"#be36b73bca361d90",
+			"#a966544fe3d9737f",
+			"#29ad15fa7f2bf217",
+			"#95b32ebb035df50a",
+			"#0f16ae7e2e56d16f",
+			"#fe2d6447723313b6",
+			"#5f87f750d6205bb0",
+			"#8864a64a7e48bac7",
+			"#898aeb602a0bf436",
+			"#02f233f820f5f7a0",
+			"#5e6dbb2fc548130e",
+			"#ddafcbcf05d386eb",
+			"#16c3e214e9e9d405",
+			"#79ca60445e864554",
+			"#24274cc8aba40555",
+			"#97733e84402afb98",
+			"#5e906adc998ba380",
+			"#a8814de8494c9ddc",
+			"#703cccb19197311a",
+			"#1b6845184967dfbd",
+			"#97ff41f56eeaed9e",
+			"#3d270ff40edf069b",
+			"#c0ab15d46e7ba0ea",
+			"#06df44d2c2298a20",
+			"#f875ed6e3af0ce31",
+			"#8d6df15775652fce",
+			"#099c6f709982ed8a",
+			"#99ff5ca7420b2bdc",
+			"#185f4d7022ea7fe2",
+			"#899f6be75d26c5bf",
+			"#052566fdd2b3794d",
+			"#b4a9517fec9e8c73",
+			"#447db39bcc3a2e82",
+			"#f184309a76b60a43",
+			"#fa6dfc44c5a3025c",
+			"#f9805153fba79cfc",
+			"#6b01abff002378b0",
+			"#3abed19441f186bb",
+			"#922b325860c0df39",
+			"#a8a73680ef233cd9",
+			"#fb43734dc34a02b9",
+			"#b3ae5b766f463c48",
+			"#ffc20f6bbf999235",
+			"#1eb748b26147b422",
+			"#4932bd6d7a756955",
+			"#fbc4f0d00fcd71be",
+			"#5d3331a955348d68",
+			"#757b93cb43ea2372",
+			"#a4c14c3f756c7a9c",
+			"#e28c15146135643e",
+			"#3879cce4e6e7b588",
+			"#fa7e225030a28388",
+			"#76f1803ddc0ef760",
+			"#142853ee3c95a662",
+			"#b5dbb1e287c37881",
+			"#6b34a25a4e2f70b2",
+			"#504d13ce2f17f1a9",
+			"#78ab14b62bbc9fd9",
+			"#c6ab28dc35c5c6c7",
+			"#3f93a61c10d767da",
+			"#e36d557bceaad9dc",
+			"#c514a65ed5624aa7",
+			"#340f87384e9b894b",
+			"#c60865c76e6be69e",
+			"#ea1d60570be29036",
+			"#b1e400211dc2db53",
+			"#d16d2a351e4dd84c",
+			"#87a7c5a79b4707f5",
+			"#5e1946a94f00c8df",
+			"#bc5e1bbfea539e70",
+			"#6f338a54960d676e",
+			"#0c96164fe50f9b7f",
+			"#37a4b20bdf395b70",
+			"#53d486b0d4a8484d",
+			"#d9cca43ff189f2e2",
+			"#5d7aac506307e772",
+			"#ef47f98581f8aa06",
+			"#dc24d01daa92dcd6",
+			"#cf35b8f4057d9658",
+			"#c565486e840b61c3",
+			"#5242b2a78baebbb7",
+			"#517c891409c53eee",
+			"#f66bc36747ae9f74",
+			"#9fc2a6da3183c67d",
+			"#df4c7d32c60cecf4",
+			"#8c3f77f4dddddb35",
+			"#665e6e5bb9faca84",
+			"#7fb188439bac17f2",
+			"#9e2b6a0c157710bb",
+			"#e3199facab9448c5",
+			"#cc44cd6c19f9bbf9",
+			"#b3450374d10f82c4",
+			"#52fd885094433d2d",
+			"#93ed0e61ae3ddee7",
+			"#e2862174082ef239",
+			"#75b9fad15895360b",
+			"#b67dca335cc024d0",
+			"#a6d2ab6ed8ee81e7",
+			"#1e4ad1312fb56995",
+			"#2036604fbb7e3044",
+			"#3abd576e2ad5ae24",
+			"#70af0e099388cfe1",
+			"#146745d2f479c899",
+			"#a7785e8c2a4fb090",
+			"#bdcc2cd68e377d26",
+			"#3028425ab005933c",
+			"#f1451ee6e68bf94b",
+			"#3f584f150a1fc8a1",
+			"#d177a1ecf89bef1a",
+			"#f9cf3085e6cc167c",
+			"#1bcfdd138d02dd65",
+			"#09a8096f88bbc2a3",
+			"#231cc4917fa423a8",
+			"#403d6efc9a073059",
+			"#9cc4e2af9b21bb5e",
+			"#d7383799d3cc196f",
+			"#757d6293822f998f",
+			"#91dc33d1ef6d3053",
+			"#5b1e41652c3b540b",
+			"#8af8de30f834bb47",
+			"#37fc2cbf00da5fdf",
+			"#09695944b3cbe5ae",
+			"#3f8ebbfd8adc6cb0",
+			"#b3296f91f73b0698",
+			"#81b0d4f283bf9eb3",
+			"#e5ca0690f5363661",
+			"#71878a153968f671",
+			"#99b4db3d9e0e7788",
+			"#50045c80a49cc950",
+			"#869191d34164be61",
+			"#4dd0c098c0f28779",
+			"#d21943fd7d2722d8",
+			"#9e2fcd670ebc96b9",
+			"#7596b3c185535d67",
+			"#0659af68889ae163",
+			"#8437c3f1499595fc",
+			"#a1aaeb941b53b5ab",
+			"#f98ed3f6f6a57a9f",
+			"#81171bb623d2607c",
+			"#a0a28c339344bb9c",
+			"#82218c2a052d6cb6",
+			"#f3a7c4defb7eea51",
+			"#ca99e1267979ed5a",
+			"#b1aa16aa243a03ca",
+			"#42d40c8264d80f25",
+			"#7f240cf38479dab9",
+			"#f66ef8401f6a4537",
+			"#b02fa916717bb071",
+			"#8f337f1cc13c6de2",
+			"#9fbec85224c80a7d",
+			"#1167132ee0a6af5c",
+			"#fd62af195bf232f2",
+			"#ca1e61ffa9ee2e8b",
+			"#19e2e810990325ef",
+			"#10e6e9c006f4ef83",
+			"#2b0383202bc37a01",
+			"#c27c87e4c74aefbb",
+			"#cf450ad9bec3e8e4",
+			"#66da8e37c569afee",
+			"#64618d6c873e76df",
+			"#a6b9ac9dadad4964",
+			"#3126019e78661227",
+			"#9831e88fc464b6ae",
+			"#a1d7115006890225",
+			"#61bb11a43a0af371",
+			"#b943659e5f6a7f92",
+			"#bd2a80e48f83ad0c",
+			"#9d4e1ca7f3f1f052"
+		],
+		"3": [
+			"#77f2d180f977011d",
+			"#3176f3f18c931801",
+			"#c147558d58d79592",
+			"#a043beaf83a18cec",
+			"#d78fbccfbda63ba9",
+			"#0af8548b678afe23",
+			"#58d30fe5e3f6a53e",
+			"#102e5dde53dcdbb6",
+			"#765a08c3c5378aef",
+			"#39ef38de28f4c6fb",
+			"#dc7734c3cac41e36",
+			"#b50727d26ddea18a",
+			"#43c51e04d9bc14cc",
+			"#c5b5b2a9a8afae50",
+			"#feb478763b6bf740",
+			"#392722e2902e7e2f",
+			"#f9ed2755068d70c7",
+			"#290c45ea89863e8f",
+			"#80b1c41ccd7795f0",
+			"#a756e650cd850d13",
+			"#fbbd0dff284cf071",
+			"#1fc7faf3bfbb4727",
+			"#4a658b07aa957c17",
+			"#e6a7690abc2e1c61",
+			"#9b1652ddc005df27",
+			"#cbd2cb634a203d98",
+			"#2e8a15d6952fe7bb",
+			"#1accf28d8c1d8aae",
+			"#7ad17617b462e8c3",
+			"#512f6fbe62220094",
+			"#dde83a6d08e899a9",
+			"#2ea7ec74042d49a7",
+			"#3c9188e8efe65e5c",
+			"#a6ee8ea70f5515e9",
+			"#d6b8081bf5a8f003",
+			"#bcc91243e9acf947",
+			"#0409537300196271",
+			"#898aeb602a0bf436",
+			"#24274cc8aba40555",
+			"#7f012f9a07661184",
+			"#c1618bc65905f7cf",
+			"#0b61e5856d677f16",
+			"#49f9963ab698de3d",
+			"#26bfa4ca32506935",
+			"#bc183d029e1c12d8",
+			"#42e25e5bc0c10824",
+			"#4c7bd3ee1dce2746",
+			"#b180a7934e9a3cd9",
+			"#185f4d7022ea7fe2",
+			"#1c3e7563b5ec5309",
+			"#c6cb7c2825e55572",
+			"#a736646404e5990f",
+			"#aad947b16d9baa5d",
+			"#eb53fb77a54c2586",
+			"#cec91d97bfa10568",
+			"#65f1ef3fea33c840",
+			"#9f5531def6f5884b",
+			"#326e1a6dd7a971b6",
+			"#918dc4eff5fed277",
+			"#a70b09e141365ca4",
+			"#76f1803ddc0ef760",
+			"#c6ab28dc35c5c6c7",
+			"#09ee54972b11e7c5",
+			"#7fb7b827ad3f82da",
+			"#0c0c9ad10034954d",
+			"#7143a3db5cb520b3",
+			"#e92a7cf515e26e4e",
+			"#b950eea992c53a5f",
+			"#429c6e116d63bc10",
+			"#87a7c5a79b4707f5",
+			"#e40d9e84d7b441d1",
+			"#6f338a54960d676e",
+			"#d1d60fbcda0342bd",
+			"#82183d8d95bd0c8f",
+			"#52d2cff15a5919e5",
+			"#923795f20925f827",
+			"#5d7aac506307e772",
+			"#b1339f449bbcb82a",
+			"#e3199facab9448c5",
+			"#fcba529b2a7192d6",
+			"#3cd816d71c502cf0",
+			"#e00a9ddd05c6e730",
+			"#8b9d0adce012414f",
+			"#577cdddcabed5b01",
+			"#8dcc3fa11fa2bec7",
+			"#2d24b3b5c1873636",
+			"#a2e3d0f25d3b88ce",
+			"#4996eb266817eedb",
+			"#761cfd9e8a220d1b",
+			"#c06d59d260cb7e83",
+			"#d5fec072dc9a9f99",
+			"#81b0d4f283bf9eb3",
+			"#99b4db3d9e0e7788",
+			"#e72b7253da253732",
+			"#d9d3852255538b3e",
+			"#f98ed3f6f6a57a9f",
+			"#82218c2a052d6cb6",
+			"#b1aa16aa243a03ca",
+			"#7f240cf38479dab9",
+			"#8f337f1cc13c6de2",
+			"#b697a2f4abda1d61",
+			"#23da55d7b3ec86f2",
+			"#7f76be7bac48b8f0",
+			"#06bb09a013821b5e",
+			"#ef9122d2b39dc49e",
+			"#09db9d2dab0968f9",
+			"#5a4f4f612ac332c6",
+			"#67da0b6c3da8163d",
+			"#306f064897f50cdb"
+		],
+		"4": [
+			"#898aeb602a0bf436",
+			"#24274cc8aba40555",
+			"#185f4d7022ea7fe2",
+			"#76f1803ddc0ef760",
+			"#c6ab28dc35c5c6c7",
+			"#87a7c5a79b4707f5",
+			"#6f338a54960d676e",
+			"#5d7aac506307e772",
+			"#e3199facab9448c5",
+			"#81b0d4f283bf9eb3",
+			"#99b4db3d9e0e7788",
+			"#f98ed3f6f6a57a9f",
+			"#82218c2a052d6cb6",
+			"#b1aa16aa243a03ca",
+			"#7f240cf38479dab9",
+			"#8f337f1cc13c6de2"
+		]
+	},
+	"Scripts/main_menu.gdc": {
+		"8": [
+			"#be891700a61cdff3"
+		],
+		"11": [
+			"#b0323af01344bc98"
+		],
+		"13": [
+			"#cce14b3609e1a360"
+		],
+		"115": [
+			"#dbd21257f47b121e"
+		],
+		"118": [
+			"#1065ef91780b3cc1"
+		],
+		"130": [
+			"#e2bcda84facb3954"
+		],
+		"134": [
+			"#c934b2eb428d2f2f"
+		],
+		"140": [
+			"#e2bcda84facb3954"
+		]
+	},
+	"Scripts/passage.gdc": {
+		"11": [
+			"#53f3c2254d729abc"
+		]
+	},
+	"Scripts/pause_screen.gdc": {
+		"10": [
+			"#d04e18b5b34969f5"
+		],
+		"103": [
+			"#e929bf589f8ca4ab"
+		],
+		"107": [
+			"#f760e3c2ce80ab16"
+		]
+	},
+	"Scripts/player.gdc": {
+		"412": [
+			"#84010064c48c1413"
+		],
+		"413": [
+			"#e366e3d956690b0d"
+		],
+		"414": [
+			"#37406739eb996f4d"
+		],
+		"415": [
+			"#9d477d9a89cee4bd"
+		],
+		"450": [
+			"#dfe9b6b9c5dc1405"
+		],
+		"764": [
+			"#f34332d9c1c3c1b3"
+		],
+		"802": [
+			"#4ecfb043d32a787f"
+		]
+	},
+	"Scripts/screen.gdc": {
+		"15": [
+			"#8cef7230d5b1f027"
+		],
+		"22": [
+			"#0e4f90912853764a"
+		]
+	},
+	"Scripts/terminal_manager.gdc": {
+		"30": [
+			"#c401a4f27ed1862e"
+		],
+		"34": [
+			"#f74794dea3ceb89b"
+		],
+		"47": [
+			"#768ccab625ebfe72"
+		],
+		"52": [
+			"#fb8bb43d2918089f"
+		],
+		"55": [
+			"#28d43add38418cc5"
+		],
+		"58": [
+			"#02564da04efffcc8"
+		],
+		"61": [
+			"#ee6c7acbe2c59d1e"
+		],
+		"68": [
+			"#fd21b21b56440d71"
+		],
+		"83": [
+			"#e1dbdf246cc807bc"
+		]
+	},
+	"Scripts/text_manager.gdc": {
+		"10": [
+			"#f46e265cd072f4ee",
+			"#176298904821dca3"
+		],
+		"45": [
+			"#44b0e72c343801fd"
+		],
+		"50": [
+			"#b3b1eb2dfd82c9f0"
+		],
+		"52": [
+			"#e5de44ebcc61b8a7"
+		]
+	},
+	"Scripts/title_manager.gdc": {
+		"12": [
+			"#1110b98a28eec375"
+		]
+	},
+	"Scripts/tuning_station.gdc": {
+		"63": [
+			"#43ce721b69afb4af"
+		]
+	},
+	"addons/portals/gizmos/portal_exit_outline.gdc": {
+		"11": [
+			"#f5cbf713590190a2"
+		]
+	},
+	"addons/portals/gizmos/portal_forward_direction.gdc": {
+		"11": [
+			"#f5cbf713590190a2"
+		]
+	},
+	"addons/portals/scripts/at_export.gdc": {
+		"6": [
+			"#afdfd87bd6993e87"
+		]
+	},
+	"addons/portals/scripts/portal_3d.gdc": {
+		"97": [
+			"#82c16c1262634e4b"
+		],
+		"102": [
+			"#0ea0605ee79df054"
+		],
+		"107": [
+			"#385398e93946a516"
+		],
+		"131": [
+			"#6ce2592f28bb4960"
+		],
+		"135": [
+			"#6ce2592f28bb4960"
+		],
+		"163": [
+			"#b30bac8ca0507048"
+		],
+		"178": [
+			"#e29cb84b695ca09c"
+		],
+		"188": [
+			"#f847d3af6798f41c"
+		],
+		"202": [
+			"#b92504133fffe504"
+		],
+		"205": [
+			"#fdf63fcab6a6aff8"
+		],
+		"208": [
+			"#1ef460859203ae62"
+		],
+		"246": [
+			"#f6532d3538d37a2f"
+		],
+		"302": [
+			"#b8abe15858b9c9f7"
+		],
+		"321": [
+			"#533b99c0bb178ce6"
+		],
+		"367": [
+			"#a0d865914967358f"
+		],
+		"426": [
+			"#569a72c852759db1"
+		],
+		"448": [
+			"#954690e1b15e3b45",
+			"#fffeb282c7b99bd4"
+		],
+		"450": [
+			"#ca7f1b2143d523f7"
+		],
+		"453": [
+			"#294f1e6a2be2fb26"
+		]
+	}
+}

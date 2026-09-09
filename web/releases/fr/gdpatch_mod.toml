@@ -1,0 +1,7 @@
+id = "flux_fr"
+
+[meta]
+name = "Flux Empyrean — fr"
+version = "0.1.0"
+description = "Community translation. Some strings stay English on purpose: the game's code reads them back as dictionary keys."
+website = "https://github.com/"

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Flux Empyrean — éditeur de traduction</title>
+<style>
+  :root {
+    --fond: #0d1411; --panneau: #131c18; --bord: #24352c;
+    --texte: #cfe3d6; --attenue: #7d9488; --accent: #6ee7a8;
+    --alerte: #f0b429; --erreur: #f2705d;
+  }
+  * { box-sizing: border-box; }
+  /* `display: flex` sur .etape battait l'attribut hidden : la consigne réservée
+     à Linux s'affichait sous Windows. Le masquage doit primer. */
+  [hidden] { display: none !important; }
+  body {
+    margin: 0; background: var(--fond); color: var(--texte);
+    font: 15px/1.5 ui-monospace, "Cascadia Code", Menlo, monospace;
+  }
+  header {
+    position: sticky; top: 0; z-index: 5; background: var(--panneau);
+    border-bottom: 1px solid var(--bord); padding: 12px 20px;
+    display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
+  }
+  h1 { font-size: 15px; margin: 0 12px 0 0; font-weight: 600; }
+  button, select, input[type=search], input[type=text] {
+    background: var(--fond); color: var(--texte); border: 1px solid var(--bord);
+    border-radius: 4px; padding: 6px 10px; font: inherit; font-size: 13px;
+  }
+  button { cursor: pointer; }
+  button:hover:not(:disabled) { border-color: var(--accent); }
+  button:disabled, input:disabled { opacity: .4; cursor: default; }
+  button.primaire { background: var(--accent); color: #06120c; border-color: var(--accent); font-weight: 600; }
+  input#code-langue { width: 4.5em; text-align: center; }
+  .compteur { color: var(--attenue); font-size: 13px; margin-left: auto; }
+  #journal {
+    width: 100%; font-size: 12px; color: var(--attenue);
+    border-top: 1px solid var(--bord); padding-top: 8px; margin: 0;
+  }
+  main { padding: 20px; max-width: 1600px; margin: 0 auto; }
+  .intro { background: var(--panneau); border: 1px solid var(--bord); border-radius: 6px; padding: 16px 20px; margin-bottom: 20px; }
+  .intro h2 { font-size: 14px; margin: 0 0 8px; }
+  .intro p { margin: 0 0 8px; color: var(--attenue); font-size: 13px; }
+  .intro code { color: var(--accent); }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-size: 12px; color: var(--attenue); font-weight: 600;
+       padding: 6px 10px; border-bottom: 1px solid var(--bord); text-transform: uppercase; }
+  td { vertical-align: top; padding: 8px 10px; border-bottom: 1px solid var(--bord); }
+  td.source { width: 45%; white-space: pre-wrap; color: var(--attenue); }
+  td.cible { width: 45%; }
+  td.etat { width: 10%; font-size: 12px; }
+  textarea {
+    width: 100%; min-height: 3.2em; background: var(--fond); color: var(--texte);
+    border: 1px solid var(--bord); border-radius: 4px; padding: 6px 8px;
+    font: inherit; resize: vertical;
+  }
+  textarea:focus { outline: none; border-color: var(--accent); }
+  textarea[readonly] { color: var(--attenue); background: #0a100d; cursor: not-allowed; }
+  tr.gele td.source { color: var(--alerte); }
+  .badge { display: inline-block; padding: 1px 6px; border-radius: 3px; font-size: 11px; }
+  .badge.gele { background: #3a2d0c; color: var(--alerte); }
+  .badge.verrou { background: #3a1a15; color: var(--erreur); }
+  .badge.ok { background: #123322; color: var(--accent); }
+  .probleme { color: var(--erreur); font-size: 12px; margin-top: 4px; }
+  .vide { text-align: center; color: var(--attenue); padding: 60px 20px; }
+  nav { display: flex; gap: 8px; padding: 10px 20px 0; background: var(--panneau); }
+  nav button { border-radius: 4px 4px 0 0; border-bottom-color: transparent; }
+  nav button[aria-selected=true] { background: var(--fond); border-color: var(--bord);
+    border-bottom-color: var(--fond); color: var(--accent); font-weight: 600; }
+  .panneau { background: var(--panneau); border: 1px solid var(--bord); border-radius: 6px;
+    padding: 20px 24px; margin-bottom: 20px; }
+  .panneau h2 { font-size: 15px; margin: 0 0 12px; }
+  .panneau p { color: var(--attenue); font-size: 13px; margin: 0 0 10px; }
+  .panneau code { color: var(--accent); }
+  .etape { display: flex; gap: 14px; align-items: baseline; margin: 14px 0; }
+  .etape .num { color: var(--accent); font-weight: 600; min-width: 1.4em; }
+  .etape .corps { flex: 1; }
+  .commande { background: var(--fond); border: 1px solid var(--bord); border-radius: 4px;
+    padding: 8px 10px; font-size: 13px; color: var(--texte); user-select: all; display: inline-block; }
+</style>
+</head>
+<body>
+<nav>
+  <button id="onglet-installer" aria-selected="true">Installer la traduction</button>
+  <button id="onglet-traduire" aria-selected="false">Traduire</button>
+</nav>
+
+<main id="vue-installer">
+  <div class="panneau">
+    <h2>Jouer en français, sans ligne de commande</h2>
+    <p>
+      Le mod ne contient <strong>aucun fichier du jeu</strong> — 210 Ko de texte et de
+      Lua. Les écrans traduits sont fabriqués par le jeu lui-même au premier lancement,
+      depuis ta propre copie. Rien n'est téléversé, tout se passe dans ton navigateur.
+    </p>
+
+    <div class="etape">
+      <span class="num">1.</span>
+      <div class="corps">
+        <strong>Le chargeur GDPatch.</strong> Récupère-le pour ta plateforme sur
+        <a href="https://github.com/GDPatch/GDPatch/releases/latest" target="_blank"
+           rel="noopener" style="color:var(--accent)">leur page de releases</a> —
+        <code>libgdpatch_loader.so</code> si Steam t'a livré le jeu Linux,
+        <code>gdpatch_loader.dll</code> s'il t'a livré le jeu Windows —
+        <strong>y compris si tu le fais tourner sous Proton ou Wine</strong> : c'est le
+        binaire du jeu qui décide, pas ton système. La page te dira lequel elle a
+        trouvé. Le chargeur appartient à ses auteurs, on ne le redistribue pas.<br>
+        <label style="font-size:13px">Puis dépose-le ici :
+          <input type="file" id="install-chargeur"></label>
+      </div>
+    </div>
+
+    <div class="etape">
+      <span class="num">2.</span>
+      <div class="corps">
+        <strong>La traduction.</strong>
+        <select id="install-langue"><option>chargement…</option></select>
+        <button id="install-poser" class="primaire" disabled>Poser dans mon jeu…</button>
+        <p style="margin-top:6px">
+          Le navigateur te demandera le dossier du jeu — celui qui contient
+          <code>flux-empyrean.x86_64</code> ou <code>Flux Empyrean.exe</code>. Il n'y
+          écrit que <code>GDPatch/</code>, et ne touche à rien d'autre.
+        </p>
+      </div>
+    </div>
+
+    <p id="install-journal" hidden></p>
+
+    <div id="install-suite" hidden>
+      <div class="etape">
+        <span class="num">3.</span>
+        <div class="corps">
+          <strong>Lancer le jeu deux fois.</strong> Le premier lancement fabrique les
+          écrans traduits — quelques secondes, une seule fois. L'interface passe en
+          français au lancement suivant, et se refait toute seule quand le jeu se met à
+          jour. Plateforme détectée : <span id="install-plateforme"
+          style="color:var(--accent)"></span>.
+        </div>
+      </div>
+      <div class="etape" id="install-steam" hidden>
+        <span class="num">4.</span>
+        <div class="corps">
+          <strong>Jeu Linux natif uniquement</strong> — pas sous Proton — il reste une
+          ligne à coller dans les options de lancement Steam du jeu :<br>
+          <span class="commande">./run_with_gdpatch.sh %command%</span><br>
+          <span style="font-size:12px;color:var(--attenue)">Ce script se récupère sur
+          <a href="https://gdpatch.dev/" target="_blank" rel="noopener"
+             style="color:var(--accent)">gdpatch.dev</a> et se pose à côté du chargeur.
+          Il est nécessaire parce que le chemin d'installation Steam contient une
+          espace, sur laquelle <code>LD_PRELOAD</code> découpe. Avec le jeu Windows —
+          natif ou sous Proton — la DLL se branche seule, il n'y a rien à
+          régler.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div id="vue-traduire" hidden>
+<header>
+  <h1>Flux Empyrean — éditeur de traduction</h1>
+  <button id="charger-source">1. Ouvrir mon jeu…</button>
+  <button id="charger-langue" disabled>2. Charger une traduction…</button>
+  <select id="flux" disabled>
+    <option value="documents">Documents</option>
+    <option value="scenes">Scènes et interface</option>
+    <option value="scripts">Chaînes de code</option>
+  </select>
+  <input type="search" id="filtre" placeholder="filtrer…" disabled>
+  <label style="font-size:13px;color:var(--attenue)">
+    <input type="checkbox" id="restants"> à traduire seulement
+  </label>
+  <input type="text" id="code-langue" value="fr" maxlength="5" title="Code de la langue cible" disabled>
+  <button id="telecharger" disabled>Télécharger</button>
+  <button id="contribuer" class="primaire" disabled>Proposer au projet</button>
+  <span class="compteur" id="compteur"></span>
+  <p id="journal" hidden></p>
+</header>
+
+<main>
+  <div class="intro" id="intro">
+    <h2>Comment ça marche</h2>
+    <p>
+      Cet éditeur ne contient <strong>aucun texte du jeu</strong> — c'est volontaire,
+      la prose appartient à son auteur. Il lit le pack de <strong>ta propre copie</strong>,
+      ici, dans ton navigateur. Rien n'est téléversé, il n'y a ni serveur ni compte.
+    </p>
+    <p>
+      <strong>1.</strong> Ouvre le fichier du jeu : <code>flux-empyrean.x86_64</code> sous
+      Linux, <code>Flux Empyrean.exe</code> sous Windows, ou le <code>.pck</code> s'il est
+      séparé. La page en lit le sommaire et n'extrait que les quelques centaines de
+      kilooctets qui portent du texte — le fichier fait 827 Mo, il n'est jamais chargé
+      en entier.
+    </p>
+    <p>
+      C'est aussi ce qui distingue le jeu complet de la démo : la traduction se
+      construit à partir de <em>ton</em> corpus. Sans le jeu, l'éditeur n'a
+      simplement rien à afficher.
+    </p>
+    <p>
+      <strong>2.</strong> Charge une traduction existante pour la corriger — les fichiers
+      <code>documents.json</code>, <code>scenes.json</code> et <code>scripts.json</code>
+      d'une langue — ou commence à vide.
+    </p>
+    <p>
+      <strong>3.</strong> Édite la colonne de droite, puis <em>Proposer au projet</em> :
+      tes trois fichiers se téléchargent et GitHub s'ouvre sur la page de dépôt, qui crée
+      la pull request pour toi. La validation automatique du dépôt rejouera les contrôles
+      d'énigmes avant toute fusion.
+    </p>
+    <p style="color:var(--alerte)">
+      Les lignes en orange sont <strong>gelées</strong> : blocs chiffrés, langue
+      construite, rébus. Le jeu retire tout ce qui n'est pas une lettre avant de
+      déchiffrer — une lettre en plus décale tout le message. L'éditeur les met en
+      lecture seule.
+    </p>
+  </div>
+  <div id="table-zone"></div>
+</main>
+</div>
+
+<script>
+  // Deux publics, deux vues. Le joueur arrive en premier : c'est lui qui compte.
+  const vues = { installer: "vue-installer", traduire: "vue-traduire" };
+  for (const [nom, id] of Object.entries(vues)) {
+    document.getElementById("onglet-" + nom).onclick = () => {
+      for (const [autre, cible] of Object.entries(vues)) {
+        const actif = autre === nom;
+        document.getElementById(cible).hidden = !actif;
+        document.getElementById("onglet-" + autre).setAttribute("aria-selected", String(actif));
+      }
+    };
+  }
+</script>
+<script src="installeur.js"></script>
+<script src="vendor/fzstd.js"></script>
+<script src="pack.js"></script>
+<script src="extraction.js"></script>
+<script src="editeur.js"></script>
+</body>
+</html>

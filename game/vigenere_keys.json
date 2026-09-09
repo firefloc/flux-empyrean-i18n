@@ -1,0 +1,10 @@
+{
+	"_note": "Clés Vigenère des blocs chiffrés, retrouvées par cryptanalyse. Ce sont des faits du jeu, valables pour toutes les langues. Toutes sauf « dcdr » sont des noms propres du jeu ; « dcdr » est aussi le mot de passe du monolithe de la Flux Anomaly et se lit au début du clair.",
+	"cles": {
+		"A True Plan": {"0": "wim", "1": "wim"},
+		"Celestial Signs": {"5": "dcdr"},
+		"Inexistant Inscription": {"0": "xeres"},
+		"Message": {"0": "minos"},
+		"Ritual for a Proper God": {"0": "feodor"}
+	}
+}

@@ -1,0 +1,39 @@
+# Rejoue les contrôles d'énigmes sur chaque pull request touchant une langue.
+#
+# C'est l'autorité : l'éditeur web reproduit les mêmes règles pour le confort de
+# saisie, mais seule cette exécution fait foi avant une fusion.
+#
+# Le relevé des faits du jeu (verrous, segments gelés) demande une copie du jeu,
+# qu'on ne peut pas distribuer. On vérifie donc ce qui est vérifiable sans elle :
+# la forme des fichiers, et les règles qui ne dépendent que du texte.
+name: Vérifier la traduction
+
+on:
+  pull_request:
+    paths:
+      - "locales/**"
+
+jobs:
+  controler:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Langues modifiées
+        id: langues
+        run: |
+          git fetch --no-tags --depth=1 origin "${{ github.base_ref }}"
+          modifiees=$(git diff --name-only "origin/${{ github.base_ref }}"...HEAD \
+            | grep '^locales/' | cut -d/ -f2 | sort -u | tr '\n' ' ')
+          echo "liste=$modifiees" >> "$GITHUB_OUTPUT"
+          echo "langues touchées : $modifiees"
+
+      - name: Contrôles hors jeu
+        run: |
+          for langue in ${{ steps.langues.outputs.liste }}; do
+            echo "== $langue"
+            LOCALE="$langue" python3 tools/check_locale_offline.py
+          done

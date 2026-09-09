@@ -1,0 +1,37 @@
+{
+	"commandes_terminal": {
+		"help": [
+			"aide"
+		],
+		"unlock": [
+			"deverrouiller",
+			"déverrouiller"
+		],
+		"lock": [
+			"verrouiller"
+		],
+		"download": [
+			"telecharger",
+			"télécharger"
+		],
+		"key": [
+			"cle",
+			"clé"
+		],
+		"flux": []
+	},
+	"reecritures": {
+		"Locations/Hall of Judgment/crimes_list.gdc": [
+			[
+				"var crime_4_answers: Array[String] = [\"sferdan\", \"mandal\", \"costeau\", \"archive curators\"]",
+				"var crime_4_answers: Array[String] = [\"sferdan\", \"mandal\", \"costeau\", \"archive curators\", \"conservateurs d'archives\", \"les conservateurs d'archives\", \"archivistes\", \"les archivistes\"]"
+			]
+		],
+		"Scenes/Entities/cuffs.gdc": [
+			[
+				"\tif name_answer.to_lower() in name_text.to_lower() and title_text.to_lower() == title_answer.to_lower():",
+				"\tif (name_answer.to_lower() in name_text.to_lower() or _fr_alias(name_answer, name_text.to_lower())) and (title_text.to_lower() == title_answer.to_lower() or _fr_alias(title_answer, title_text.to_lower())):"
+			]
+		]
+	}
+}

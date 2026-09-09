@@ -1,0 +1,631 @@
+{
+	"res://FluxGame/MainMenu/main_menu.tscn": {
+		"18": "-Jouer-"
+	},
+	"res://Locations/Abstract Form/abstract_form.tscn": {
+		"12": "A Miracle",
+		"37": "Le sol abrite un petit\nclavier encastré."
+	},
+	"res://Locations/Acropolis/acropolis.tscn": {
+		"34": "Quelle divinité n'a qu'un seul fidèle ?",
+		"50": "A Hunt of Futility",
+		"55": "Secrets of Speech",
+		"60": "Grounding of Life",
+		"65": "Mantra for Learning",
+		"69": "Blessing of War",
+		"73": "Plea for Peace",
+		"78": "Reflection of Self",
+		"83": "A Bargain for Gnosis"
+	},
+	"res://Locations/Acropolis/follower.tscn": {
+		"11": "Qui est mon fidèle \nle plus dévoué ?\n"
+	},
+	"res://Locations/Aether I Rocket/aether_i_rocket.tscn": {
+		"9": "Think Twice"
+	},
+	"res://Locations/Alterspace/alterspace.tscn": {
+		"9": "Wims of a Believer",
+		"16": "\"Le premier d'entre eux amènerait le monde à son centre.\nIl apporterait la stabilité.\""
+	},
+	"res://Locations/Archive of the Unrealized/archive_of_the_unrealized.tscn": {
+		"9": "Archival Notes",
+		"21": "Second Spark",
+		"24": "Liquid Flux",
+		"27": "Neodivine Birth"
+	},
+	"res://Locations/Atrae Shrine/atrae_shrine.tscn": {
+		"24": "The Deities",
+		"26": "The Third Aeon",
+		"29": "The Fourth Aeon"
+	},
+	"res://Locations/Ayodhia/ayodhia.tscn": {
+		"47": "Ancient Engravings",
+		"61": "The Holy Mountain",
+		"78": "A Commentary On Ayodhia"
+	},
+	"res://Locations/Beacons/beacon_1.tscn": {
+		"27": "Sun Sermons"
+	},
+	"res://Locations/Beacons/beacon_2.tscn": {
+		"27": "Sun Sermons"
+	},
+	"res://Locations/Beacons/beacon_3.tscn": {
+		"28": "Sun Sermons"
+	},
+	"res://Locations/Beacons/pattern_box.tscn": {
+		"15": "PatternLock",
+		"35": "Séquence acceptée."
+	},
+	"res://Locations/Broken Arch/broken_arch.tscn": {
+		"17": "The Ciliad",
+		"42": "The Way Out"
+	},
+	"res://Locations/Clockwork Yellow/clockwork_yellow.tscn": {
+		"40": "Time and Space",
+		"46": "Brand New God"
+	},
+	"res://Locations/Conceptual Temple/conceptual_temple.tscn": {
+		"15": "On Reality",
+		"17": "Unseen Concepts"
+	},
+	"res://Locations/Constellation/constellation.tscn": {
+		"21": "The Superserver",
+		"28": "Thought-Machines",
+		"77": "Mot de passe de\ndémarrage système :"
+	},
+	"res://Locations/Corba Temple/corba_temple.tscn": {
+		"69": "Monolith to Cora",
+		"73": "Letter to Cirra",
+		"77": "Letter to the Corba Temple",
+		"79": "An Introduction to Logic"
+	},
+	"res://Locations/Courtyard House/courtyard_house.tscn": {
+		"8": "The Third Aeon",
+		"11": "The Fourth Aeon",
+		"14": "The Last Trial",
+		"23": "\"Le deuxième d'entre eux se tiendrait là, en silence.\nÉlégant et gracieux dans sa beauté,\nil se ferait rare, et pourtant inoubliable.\""
+	},
+	"res://Locations/Deep Flux Lab/deep_flux_lab.tscn": {
+		"120": "Tout comme elles consacrent\nl'écriture et le savoir,\nque les étoiles au-dessus\nte disent ce que tu\ndois savoir.",
+		"139": "DFL Notice",
+		"141": "Lab Report No. 3",
+		"152": "\"Et alors l'un des anciens\ns'avancera,\net réclamera la place qui lui est\ninscrite dans les étoiles.\"",
+		"157": "Lab Report No. 7",
+		"161": "Eyes Open To The Mad God"
+	},
+	"res://Locations/Deepspace Telescope/deepspace_telescope.tscn": {
+		"12": "Deepspace Objects",
+		"18": "The Thing That Should Not Be"
+	},
+	"res://Locations/Diasview/diasview.tscn": {
+		"13": "Brand New God",
+		"16": "Secrets in Cycles"
+	},
+	"res://Locations/Drum of War/drum_of_war.tscn": {
+		"27": "The Hunter, Truan",
+		"30": "A Declaration of War",
+		"32": "Soldier's Letter",
+		"46": "\"La guerre viendra ensuite. Elle sera fulgurante,\net le monde sombrera dans un\nconflit qui ne connaîtra pas de fin.\""
+	},
+	"res://Locations/East Ideolog/east_ideolog.tscn": {
+		"11": "Flow, or Flux"
+	},
+	"res://Locations/Elysium Crash Site/elysium_crash_site.tscn": {
+		"8": "Flight Log",
+		"11": "Flux Empyrean"
+	},
+	"res://Locations/FSM Experiment/fsm_experiment.tscn": {
+		"10": "Thought-Machines",
+		"13": "Finite State Machines"
+	},
+	"res://Locations/Fixed Point Telescope/fixed_point_telescope.tscn": {
+		"10": "An Uncomfortable Reality",
+		"14": "Things Without Name"
+	},
+	"res://Locations/Flux Anomaly/flux_anomaly.tscn": {
+		"21": "So-Called Ramblings of a Madman",
+		"34": "La surface fond\nà ton contact."
+	},
+	"res://Locations/Flux Anomaly/flux_anomaly_2.tscn": {
+		"21": "So-Called Ramblings of a Madman",
+		"24": "Celestial Signs",
+		"36": "La surface fond\nà ton contact."
+	},
+	"res://Locations/Flux Anomaly/flux_anomaly_3.tscn": {
+		"21": "So-Called Ramblings of a Madman",
+		"23": "Celestial Signs",
+		"37": "La surface fond\nà ton contact."
+	},
+	"res://Locations/Flux Anomaly/well_of_uplifting.tscn": {
+		"26": "History of the World",
+		"57": "Es-tu\nsûr que\nc'est ce que \ntu veux ?",
+		"65": "PLACEHOLDER TEXT"
+	},
+	"res://Locations/Flux Monstrance/flux_monstrance.tscn": {
+		"18": "Beyond Deities"
+	},
+	"res://Locations/Geometic Lab/geometic_lab.tscn": {
+		"10": "Letter to Socar",
+		"23": "A Case for Geometics",
+		"25": "The Natural Unit"
+	},
+	"res://Locations/Golden Idol/golden_idol.tscn": {
+		"32": "Il y a longtemps, quelqu'un a tracé\nun mot sur ce croissant.",
+		"35": "Beyond Deities",
+		"46": "\"Le suivant serait rusé,\ncalculant la meilleure voie vers\nson profit à la fin des temps.\""
+	},
+	"res://Locations/Greater Corba/greater_corba.tscn": {
+		"51": "\"Le deuxième à paraître porterait le\npoids du monde dans sa main. \nIl serait doué en logique,\ncompétence nécessaire à l'ouvrage qui lui revient. \""
+	},
+	"res://Locations/Hall of Forms/hall_of_forms.tscn": {
+		"9": "The Fourth Aeon",
+		"15": "Peering Into Depths",
+		"47": "Qu'est-ce que c'est ?"
+	},
+	"res://Locations/Hall of Judgment/crimes_list.tscn": {
+		"11": "NOMMEZ LES TÉMOINS",
+		"12": "Effacement de l'Histoire :",
+		"14": "Désolation des Divinités :",
+		"15": "Mépris de la Vie :",
+		"16": "Destruction des Cités :",
+		"17": "Génocide de la Pensée :",
+		"18": "Asservissement de la Matière :",
+		"19": "Éclatement de la Réalité :",
+		"20": "[Valider]"
+	},
+	"res://Locations/Hall of Judgment/hall_of_judgment.tscn": {
+		"41": "The Hunter, Truan"
+	},
+	"res://Locations/Hand of Wim/hand_of_wim.tscn": {
+		"12": "The Great Joke",
+		"17": "The Final Judgment",
+		"29": "The Last Trial",
+		"38": "Que le jugement de",
+		"40": "soit rendu."
+	},
+	"res://Locations/Home of Minos/home_of_minos.tscn": {
+		"10": "The Deity",
+		"18": "The Hunter, Truan",
+		"20": "Digital Oceans"
+	},
+	"res://Locations/Hypercube/hypercube.tscn": {
+		"21": "The Veil",
+		"35": "La séquence est :",
+		"51": "On Liberation"
+	},
+	"res://Locations/Isle of Change/isle_of_change.tscn": {
+		"30": "The Mirrored Sea",
+		"37": "\"Ils auront un appétit de ruine,\ndes desseins qui dépassent l'entendement\net une puissance au-delà de toute mesure.\""
+	},
+	"res://Locations/Labyrinth/labyrinth.tscn": {
+		"109": "On the Limits of Reality",
+		"116": "Le premier à paraître serait jusque-là inconnu. \nIl viendra au grondement de trompettes sourdes,\net annoncera la fin."
+	},
+	"res://Locations/Launch Site/launch_site.tscn": {
+		"19": "The Last Weapon",
+		"21": "Flux Empyrean",
+		"27": "Station Keys",
+		"30": "In Case of Emergency",
+		"37": "\"Un autre viendra peu après, porteur de\nnouveaux instruments de guerre.\"",
+		"60": "Clé maîtresse :"
+	},
+	"res://Locations/Logical Clock/logical_clock.tscn": {
+		"13": "Beacon 1",
+		"16": "Beacon 2",
+		"18": "Beacon 3",
+		"26": "The Pattern",
+		"30": "Art of Secrecy"
+	},
+	"res://Locations/Memorial to Inexistance/memorial_to_inexistance.tscn": {
+		"10": "Memorial Request",
+		"15": "The Unmade"
+	},
+	"res://Locations/Memorial to the Lost/memorial_to_the_lost.tscn": {
+		"11": "Note to Dabbid",
+		"13": "Flux Empyrean",
+		"16": "Flight Log",
+		"38": "À la mémoire de"
+	},
+	"res://Locations/Monolith to Cora/monolith_to_cora.tscn": {
+		"84": "On Dying Movements"
+	},
+	"res://Locations/Monument to Consciousness/monument_to_consciousness.tscn": {
+		"17": "Goodnight, Dear World"
+	},
+	"res://Locations/North Ideolog/north_ideolog.tscn": {
+		"11": "Flow, or Flux"
+	},
+	"res://Locations/Parallel Exhibition/parallel_exhibition.tscn": {
+		"53": "Fields of Green",
+		"55": "Parallel Conclusion",
+		"59": "The Arrival",
+		"67": "Transcript of Bael-Cirra Meeting",
+		"97": "Y a-t-il équilibre ?"
+	},
+	"res://Locations/Park of Solitude/park_of_solitude.tscn": {
+		"11": "The Deities",
+		"14": "The Fifth Aeon",
+		"19": "A Thought"
+	},
+	"res://Locations/Planetarium/planetarium.tscn": {
+		"9": "Fingerprints of a Rift",
+		"12": "Star Guides"
+	},
+	"res://Locations/Postal Office/postal_office.tscn": {
+		"9": "Entry Note",
+		"11": "Postal Letters"
+	},
+	"res://Locations/Power Plant/power_plant.tscn": {
+		"47": "The Superserver"
+	},
+	"res://Locations/Power Plant/power_terminal.tscn": {
+		"4": "Alimentation",
+		"25": "État 1",
+		"26": "État 2",
+		"27": "État 3",
+		"28": "État 4",
+		"29": "État 5",
+		"30": "État 6",
+		"31": "État 7",
+		"32": "État 8",
+		"33": "État 9",
+		"34": "État 10",
+		"35": "État 11",
+		"36": "État 12",
+		"37": "État 13",
+		"38": "État 14",
+		"39": "État 15",
+		"40": "État 16",
+		"42": "Séquence acceptée."
+	},
+	"res://Locations/Rogue Cloud/rogue_cloud.tscn": {
+		"18": "Thought-Machines"
+	},
+	"res://Locations/Shrine of Siciphos/shrine_of_siciphos.tscn": {
+		"14": "The Deities",
+		"17": "The Fourth Aeon",
+		"19": "The Third Aeon",
+		"24": "\"L'un viendra avec un savoir\nqui ne peut être donné.\""
+	},
+	"res://Locations/Shrine of the Hidden/shrine_of_the_hidden.tscn": {
+		"11": "On Reality"
+	},
+	"res://Locations/Signal Tower/signal_tower_a.tscn": {
+		"35": "A Declaration of War"
+	},
+	"res://Locations/Signal Tower/signal_tower_b.tscn": {
+		"36": "A Declaration of War"
+	},
+	"res://Locations/Signal Tower/signal_tower_c.tscn": {
+		"36": "A Declaration of War"
+	},
+	"res://Locations/Singularity Dome/singularity_dome.tscn": {
+		"18": "The Deities",
+		"24": "Ritual for a Proper God",
+		"26": "Divine Singularity"
+	},
+	"res://Locations/Skybase Observatory/skybase_observatory.tscn": {
+		"25": "Deepspace Objects",
+		"28": "Things Without Name",
+		"30": "The Thing That Should Not Be",
+		"47": "station50"
+	},
+	"res://Locations/South Ideolog/south_ideolog.tscn": {
+		"11": "Flow, or Flux"
+	},
+	"res://Locations/Star Study/star_study.tscn": {
+		"10": "Fingerprints of a Rift",
+		"14": "Star Guides",
+		"17": "three faced god",
+		"19": "\"Celui qui a toujours existé, qui existe,\net qui existera se manifestera.\""
+	},
+	"res://Locations/Station X/station_x.tscn": {
+		"47": "IDENTITÉ SCANNÉE\nRéponds à ta question\nde récupération\npersonnelle :\n\"Quand ta foi a-t-elle\ncommencé à vaciller ?\"",
+		"65": "\"La forme du suivant serait incompréhensible,\nà l'image du message qu'il porte.\nEt bien que la nouvelle qu'il apporte soit funeste,\nelle ne pourrait se comprendre qu'après coup.\""
+	},
+	"res://Locations/Stations/Station 17/station_17.tscn": {
+		"24": "station17",
+		"28": "Marie's Note",
+		"30": "Policy Announcement"
+	},
+	"res://Locations/Stations/Station 21/station_21.tscn": {
+		"24": "station21",
+		"28": "The Path of Emperors",
+		"32": "Flux Empyrean"
+	},
+	"res://Locations/Stations/Station 9/station_9.tscn": {
+		"23": "station9",
+		"34": "Flux Empyrean"
+	},
+	"res://Locations/Stations/Station 9/station_9_dish.tscn": {
+		"15": "Construction Notice",
+		"17": "Policy Announcement"
+	},
+	"res://Locations/Sun Temple/sun_temple.tscn": {
+		"99": "The Unmade",
+		"102": "Brand New God",
+		"106": "Time Dedication",
+		"110": "Temple Doors",
+		"117": "\"Nul ne les attendrait,\ncar jamais ils n'ont agi. \nBeaucoup douteront qu'ils aient même une origine.\"",
+		"150": "L'Éclat attend ta parole.\n"
+	},
+	"res://Locations/Superserver/super_terminal.tscn": {
+		"12": "PLACEHOLDER TEXT"
+	},
+	"res://Locations/Superserver/superserver.tscn": {
+		"78": "Distributed Mind",
+		"96": "Bounds of Computation",
+		"103": "Mot de passe de démarrage :",
+		"106": "IDENTITÉ SCANNÉE\nRéponds à ta question\nde récupération personnelle :\n\"Quand ta foi a-t-elle\ncommencé à vaciller ?\"",
+		"109": "Indice mot de passe :\nFréquence",
+		"113": "A Round PXCSAW"
+	},
+	"res://Locations/Testing Grounds/testing_grounds.tscn": {
+		"9": "Field Report No. 2",
+		"20": "\"Il existe d'innombrables possibilités pour un monde,\net celui-ci n'en est qu'une.\nIl était inévitable que nous devions\npasser à une autre possibilité.\"\n"
+	},
+	"res://Locations/The House/the_house.tscn": {
+		"27": "The Jacket",
+		"31": "My House",
+		"40": "\"Des idées nouvelles couleront,\net des choses étrangères à ce monde\ndeviendront possibles.\""
+	},
+	"res://Locations/Tower of Languages/tower_of_languages.tscn": {
+		"18": "Tower Messages",
+		"24": "Free Language",
+		"45": "Réponse :"
+	},
+	"res://Locations/True East/true_east.tscn": {
+		"22": "Celestial Signs",
+		"27": "Time and Space",
+		"29": "Trues Purpose"
+	},
+	"res://Locations/True North/true_north.tscn": {
+		"21": "Celestial Signs",
+		"27": "A True Plan",
+		"30": "Trues Purpose"
+	},
+	"res://Locations/True South/true_south.tscn": {
+		"21": "Celestial Signs",
+		"27": "Time and Space",
+		"30": "Trues Purpose"
+	},
+	"res://Locations/True West/true_west.tscn": {
+		"22": "Celestial Signs",
+		"27": "Trues Purpose"
+	},
+	"res://Locations/Umai Shrine/umai_shrine.tscn": {
+		"10": "The Deities",
+		"13": "The Fourth Aeon",
+		"16": "The Third Aeon"
+	},
+	"res://Locations/Universal Mirror/universal_mirror.tscn": {
+		"9": "Mirrored Universe",
+		"18": "\"Avant la fin, le désolé parlera.\nSon corps est le tout, et le monde tremblera de\nce que cela implique.\""
+	},
+	"res://Locations/West Ideolog/west_ideolog.tscn": {
+		"11": "A True Plan",
+		"14": "Flow, or Flux"
+	},
+	"res://Locations/Wim Shrine/wim_shrine.tscn": {
+		"10": "The Deities",
+		"13": "The Fourth Aeon",
+		"16": "The Third Aeon",
+		"18": "The Great Joke"
+	},
+	"res://Scenes/boat.tscn": {
+		"144": "station1",
+		"148": "Note to Self",
+		"165": "Frequency Analyzer Manual",
+		"167": "Previous Owner's Notes",
+		"170": "Work Orders",
+		"173": "Boat User's Manual",
+		"189": "Order of the Unmade"
+	},
+	"res://Scenes/chime.tscn": {
+		"14": "Gamme : [Majeure]  Mineure  Pentatonique \nHauteur : 0.0\nBrouillage : 0.1"
+	},
+	"res://Scenes/ending.tscn": {
+		"14": "Flux Empyrean",
+		"16": "Le Quatrième Aeon commence",
+		"18": "\n\n\n\n\n\n\n\n\n\n\n\n\n\"Quand le dernier d'entre nous reposera à jamais, \nalors seulement le monde prendra\nsa forme finale.\"",
+		"19": "Le Dieu Dément",
+		"20": "\n\n\n\n\n\n\n\n\n\n\n\n\n\"Qu'est-ce qui fait de ce monde ce qu'il est ?\"",
+		"21": "La Seconde Calamité",
+		"22": "\n\n\n\n\n\n\n\n\n\n\n\n\n\"Et tout fut changé, car telle était\nla nature du Flux. Un monde nouveau.\"",
+		"23": "La Sombre Vérité",
+		"24": "\n\n\n\n\n\n\n\n\n\n\n\n\n\"La réalité a changé d'une façon que nous ne pourrions\njamais comprendre. Nous n'aurions jamais dû voir ça.\"",
+		"26": "\n\n\n\n\n\n\n\n\n\n\n\n\n\"Il était vrai que les choses étaient brisées. Mais il\nn'était pas vrai qu'on ne pût les réparer. La vérité\nfondamentale n'est connue que de toi, et de toi seul.\"",
+		"28": "\n\n\n\n\n\n\n\n\n\n\n\n\n\"Et je me tenais là, au bord du temps. Une réalité\nderrière moi et une autre devant. Je n'ai jamais été seul.\nIls attendaient depuis toujours que je les trouve dans la cité.\"",
+		"29": "La Voie du Possible",
+		"30": "\n\n\n\n\n\n\n\n\n\n\n\n\n\"Le Quatrième Aeon ? C'est un récit d'un autre temps...\nsi pareille chose devait advenir, ce serait\nbien, bien plus tard. Regarde le monde, que\nvois-tu ? La vie. Le monde déborde de vie.\nLà où nous existons, rien ne peut rester immobile.\"",
+		"31": "Faille Sans Filtre",
+		"32": "\n\n\n\n\n\n\n\n\n\n\n\n\n\"Nous avions oublié ce qu'étaient les divinités.\nMoins nous nous en souvenions, plus elles faiblissaient.\nNotre monde a lentement sombré dans la stagnation. La faille\ns'est refermée... mais elle vient de s'ouvrir à nouveau.\n\nUn monde nouveau coule jusqu'à nous.\"",
+		"33": "La Grande Farce",
+		"34": "\n\n\n\n\n\n\n\n\n\n\n\n\n\"Ça n'a jamais eu beaucoup de sens, n'est-ce pas ?\nJe crois que le contenu de la farce\nn'a jamais été la farce elle-même.\n\nPris pour des idiots, une réalité nouvelle approche.\"",
+		"35": "La Prison",
+		"36": "\n\n\n\n\n\n\n\n\n\n\n\n\n\"Mythes et légendes parlaient de choses que nous avions oubliées.\nElles étaient réelles, mais retenues par quelque chose, il y a longtemps.\nQuelque chose de neuf s'annonce. Elles sont libres. Elles étaient là\npour le début de ce monde, et elles seront là pour\nle commencement du suivant.\""
+	},
+	"res://Scenes/fish_scanner.tscn": {
+		"14": "Aucun scan récent.\nATTENTION - La pêche n'est pas implémentée\n\n"
+	},
+	"res://Scenes/frequency_analyzer.tscn": {
+		"11": " REPOS\n=========\nFREQ:9999"
+	},
+	"res://Scenes/journal.tscn": {
+		"15": "Voir les favoris",
+		"18": "90/? trouvés",
+		"22": "Tes notes ici...",
+		"23": "Clé de déchiffrement...",
+		"25": "Étoiles au-dessus",
+		"30": "Orienter le bateau",
+		"33": "Épingler le lieu",
+		"11": "Textes",
+		"12": "Lieux",
+		"13": "Pêche",
+		"14": "Rechercher…",
+		"16": "Effacer\n",
+		"28": "Progression",
+		"34": "Favori"
+	},
+	"res://Scenes/loading_screen.tscn": {
+		"14": "Flux Empyrean",
+		"16": "Lorem ipsum dolor est this is a test of how much i can type"
+	},
+	"res://Scenes/main_menu.tscn": {
+		"26": "user@godot:-$ menu\n",
+		"31": "Flux Empyrean",
+		"32": "[Commencer]",
+		"35": "[Mode debug]",
+		"39": "1.3.0- \"Aeons\"",
+		"41": "https://docs.google.com/forms/d/e/1FAIpQLSek7oDtTmmUJfPNAPf_7CKF1L4w0WD__bDo_5PcODO7b33dIA/viewform?usp=header",
+		"43": "https://discord.gg/8pancxutr5",
+		"45": "Résolution de l'océan",
+		"50": "Modifie la densité des points du maillage de l'océan.",
+		"51": "Qualité des portails",
+		"54": "Modifie le nombre de pixels utilisés pour les portails sans raccord.",
+		"55": "Sensibilité souris",
+		"58": "Règle le volume des différentes sources sonores.",
+		"59": "FOV caméra",
+		"63": "Règle le champ de vision de la caméra.",
+		"64": "Échelle de l'interface",
+		"66": "Modifie la taille de l'interface. ATTENTION : les valeurs extrêmes peuvent donner des résultats bizarres.",
+		"67": "Lissage caméra",
+		"68": "Adoucit les mouvements de caméra à la souris.",
+		"69": "Masquer les entités",
+		"70": "Masque les entités qui foncent sur toi.",
+		"71": "Afficher les contours",
+		"72": "Désactiver peut améliorer les performances.",
+		"73": "Inverser la minicarte",
+		"74": "Inverse la rotation de la minicarte.",
+		"76": "Passe le jeu en plein écran !",
+		"77": "Optimisation océan & monde",
+		"78": "Active des optimisations qui améliorent nettement \nles performances, au prix du détail de l'océan.",
+		"79": "Volume général",
+		"80": "Volume du jeu",
+		"81": "Volume musique",
+		"82": "Volume interface",
+		"83": "Redémarre le jeu pour appliquer ces réglages.",
+		"84": "Nombre d'étoiles",
+		"86": "Options de réinitialisation",
+		"87": "Zone rouge ! Effet immédiat !",
+		"88": "Réinitialise ta position dans le monde. - Tape \"Reset Position\"",
+		"89": "Clé de réinitialisation...",
+		"90": "Efface toutes les découvertes. - Tape \"Reset Discoveries\"",
+		"93": "[Enregistrer et fermer]",
+		"95": "Créé par : Cash Hilstad\nArt de l'entité \"Flux\" par Miguel Madrigal\nTesteurs : Cooper, Ringo Roadagain, imaducklol, squabbled, \nUnAstronomical, Robert Mackey, Carson Frost, Goldenbarky,\nAllSol, ekorz, Marko Everest, neolog, Hamish K, Sean Kulbeth,\nCory Jansen, Adrian \"Kage\" Connor, Adrien Nivaggioli, ikeaman,\nguillotine chan, Krillus, David Whitechapel, Marleyjedi, sakhmet\nMore Cowbell, Mr. Nemo, JayFa, thesilverapple30, SqueeSpree,\nPhummyLW, SantoSama, Pedro Gaio, Jacob P, ghostpopjake\n",
+		"34": "[Tutoriel]",
+		"36": "[Réglages]",
+		"37": "[Crédits]",
+		"38": "[Quitter]\n",
+		"40": "[Bugs / Retours]",
+		"44": "Réglages",
+		"75": "Plein écran",
+		"91": "[Annuler]",
+		"92": "[Appliquer]",
+		"94": "Crédits",
+		"96": "[Retour]"
+	},
+	"res://Scenes/passage.tscn": {
+		"5": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+	},
+	"res://Scenes/pause_screen.tscn": {
+		"11": " Reprendre ",
+		"13": "Sauvegarder",
+		"14": "Retour au menu",
+		"15": "Quitter le jeu",
+		"16": "Le journal et la position du bateau seront sauvegardés !",
+		"18": "https://docs.google.com/forms/d/e/1FAIpQLSek7oDtTmmUJfPNAPf_7CKF1L4w0WD__bDo_5PcODO7b33dIA/viewform?usp=header",
+		"20": "Mode dieu",
+		"22": "Lissage caméra",
+		"25": "Adoucit les mouvements de caméra à la souris.",
+		"26": "Masquer la visière",
+		"27": "Retire la visière du casque pour réduire les reflets.",
+		"28": "Afficher les contours",
+		"29": "Désactiver peut améliorer les performances.",
+		"30": "Masquer l'interface",
+		"31": "Masque l'interface pour les belles captures.",
+		"32": "Masquer les entités",
+		"33": "Masque les entités qui foncent sur toi.",
+		"34": "Inverser la minicarte",
+		"35": "Inverse la rotation de la minicarte.",
+		"37": "Passe le jeu en plein écran !",
+		"38": "Sensibilité souris",
+		"41": "Règle le volume des différentes sources sonores,",
+		"42": "FOV caméra",
+		"46": "Règle le champ de vision de la caméra.",
+		"47": "Échelle de l'interface",
+		"50": "Modifie la taille de l'interface.",
+		"51": "Vitesse du texte",
+		"53": "Modifie la vitesse de défilement du texte.",
+		"54": "Optimisation océan & monde",
+		"55": "Active des optimisations qui améliorent nettement \nles performances, au prix du détail de l'océan.",
+		"56": "Volume général",
+		"58": "Volume du jeu",
+		"59": "Volume musique",
+		"60": "Volume interface",
+		"10": "En pause",
+		"17": "Bugs / Retours ?",
+		"62": "[Fermer]"
+	},
+	"res://Scenes/planet_manager.tscn": {
+		"68": "-Ulm",
+		"72": "-Vem"
+	},
+	"res://Scenes/player.tscn": {
+		"71": "Connexion établie.",
+		"73": "<Clic gauche> pour continuer.",
+		"74": "Ceci est la version démo.\nTu peux explorer toute la planète, mais\nles seuls lieux visitables sont ceux\nque tu vois depuis le point de départ.",
+		"92": "[-------]",
+		"94": "Entrée ajoutée au journal",
+		"95": "\n\n\n\n[--Fréquence détectée !--]",
+		"116": "Décalage RG : -3.4",
+		"117": "Clarté : 1.0",
+		"118": "Énergie locale : 1.0",
+		"119": "Particules : 1.0",
+		"70": "Connexion…",
+		"115": "Souffle"
+	},
+	"res://Scenes/terminal.tscn": {
+		"13": "station17@local\n"
+	},
+	"res://Scenes/terminal_test.tscn": {
+		"11": "station17",
+		"12": "station21"
+	},
+	"res://Scenes/world_map.tscn": {
+		"16": "shallow-rotter",
+		"19": "fanged-watcher",
+		"22": "extruded-drainer",
+		"25": "triad-darter",
+		"30": "graceful-flapper",
+		"37": "tropic-watcher",
+		"94": "Jour permanent",
+		"104": "Nuit permanente",
+		"112": "Mi-loin mi-près"
+	},
+	"res://Scenes/Boat/boat_warning.tscn": {
+		"10": "ALERTE\nCOLLISION\n"
+	},
+	"res://Scenes/Boat/radar.tscn": {
+		"13": "Aucun scan récent.\n\n"
+	},
+	"res://Scenes/Entities/cuffs.tscn": {
+		"14": "PLACEHOLDER TEXT"
+	},
+	"res://Scenes/Fishing/fish_caught_screen.tscn": {
+		"11": "FishName",
+		"14": "Taille : Poids :",
+		"15": "Pêché 1"
+	},
+	"res://Tutorial/tutorial.tscn": {
+		"75": "Saisis la fréquence cible...",
+		"84": "Training Scenario",
+		"90": "World Primer",
+		"92": "Instructions for a New Body"
+	},
+	"res://addons/godotsteam/editor/steamworks_panel.tscn": {
+		"14": "GodotSteam",
+		"15": "Installed version 4.18",
+		"20": "Up-to-date"
+	}
+}

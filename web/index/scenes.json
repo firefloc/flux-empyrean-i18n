@@ -1,0 +1,669 @@
+{
+	"res://FluxGame/MainMenu/main_menu.tscn": {
+		"18": "#06bda1a9909f3ef1",
+		"12": "#889e1c2f5289eea7"
+	},
+	"res://Locations/Abstract Form/abstract_form.tscn": {
+		"12": "#c4ed911bd6faaec8",
+		"37": "#5515fc748a284dbe"
+	},
+	"res://Locations/Acropolis/acropolis.tscn": {
+		"34": "#252d6fb4f6029b34",
+		"50": "#7b8c65e2e058d549",
+		"55": "#ce2f9f95651965c0",
+		"60": "#71e70e634a45877a",
+		"65": "#d0edc5bf1bd547c1",
+		"69": "#c11f98741d70a55b",
+		"73": "#69695cfe2a494560",
+		"78": "#65d12b61347a678c",
+		"83": "#bb32d53c4f7c9891",
+		"104": "#273d0553c0485986"
+	},
+	"res://Locations/Acropolis/follower.tscn": {
+		"11": "#105b4f8a719f3256"
+	},
+	"res://Locations/Aether I Rocket/aether_i_rocket.tscn": {
+		"9": "#4caea50bee975594"
+	},
+	"res://Locations/Alterspace/alterspace.tscn": {
+		"9": "#86fd0721e0a837e6",
+		"16": "#7c4be67e008f1e33"
+	},
+	"res://Locations/Archive of the Unrealized/archive_of_the_unrealized.tscn": {
+		"9": "#37d2d3684139a8f6",
+		"21": "#c9297c2c3b23280a",
+		"24": "#2f87c64a0754d019",
+		"27": "#81078084faf1696f"
+	},
+	"res://Locations/Atrae Shrine/atrae_shrine.tscn": {
+		"24": "#540e1938ff0d632c",
+		"26": "#7a4a959ed24b3e09",
+		"29": "#da0ce1adc507949d"
+	},
+	"res://Locations/Ayodhia/ayodhia.tscn": {
+		"47": "#4cd98d0120e4c63c",
+		"61": "#22b9b95cd1064090",
+		"78": "#57565c07c5436478"
+	},
+	"res://Locations/Beacons/beacon_1.tscn": {
+		"27": "#0bb1c39d6adb09d1"
+	},
+	"res://Locations/Beacons/beacon_2.tscn": {
+		"27": "#0bb1c39d6adb09d1"
+	},
+	"res://Locations/Beacons/beacon_3.tscn": {
+		"28": "#0bb1c39d6adb09d1"
+	},
+	"res://Locations/Beacons/pattern_box.tscn": {
+		"15": "#9b62cd6232ee68dd",
+		"35": "#fe426d494319817c"
+	},
+	"res://Locations/Broken Arch/broken_arch.tscn": {
+		"17": "#0b33aa5d9bf9d5f6",
+		"42": "#b3d25e79dd699c35"
+	},
+	"res://Locations/Clockwork Yellow/clockwork_yellow.tscn": {
+		"40": "#11785289d53c16b5",
+		"46": "#ef7f0d983f090a69"
+	},
+	"res://Locations/Conceptual Temple/conceptual_temple.tscn": {
+		"15": "#103d10bcfb2c5e91",
+		"17": "#27d972b90cd44f67"
+	},
+	"res://Locations/Constellation/constellation.tscn": {
+		"21": "#e3d390e8564f6819",
+		"28": "#2945ce729862171b",
+		"77": "#1946de2659d00159"
+	},
+	"res://Locations/Corba Temple/corba_temple.tscn": {
+		"69": "#24274cc8aba40555",
+		"73": "#79a65dcc55da66a0",
+		"77": "#3f129f2ce83dadd8",
+		"79": "#ac4ec376f7032bcb"
+	},
+	"res://Locations/Courtyard House/courtyard_house.tscn": {
+		"8": "#7a4a959ed24b3e09",
+		"11": "#da0ce1adc507949d",
+		"14": "#f0e22edbf55e0285",
+		"23": "#9429b0ab17ed3a4f"
+	},
+	"res://Locations/Deep Flux Lab/deep_flux_lab.tscn": {
+		"120": "#a5868e5ec671df2a",
+		"139": "#c9b1783a4f298733",
+		"141": "#9f515f18c9e41da5",
+		"152": "#f5e504965aad380b",
+		"157": "#c65f322af8d877ec",
+		"161": "#04e86478bde36b70"
+	},
+	"res://Locations/Deepspace Telescope/deepspace_telescope.tscn": {
+		"12": "#ce5d6838833cc1cf",
+		"18": "#bb15be2dddc63656"
+	},
+	"res://Locations/Diasview/diasview.tscn": {
+		"13": "#ef7f0d983f090a69",
+		"16": "#353d59dd519aa516"
+	},
+	"res://Locations/Drum of War/drum_of_war.tscn": {
+		"27": "#63e2e40685d97dd6",
+		"30": "#a8f2a693e0761454",
+		"33": "#053e49ed3c6bb995",
+		"47": "#57b91aea341b25cd"
+	},
+	"res://Locations/East Ideolog/east_ideolog.tscn": {
+		"11": "#84c414bdb1ce4dab"
+	},
+	"res://Locations/Elysium Crash Site/elysium_crash_site.tscn": {
+		"8": "#34dd5abc7ad00a52",
+		"11": "#208649bd2e3d5eff"
+	},
+	"res://Locations/FSM Experiment/fsm_experiment.tscn": {
+		"10": "#2945ce729862171b",
+		"13": "#fd4bbabcc0833357"
+	},
+	"res://Locations/Fixed Point Telescope/fixed_point_telescope.tscn": {
+		"10": "#9fa8de37337afd48",
+		"14": "#c27af89db3e5a297"
+	},
+	"res://Locations/Flux Anomaly/flux_anomaly.tscn": {
+		"21": "#edbbf0cf8c1d2dfe",
+		"34": "#54e489812bfc7a35"
+	},
+	"res://Locations/Flux Anomaly/flux_anomaly_2.tscn": {
+		"21": "#edbbf0cf8c1d2dfe",
+		"24": "#c8eae83afa8acfa2",
+		"36": "#54e489812bfc7a35"
+	},
+	"res://Locations/Flux Anomaly/flux_anomaly_3.tscn": {
+		"21": "#edbbf0cf8c1d2dfe",
+		"23": "#c8eae83afa8acfa2",
+		"37": "#54e489812bfc7a35"
+	},
+	"res://Locations/Flux Anomaly/well_of_uplifting.tscn": {
+		"26": "#9cc43d22376d597a",
+		"57": "#5f8d286966cf0e09",
+		"65": "#f42d9352fb1eda41"
+	},
+	"res://Locations/Flux Monstrance/flux_monstrance.tscn": {
+		"18": "#0cc38a04cba59332"
+	},
+	"res://Locations/Geometic Lab/geometic_lab.tscn": {
+		"10": "#d56fe2e19d560d3c",
+		"23": "#2ba8bba7d3b33ee2",
+		"25": "#0c76d9723aa7cb85"
+	},
+	"res://Locations/Golden Idol/golden_idol.tscn": {
+		"32": "#5f437b2677138879",
+		"35": "#0cc38a04cba59332",
+		"46": "#f7b14e2cada2e333"
+	},
+	"res://Locations/Greater Corba/greater_corba.tscn": {
+		"51": "#707aee4a56e94e0e"
+	},
+	"res://Locations/Hall of Forms/hall_of_forms.tscn": {
+		"9": "#da0ce1adc507949d",
+		"15": "#df9c28992729accb",
+		"41": "#6c7259dc6bfe7112",
+		"47": "#89511a76c8cbc174",
+		"62": "#a2e6871dc553a572"
+	},
+	"res://Locations/Hall of Judgment/crimes_list.tscn": {
+		"11": "#018854c1cc68f9bc",
+		"12": "#3436a6badec34702",
+		"14": "#3059e504d4abf8df",
+		"15": "#cc1f882bb819b649",
+		"16": "#8c8ee0223a0de526",
+		"17": "#b41240507fc25b8a",
+		"18": "#62dfbab2db92a8f9",
+		"19": "#fa9bf10624a33705",
+		"20": "#d7d44b4a067f11f3"
+	},
+	"res://Locations/Hall of Judgment/hall_of_judgment.tscn": {
+		"41": "#63e2e40685d97dd6"
+	},
+	"res://Locations/Hand of Wim/hand_of_wim.tscn": {
+		"12": "#cc8c5721e36c6f12",
+		"17": "#511fee1b1900b90f",
+		"29": "#f0e22edbf55e0285",
+		"38": "#67cdfbfbcea361c5",
+		"40": "#7dcf549ad34f4d23"
+	},
+	"res://Locations/Home of Minos/home_of_minos.tscn": {
+		"10": "#18c5f1a22f50a2f4",
+		"18": "#63e2e40685d97dd6",
+		"20": "#ef387d239a27d0c8"
+	},
+	"res://Locations/Hypercube/hypercube.tscn": {
+		"21": "#67d055205054a169",
+		"35": "#805c458bd4fe159a",
+		"51": "#2b9ea06579de8a56"
+	},
+	"res://Locations/Isle of Change/isle_of_change.tscn": {
+		"30": "#bb266ba5d9ca4b14",
+		"37": "#4a1a2f55de8c346c"
+	},
+	"res://Locations/Labyrinth/labyrinth.tscn": {
+		"109": "#3513abcffb0146e9",
+		"116": "#85aa5ecf85b2083d"
+	},
+	"res://Locations/Launch Site/launch_site.tscn": {
+		"19": "#316a547c49f76c44",
+		"21": "#208649bd2e3d5eff",
+		"27": "#dbb86b4b9559c870",
+		"30": "#d2eeb45eaeffb41d",
+		"37": "#e3f9546ee5fa8139",
+		"60": "#26f0af37e8f2d4d4"
+	},
+	"res://Locations/Logical Clock/logical_clock.tscn": {
+		"13": "#9913bdbbe173c581",
+		"16": "#ce0fe3357b16cf4e",
+		"18": "#1004b57bcc540c81",
+		"26": "#9e42b62c8f8aeef2",
+		"30": "#b686fe8cb42f4578"
+	},
+	"res://Locations/Memorial to Inexistance/memorial_to_inexistance.tscn": {
+		"10": "#b6f0eee75b76016f",
+		"15": "#2c59d765f075a0ad"
+	},
+	"res://Locations/Memorial to the Lost/memorial_to_the_lost.tscn": {
+		"11": "#abdbd7e050119a14",
+		"13": "#208649bd2e3d5eff",
+		"16": "#34dd5abc7ad00a52",
+		"38": "#4bfdf3f3b2336e96",
+		"40": "#a447a8fe6b96929c"
+	},
+	"res://Locations/Monolith to Cora/monolith_to_cora.tscn": {
+		"84": "#7b8cde8f73c31678"
+	},
+	"res://Locations/Monument to Consciousness/monument_to_consciousness.tscn": {
+		"17": "#1e28ef1a555066a4"
+	},
+	"res://Locations/North Ideolog/north_ideolog.tscn": {
+		"11": "#84c414bdb1ce4dab"
+	},
+	"res://Locations/Parallel Exhibition/parallel_exhibition.tscn": {
+		"53": "#330890eae07463f9",
+		"55": "#03acbfea0ebd3798",
+		"59": "#f46a05c172ef5b3e",
+		"67": "#1cfc69234d66d9aa",
+		"97": "#0718895a7cf438df"
+	},
+	"res://Locations/Park of Solitude/park_of_solitude.tscn": {
+		"11": "#540e1938ff0d632c",
+		"14": "#f2b06c7b542e644f",
+		"19": "#ca02ea8456216b3a"
+	},
+	"res://Locations/Planetarium/planetarium.tscn": {
+		"9": "#5c6b6914ba522acf",
+		"12": "#eecd90fcb984f7b9"
+	},
+	"res://Locations/Postal Office/postal_office.tscn": {
+		"9": "#07d49d5f3ea0f99d",
+		"11": "#a81fb09880123798"
+	},
+	"res://Locations/Power Plant/power_plant.tscn": {
+		"47": "#e3d390e8564f6819"
+	},
+	"res://Locations/Power Plant/power_terminal.tscn": {
+		"4": "#388323a52281c51b",
+		"25": "#fddd5647060467f1",
+		"26": "#6804ddab6f3d131b",
+		"27": "#8d5bd9fa37d4301d",
+		"28": "#0d933b10e41d9367",
+		"29": "#ec783d962e37651b",
+		"30": "#7d4e0281b77d6582",
+		"31": "#0979df68192c41f0",
+		"32": "#25dadcfe051f2071",
+		"33": "#ade5ffcd23f51291",
+		"34": "#136932251326e9af",
+		"35": "#c279b1fdf30074df",
+		"36": "#d300db7501daf357",
+		"37": "#b295739c4da04141",
+		"38": "#ada73572813ed235",
+		"39": "#fc51612ceca4b170",
+		"40": "#87df62699f94394d",
+		"42": "#fe426d494319817c"
+	},
+	"res://Locations/Rogue Cloud/rogue_cloud.tscn": {
+		"18": "#2945ce729862171b"
+	},
+	"res://Locations/Shrine of Siciphos/shrine_of_siciphos.tscn": {
+		"14": "#540e1938ff0d632c",
+		"17": "#da0ce1adc507949d",
+		"19": "#7a4a959ed24b3e09",
+		"24": "#8e568cf1949d07ea"
+	},
+	"res://Locations/Shrine of the Hidden/shrine_of_the_hidden.tscn": {
+		"11": "#103d10bcfb2c5e91"
+	},
+	"res://Locations/Signal Tower/signal_tower_a.tscn": {
+		"35": "#a8f2a693e0761454"
+	},
+	"res://Locations/Signal Tower/signal_tower_b.tscn": {
+		"36": "#a8f2a693e0761454"
+	},
+	"res://Locations/Signal Tower/signal_tower_c.tscn": {
+		"36": "#a8f2a693e0761454"
+	},
+	"res://Locations/Singularity Dome/singularity_dome.tscn": {
+		"18": "#540e1938ff0d632c",
+		"24": "#7caecc912a1b4c49",
+		"26": "#32c5d4b8ce981276"
+	},
+	"res://Locations/Skybase Observatory/skybase_observatory.tscn": {
+		"25": "#ce5d6838833cc1cf",
+		"28": "#c27af89db3e5a297",
+		"30": "#bb15be2dddc63656",
+		"47": "#2c64c6789e53e80b"
+	},
+	"res://Locations/South Ideolog/south_ideolog.tscn": {
+		"11": "#84c414bdb1ce4dab"
+	},
+	"res://Locations/Star Study/star_study.tscn": {
+		"10": "#5c6b6914ba522acf",
+		"14": "#eecd90fcb984f7b9",
+		"17": "#6fc39a7f594cf4bb",
+		"19": "#e4eb5072369f55a8"
+	},
+	"res://Locations/Station X/station_x.tscn": {
+		"47": "#ddc3458ce41d8f58",
+		"65": "#489f7aacb449d3ca"
+	},
+	"res://Locations/Stations/Station 17/station_17.tscn": {
+		"24": "#73b834a1c1f0cfed",
+		"28": "#c350cd5b1409b6cf",
+		"30": "#83ac66cbdf767be0"
+	},
+	"res://Locations/Stations/Station 21/station_21.tscn": {
+		"24": "#eed141eda2e623b3",
+		"28": "#1ead593d4b332406",
+		"32": "#208649bd2e3d5eff"
+	},
+	"res://Locations/Stations/Station 9/station_9.tscn": {
+		"23": "#b3dc76fbd182f36d",
+		"34": "#208649bd2e3d5eff"
+	},
+	"res://Locations/Stations/Station 9/station_9_dish.tscn": {
+		"15": "#9b1d05303ef00f70",
+		"17": "#83ac66cbdf767be0"
+	},
+	"res://Locations/Sun Temple/sun_temple.tscn": {
+		"99": "#2c59d765f075a0ad",
+		"102": "#ef7f0d983f090a69",
+		"106": "#cef54ee6a06b303a",
+		"110": "#40a966790a338c72",
+		"117": "#51349a912c0d2952",
+		"150": "#a950d62dde9cf578"
+	},
+	"res://Locations/Superserver/super_terminal.tscn": {
+		"12": "#f42d9352fb1eda41"
+	},
+	"res://Locations/Superserver/superserver.tscn": {
+		"78": "#93b4f37e1b81984f",
+		"96": "#e24bd05523ded63e",
+		"103": "#f2c513e839cf6434",
+		"106": "#0f7883446c2ebe46",
+		"109": "#0d6e7e23909d328b",
+		"113": "#2f5a9cb87d7ead8c"
+	},
+	"res://Locations/Testing Grounds/testing_grounds.tscn": {
+		"9": "#36aefa42cf72fc74",
+		"20": "#f37dd9f5bf639e42"
+	},
+	"res://Locations/The House/the_house.tscn": {
+		"27": "#e79fd873b8d095fd",
+		"31": "#c6c285fdba970fe0",
+		"40": "#514cc43873dea008"
+	},
+	"res://Locations/Tower of Languages/tower_of_languages.tscn": {
+		"18": "#8b610b2e9de2f9f4",
+		"24": "#e5c1e4541624cfe5",
+		"45": "#c36008d4bc4edc1c"
+	},
+	"res://Locations/True East/true_east.tscn": {
+		"22": "#c8eae83afa8acfa2",
+		"27": "#11785289d53c16b5",
+		"29": "#a3694a2b32c40df0"
+	},
+	"res://Locations/True North/true_north.tscn": {
+		"21": "#c8eae83afa8acfa2",
+		"27": "#c387820a128b6038",
+		"30": "#a3694a2b32c40df0"
+	},
+	"res://Locations/True South/true_south.tscn": {
+		"21": "#c8eae83afa8acfa2",
+		"27": "#11785289d53c16b5",
+		"30": "#a3694a2b32c40df0"
+	},
+	"res://Locations/True West/true_west.tscn": {
+		"22": "#c8eae83afa8acfa2",
+		"27": "#a3694a2b32c40df0"
+	},
+	"res://Locations/Umai Shrine/umai_shrine.tscn": {
+		"10": "#540e1938ff0d632c",
+		"13": "#da0ce1adc507949d",
+		"16": "#7a4a959ed24b3e09"
+	},
+	"res://Locations/Universal Mirror/universal_mirror.tscn": {
+		"9": "#8c5f7a5095178043",
+		"18": "#ba494724c137e321"
+	},
+	"res://Locations/West Ideolog/west_ideolog.tscn": {
+		"11": "#c387820a128b6038",
+		"14": "#84c414bdb1ce4dab"
+	},
+	"res://Locations/Wim Shrine/wim_shrine.tscn": {
+		"10": "#540e1938ff0d632c",
+		"13": "#da0ce1adc507949d",
+		"16": "#7a4a959ed24b3e09",
+		"18": "#cc8c5721e36c6f12"
+	},
+	"res://Scenes/boat.tscn": {
+		"144": "#5c98b0cac86221ed",
+		"148": "#1cf5f90018d97c33",
+		"165": "#e4e1cbb3d3b83c9f",
+		"167": "#daac9c6ea99d8c5e",
+		"170": "#c3ec1af34d7a74a5",
+		"173": "#7dd30d5483d8c6f4",
+		"189": "#ec2190bfee1cb073"
+	},
+	"res://Scenes/chime.tscn": {
+		"14": "#02bff8254fd754fe"
+	},
+	"res://Scenes/ending.tscn": {
+		"14": "#208649bd2e3d5eff",
+		"16": "#2b5f75957a994cab",
+		"18": "#9855ed18770545c5",
+		"19": "#da19fe450f351fa3",
+		"20": "#9532c1f9546810a7",
+		"21": "#d8d2ab3947d36474",
+		"22": "#c33da119b4c6810d",
+		"23": "#9152f6e0b259f9b2",
+		"24": "#e1531c2639b79612",
+		"26": "#a98c3fe813737c07",
+		"28": "#4c7940235f5ebb5d",
+		"29": "#bd30a444926d465a",
+		"30": "#722c0008cea3b825",
+		"31": "#0c6ff490a7cfaabe",
+		"32": "#dfe44914c4f71796",
+		"33": "#cc8c5721e36c6f12",
+		"34": "#07984f68df25ec99",
+		"35": "#91c236909381cc5e",
+		"36": "#1fc476edf0542d15",
+		"25": "#faac1a51300a4102",
+		"27": "#9271f9584eea9a6c"
+	},
+	"res://Scenes/fish_scanner.tscn": {
+		"14": "#39277458b56baca2"
+	},
+	"res://Scenes/frequency_analyzer.tscn": {
+		"11": "#3a1fc836b8f15c33"
+	},
+	"res://Scenes/journal.tscn": {
+		"15": "#a6d6499d39772210",
+		"18": "#30d4dc0bb1baa65f",
+		"22": "#7ccb593aefa818be",
+		"23": "#37c238542dcc596f",
+		"25": "#cad6068eba209e91",
+		"30": "#6f2153744edb2fea",
+		"33": "#0db20bf99d281d88",
+		"11": "#045962c8a5575f2a",
+		"12": "#e59e8f15f76017b5",
+		"13": "#cadfb5be2a34aac0",
+		"14": "#6d7a30a931a35ef0",
+		"16": "#817e8d63d0e6f449",
+		"28": "#1b90271d66cf2d3a",
+		"34": "#6b90b6a112f2f408"
+	},
+	"res://Scenes/loading_screen.tscn": {
+		"14": "#208649bd2e3d5eff",
+		"16": "#afc7b457e50ee345"
+	},
+	"res://Scenes/main_menu.tscn": {
+		"26": "#c98bd864c1702ac7",
+		"31": "#208649bd2e3d5eff",
+		"32": "#1065ef91780b3cc1",
+		"35": "#303258cf3f1ba7ac",
+		"39": "#0d75363730a5ceaa",
+		"41": "#5dde9f9a43c2219a",
+		"43": "#3a8a405a8368ec7b",
+		"45": "#ed55b9fbb13171e4",
+		"50": "#13e2f75eddf626c5",
+		"51": "#0ab61b579c78499a",
+		"54": "#2df1ee19759fdd09",
+		"55": "#862427061384cd2a",
+		"58": "#ac9f365237f23c28",
+		"59": "#ed61d63ce7da9797",
+		"63": "#5ae63bb6083a6bd1",
+		"64": "#356c3d47d322d464",
+		"66": "#11f230b252a0a580",
+		"67": "#ea578b44cdc22899",
+		"68": "#1a03752c4de16957",
+		"69": "#1dee4fec85b03200",
+		"70": "#6d40bca56ff540ce",
+		"71": "#63dd5edbf76e0a99",
+		"72": "#e7f413caa53dd01e",
+		"73": "#87c22c92a730f5a9",
+		"74": "#235c6fb6d5df3ee4",
+		"76": "#5072b427d61e9fe2",
+		"77": "#4ab8a40d847d92e3",
+		"78": "#5acf3906f28ca858",
+		"79": "#ad50e3dc5798ff49",
+		"80": "#3715b822daa8c69d",
+		"81": "#3d6052382b675f94",
+		"82": "#8e2325e0b39aef94",
+		"83": "#88690528072b1978",
+		"84": "#2cf81c5680baf4c3",
+		"86": "#450cf1f44fe8cece",
+		"87": "#632420e9e0ed04bb",
+		"88": "#9d01d4bba73a2ee9",
+		"89": "#61660b21bc5cbf15",
+		"90": "#959d5b6cb6671eb2",
+		"93": "#53cd3206ffda359a",
+		"95": "#c8af213a3cc51220",
+		"34": "#b15dd49b5213e035",
+		"36": "#bd9a7d8ea714eacf",
+		"37": "#4f1f4b37dfd728f3",
+		"38": "#207962ee3bab96ca",
+		"40": "#7b07eb172ac8fda1",
+		"42": "#a7472c857e796cf4",
+		"44": "#c7f73bb54d928922",
+		"75": "#bb08d10b00a6114f",
+		"91": "#e3cc89ff78b1d93a",
+		"92": "#21bb179753e9bd45",
+		"94": "#bfac50d6424b5166",
+		"96": "#66cc39f288391a41"
+	},
+	"res://Scenes/passage.tscn": {
+		"5": "#cd36b370758a259b",
+		"3": "#356a192b7913b04c"
+	},
+	"res://Scenes/pause_screen.tscn": {
+		"11": "#5d28e5783283bb39",
+		"13": "#f760e3c2ce80ab16",
+		"14": "#c92df16fc5954220",
+		"15": "#efb16d0df21ab220",
+		"16": "#87a1b774c46da67b",
+		"18": "#5dde9f9a43c2219a",
+		"20": "#c35e6d755a065bbc",
+		"22": "#ea578b44cdc22899",
+		"25": "#1a03752c4de16957",
+		"26": "#41e32a68af945de9",
+		"27": "#9e5ce2c3df100d08",
+		"28": "#63dd5edbf76e0a99",
+		"29": "#e7f413caa53dd01e",
+		"30": "#57643108f594a4d4",
+		"31": "#66b1a5530b1b62c4",
+		"32": "#1dee4fec85b03200",
+		"33": "#6d40bca56ff540ce",
+		"34": "#87c22c92a730f5a9",
+		"35": "#235c6fb6d5df3ee4",
+		"37": "#5072b427d61e9fe2",
+		"38": "#862427061384cd2a",
+		"41": "#51bcc01541bb3077",
+		"42": "#ed61d63ce7da9797",
+		"46": "#5ae63bb6083a6bd1",
+		"47": "#356c3d47d322d464",
+		"50": "#0b7e2231a9281dd3",
+		"51": "#4d48d2c2b0a30b93",
+		"53": "#5c2f0c8daea3582c",
+		"54": "#4ab8a40d847d92e3",
+		"55": "#5acf3906f28ca858",
+		"56": "#ad50e3dc5798ff49",
+		"58": "#3715b822daa8c69d",
+		"59": "#3d6052382b675f94",
+		"60": "#8e2325e0b39aef94",
+		"10": "#c7dfb6f1d9c58a41",
+		"12": "#c7f73bb54d928922",
+		"17": "#c1434fad36c8e46b",
+		"36": "#bb08d10b00a6114f",
+		"62": "#57d1f0ca4552e2ae",
+		"64": "#21bb179753e9bd45"
+	},
+	"res://Scenes/planet_manager.tscn": {
+		"68": "#cf4461a51dc3e024",
+		"72": "#a7a99bb36c92109c",
+		"65": "#ade754c9715a9d14",
+		"70": "#2a5b7f9b50d19e08"
+	},
+	"res://Scenes/player.tscn": {
+		"71": "#50ddb150a55aa1ef",
+		"73": "#9aa877098a9406a8",
+		"74": "#b001c56c99f2e22d",
+		"92": "#5a065f459beb682f",
+		"94": "#086d95744307b599",
+		"95": "#54510e93af85614c",
+		"116": "#965a5b63b403e1e2",
+		"117": "#cdb6f688444547a5",
+		"118": "#fc51e5cd5e469b40",
+		"119": "#1f806036c1038f25",
+		"70": "#b98e3f99c2aea77e",
+		"113": "#27bed13a88c60350",
+		"114": "#fd61c5e2a2e41632",
+		"115": "#9dc87514bbef5f8c"
+	},
+	"res://Scenes/terminal.tscn": {
+		"13": "#432f2f97816dbbbd",
+		"32": "#7a3928d2a5862b77"
+	},
+	"res://Scenes/terminal_test.tscn": {
+		"11": "#73b834a1c1f0cfed",
+		"12": "#eed141eda2e623b3",
+		"8": "#7a3928d2a5862b77"
+	},
+	"res://Scenes/world_map.tscn": {
+		"16": "#4103ba45b4fd3da3",
+		"19": "#5098c37f5debd67f",
+		"22": "#ba0eed1157186f75",
+		"25": "#410a20287d140215",
+		"30": "#0113b9fbaf2a08d5",
+		"37": "#6593c7b46b139d97",
+		"94": "#c31f697829434ef2",
+		"104": "#59d08012680e0ce7",
+		"112": "#b8f9f32a1931b84d"
+	},
+	"res://Scenes/Boat/boat_warning.tscn": {
+		"10": "#5d74e5fc4e1fcac9"
+	},
+	"res://Scenes/Boat/radar.tscn": {
+		"13": "#1fae0e822c2a373f"
+	},
+	"res://Scenes/Entities/cuffs.tscn": {
+		"14": "#f42d9352fb1eda41",
+		"16": "#bbccdf2efb33b52e"
+	},
+	"res://Scenes/Fishing/fish_caught_screen.tscn": {
+		"11": "#5456854e0c2a4323",
+		"14": "#2df4cdd36a651a4e",
+		"15": "#0806574f203d33f4"
+	},
+	"res://Tutorial/tutorial.tscn": {
+		"75": "#e84e11cc06c1d93a",
+		"84": "#91d988c5d581ddd1",
+		"90": "#36fd9e7afbcacdd6",
+		"92": "#899bf710d20bc365"
+	},
+	"res://addons/godotsteam/editor/steamworks_panel.tscn": {
+		"14": "#ff6e310a662dbb69",
+		"15": "#575866286bfb3caa",
+		"20": "#e8973df8a2462199",
+		"18": "#fd6c3ebf7befca9f",
+		"21": "#77dfd2135f4db726"
+	},
+	"res://Locations/Dark Atoll/dark_atoll.tscn": {
+		"9": "#12882c6bd4dddd28",
+		"17": "#cac702507ad54c6c"
+	},
+	"res://Scenes/action_hint.tscn": {
+		"5": "#ed212fa164b940b9",
+		"6": "#f629ae44b7b3dcfe"
+	},
+	"res://Scenes/text_shower.tscn": {
+		"3": "#640ab2bae07bedc4"
+	},
+	"res://Scenes/tuning_station.tscn": {
+		"12": "#08e9e6e231d9b9d5"
+	},
+	"res://Scenes/Boat/shortwave_radio.tscn": {
+		"11": "#ad4bd8ae62d0e4bc"
+	}
+}

@@ -1,0 +1,42 @@
+{
+	"regle": "Les titres de documents, les noms de lieux et les noms propres restent en anglais : le code du jeu les relit comme clés de dictionnaire et les écrit tels quels dans la sauvegarde. Ce n'est pas un choix de style.",
+	"noms_propres_a_conserver": [
+		"Aeon",
+		"Corba",
+		"Feodor",
+		"Flux",
+		"Minos",
+		"Wim",
+		"Xeres",
+		"Xeretic"
+	],
+	"reponses_a_ne_jamais_traduire": {
+		"_note": "Le jeu compare ces saisies à l'identique. Ce sont des nombres, des noms propres, des mots de la langue xérétique ou des clés de chiffrement : les traduire ferme l'énigme au lieu de l'ouvrir. Elles n'ont volontairement pas d'entrée dans aliases.json.",
+		"mots": [
+			"0",
+			"0b3ymywyrd",
+			"1",
+			"1 0 3 4",
+			"10 3 4",
+			"1034",
+			"121034",
+			"184",
+			"costeau",
+			"dcdr",
+			"ficher",
+			"flux",
+			"hayes cirra",
+			"ideolog",
+			"leo",
+			"merlyn",
+			"minos",
+			"n",
+			"nolud",
+			"olisk",
+			"sarnsan",
+			"sferdan",
+			"truan"
+		]
+	},
+	"termes": {}
+}

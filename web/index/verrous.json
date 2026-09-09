@@ -1,0 +1,283 @@
+{
+	"regimes": {
+		"sous_chaine": "answer in text.to_lower() — le token anglais DOIT rester littéralement présent dans le document français.",
+		"egalite": "text.to_lower() == token — le joueur tape exactement le token. Le document doit rendre évident quoi taper, en anglais."
+	},
+	"points_de_saisie": [
+		{
+			"script": "Locations/Abstract Form/floor_tile_1.gdc",
+			"regime": "egalite",
+			"source_du_token": "@export answer",
+			"tokens": [
+				"minos"
+			],
+			"code": "if text.to_lower() == answer:",
+			"documents_source": {
+				"minos": [
+					"Minos",
+					"Tower Messages",
+					"Xeretic Engravings"
+				]
+			}
+		},
+		{
+			"script": "Locations/Acropolis/follower.gdc",
+			"regime": "sous_chaine",
+			"source_du_token": "@export answer",
+			"tokens": [
+				"ficher",
+				"flux",
+				"hayes cirra",
+				"leo",
+				"merlyn",
+				"nolud",
+				"olisk",
+				"sferdan",
+				"truan"
+			],
+			"code": "var is_correct: bool = answer.to_lower() in $MemorialScreen / CenterContainer / VBoxContainer / Answer1.text.to_lower()",
+			"documents_source": {
+				"ficher": [
+					"Letter to Cirra",
+					"Letter to Socar",
+					"Lockout",
+					"The Way Out"
+				],
+				"flux": "22 documents (trop courant pour être discriminant)",
+				"hayes cirra": [
+					"Letter to the Corba Temple",
+					"The Way Out"
+				],
+				"merlyn": [
+					"Starfall",
+					"The Unmade"
+				],
+				"nolud": "7 documents (trop courant pour être discriminant)",
+				"olisk": [
+					"Fields of Green",
+					"The Arrival",
+					"The Deities"
+				],
+				"sferdan": [
+					"Pathway",
+					"Trues Purpose"
+				],
+				"truan": [
+					"The Hunter, Truan"
+				]
+			}
+		},
+		{
+			"script": "Locations/Constellation/power_terminal.gdc",
+			"regime": "egalite",
+			"source_du_token": "litteral",
+			"tokens": [
+				"immortal"
+			],
+			"code": "if text.to_lower() == \"immortal\":",
+			"documents_source": {
+				"immortal": [
+					"Distributed Mind",
+					"Emergency Power",
+					"The Superserver"
+				]
+			}
+		},
+		{
+			"script": "Locations/Deep Flux Lab/entrance_terminal.gdc",
+			"regime": "sous_chaine",
+			"source_du_token": "litteral",
+			"tokens": [
+				"tablet"
+			],
+			"code": "if \"tablet\" in text.to_lower() or text.to_lower() in [\"tablet\", \"the tablet\"]:",
+			"documents_source": {
+				"tablet": [
+					"Celestial Signs"
+				]
+			}
+		},
+		{
+			"script": "Locations/Flux Anomaly/monolith.gdc",
+			"regime": "egalite",
+			"source_du_token": "litteral",
+			"tokens": [
+				"dcdr"
+			],
+			"code": "if text.to_lower() == \"dcdr\":",
+			"documents_source": {
+				"dcdr": []
+			}
+		},
+		{
+			"script": "Locations/Hall of Forms/table.gdc",
+			"regime": "sous_chaine",
+			"source_du_token": "@export answer",
+			"tokens": [
+				"ideolog",
+				"planetarium",
+				"star study",
+				"universal mirror"
+			],
+			"code": "if answer in text.to_lower():",
+			"documents_source": {
+				"ideolog": [],
+				"planetarium": [
+					"Previous Owner's Notes"
+				],
+				"star study": [],
+				"universal mirror": []
+			}
+		},
+		{
+			"script": "Locations/Hand of Wim/judger.gdc",
+			"regime": "egalite",
+			"source_du_token": "litteral",
+			"tokens": [
+				"costeau"
+			],
+			"code": "if text.to_lower() == \"costeau\":",
+			"documents_source": {
+				"costeau": "12 documents (trop courant pour être discriminant)"
+			}
+		},
+		{
+			"script": "Locations/Hypercube/door_seal.gdc",
+			"regime": "egalite",
+			"source_du_token": "liste litterale",
+			"tokens": [
+				"1034",
+				"10 3 4",
+				"1 0 3 4",
+				"ten three four",
+				"ten thousand thirty four"
+			],
+			"code": "if text.to_lower() in [\"1034\", \"10 3 4\", \"1 0 3 4\", \"ten three four\", \"ten thousand thirty four\"]:",
+			"documents_source": {
+				"10 3 4": [],
+				"1 0 3 4": [],
+				"ten three four": [],
+				"ten thousand thirty four": []
+			}
+		},
+		{
+			"script": "Locations/Launch Site/location_terminal.gdc",
+			"regime": "egalite",
+			"source_du_token": "litteral",
+			"tokens": [
+				"0b3ymywyrd"
+			],
+			"code": "if text.to_lower() == \"0b3ymywyrd\":",
+			"documents_source": {
+				"0b3ymywyrd": [
+					"Station Keys"
+				]
+			}
+		},
+		{
+			"script": "Locations/Memorial to the Lost/grave_seal.gdc",
+			"regime": "egalite",
+			"source_du_token": "litteral",
+			"tokens": [
+				"elysium"
+			],
+			"code": "if text.to_lower() == \"elysium\":",
+			"documents_source": {
+				"elysium": [
+					"Flight Log",
+					"The Last Trial"
+				]
+			}
+		},
+		{
+			"script": "Locations/Parallel Exhibition/floor_tile.gdc",
+			"regime": "egalite",
+			"source_du_token": "@export answers",
+			"tokens": [
+				"0",
+				"1",
+				"false",
+				"n",
+				"no",
+				"true",
+				"y",
+				"yes"
+			],
+			"code": "if text.to_lower() in answers:",
+			"documents_source": {
+				"false": [
+					"An Introduction to Logic"
+				],
+				"true": "16 documents (trop courant pour être discriminant)"
+			}
+		},
+		{
+			"script": "Locations/Station X/bio_terminal.gdc",
+			"regime": "egalite",
+			"source_du_token": "litteral",
+			"tokens": [
+				"elysium"
+			],
+			"code": "if text.to_lower() == \"elysium\":",
+			"documents_source": {
+				"elysium": [
+					"Flight Log",
+					"The Last Trial"
+				]
+			}
+		},
+		{
+			"script": "Locations/Superserver/super_terminal.gdc",
+			"regime": "sous_chaine",
+			"source_du_token": "@export answer",
+			"tokens": [
+				"121034",
+				"184",
+				"biibiyt",
+				"elysium",
+				"immortal"
+			],
+			"code": "if answer.to_lower() in text.to_lower():",
+			"documents_source": {
+				"elysium": [
+					"Flight Log",
+					"The Last Trial"
+				],
+				"immortal": [
+					"Distributed Mind",
+					"Emergency Power",
+					"The Superserver"
+				],
+				"biibiyt": [
+					"Witness"
+				]
+			},
+			"tokens_par_acrostiche": [
+				"biibiyt"
+			],
+			"note": "Les initiales des sept pages de Witness épellent la réponse du Well of Uplifting, et la page 7 dit au joueur de lire les initiales. Le script du Superserver sert aussi ce lieu."
+		},
+		{
+			"script": "Locations/Tower of Languages/tower_block.gdc",
+			"regime": "sous_chaine",
+			"source_du_token": "@export answer",
+			"tokens": [
+				"minos",
+				"sarnsan",
+				"unintelligible"
+			],
+			"code": "if answer in text.to_lower():",
+			"documents_source": {
+				"minos": [
+					"Minos",
+					"Tower Messages",
+					"Xeretic Engravings"
+				],
+				"sarnsan": [
+					"Xeretic Engravings"
+				],
+				"unintelligible": []
+			}
+		}
+	]
+}

@@ -1,0 +1,59 @@
+{
+	"A_lieux": {
+		"decision": "Les noms de lieux restent en anglais. Ce n'est pas un arbitrage de style : le code l'impose.",
+		"preuve": "Scripts/journal.gd ligne 38 — open_screen() appelle set_displayed(title.text), c'est-à-dire qu'il relit la chaîne AFFICHÉE et s'en sert comme clé : `if choice in Texts.texts.keys()`. Un titre français tombe dans la branche `else` et le journal ouvre le mauvais panneau à chaque réouverture.",
+		"corroboration": [
+			"Locations.discoveries est indexé par le nom anglais et sérialisé tel quel dans la sauvegarde (Scripts/location_manager.gd ligne 13) : traduire les clés invalide toutes les parties en cours.",
+			"74 appels LocationManager.discover(\"<nom anglais>\") en dur dans les scripts de lieux.",
+			"Sur 79 lieux, seuls 13 apparaissent comme étiquette affichée, et aucun n'a été traduit dans les flux scènes/scripts : la convention est déjà cohérente des deux côtés.",
+			"3 lieux sont des réponses d'énigme (Planetarium, Star Study, Universal Mirror) ; le patch d'alias les couvre déjà, ce n'est donc pas l'argument bloquant."
+		],
+		"regle_operationnelle": "Aucun nom de lieu ne se traduit, nulle part, dans aucun des trois flux. Même règle pour les titres de documents, et pour la même raison — le journal les relit comme clés.",
+		"consequence_assumee": "« Minos, cœur du Labyrinth » et « le Well of Uplifting est venu à l'existence » restent tels quels. C'est le prix d'un journal qui fonctionne.",
+		"retouches": []
+	},
+	"B_adresse": {
+		"decision": "Aucun changement. L'arbitrage 6 est correctement appliqué ; les mélanges apparents sont des changements d'interlocuteur, pas des incohérences.",
+		"mesure": "Sur 167 documents : 34 tutoient, 47 vouvoient, 5 emploient les deux, 81 n'ont pas de deuxième personne. Le tutoiement est réparti sur les 15 lots — ce n'est pas la dérive d'un lot isolé, c'est la clause « répliques familières entre personnages nommés » qui joue.",
+		"verification": "Les 5 documents mixtes ont été lus occurrence par occurrence, pas jugés à la statistique.",
+		"documents_mixtes_examines": [
+			{"document": "Solaris", "verdict": "légitime", "motif": "le texte tutoie un destinataire précis puis s'adresse au lecteur : « Tirez de ce récit ancien ce que vous voudrez. »"},
+			{"document": "Flight Log", "verdict": "légitime", "motif": "hiérarchie d'équipage — Harrier vouvoie son chef, et « vous six » s'adresse au groupe. C'est la convention Costeau posée par le lot 6."},
+			{"document": "Transcript of Dabbid-Costeau Meeting", "verdict": "légitime", "motif": "« votre mouvement » est un possessif pluriel qui désigne la faction, pas un vouvoiement."},
+			{"document": "The Ciliad", "verdict": "légitime", "motif": "la prière bascule à l'intime pour s'adresser à la divinité : « je m'enracinerai en toi »."},
+			{"document": "The Jacket", "verdict": "légitime", "motif": "le narrateur tutoie le mort dont il enfile la veste, et vouvoie ailleurs."}
+		],
+		"regle_operationnelle": "Vouvoiement par défaut. Tutoiement quand le texte s'adresse à un personnage nommé sur un mode familier, à une divinité dans une prière, ou à un mort. Un même document peut changer d'adresse s'il change d'interlocuteur — ce n'est pas une faute.",
+		"documents_a_corriger": []
+	},
+	"C_terminologie": {
+		"decision": "Sur 25 conflits de glossaire annoncés, 2 seulement opposent des rendus différents sur des documents réellement liés. Les 23 autres sont des formulations différentes de la même décision.",
+		"methode": "Un conflit ne compte que si les formes normalisées diffèrent ET que les deux documents partagent au moins deux entités nommées — donc que le joueur est censé faire le lien.",
+		"corrections_appliquees": [
+			{
+				"document": "On Liberation",
+				"de": "Mais j'ai trouvé l'issue.",
+				"vers": "Mais j'ai trouvé la voie de sortie.",
+				"motif": "aligne sur The Deities. « the way out » renvoie au document du même nom ; « l'issue » ne se reconnaît pas comme un rappel."
+			},
+			{
+				"document": "Project Clay Final Report",
+				"de": "le long du Parallels-axis",
+				"vers": "le long de l'axe des Parallels",
+				"motif": "aligne sur An Uncomfortable Reality (2 occurrences). Garde le nom de lieu intact tout en donnant du français."
+			},
+			{
+				"document": "A Miracle",
+				"de": "La Cité a été ancrée.",
+				"vers": "La Cité a été amarrée.",
+				"motif": "« ancrer » rend déjà `ground` dans Goodbye ; employer le même verbe pour `anchored` fusionnerait deux mots anglais distincts. « amarrer » était déjà le choix de Xeresium et Tome Esoterica — c'est l'indice qui relie A Miracle à Xeresium."
+			}
+		]
+	},
+	"D_bloc_chiffre": {
+		"decision": "Arbitrage 3 implémenté : la traduction française s'affiche sous le clair déchiffré, jamais à la place.",
+		"mecanisme": "tools/build_decrypt_patch.py réécrit Passage.setup() et ajoute une table FR_CLAIRS indexée par le clair lui-même — pas par le document, puisque le joueur peut tenter n'importe quelle clé sur n'importe quelle page.",
+		"couverture": "6 clairs sur 7. Le septième, Tower Messages p1 (23 lettres), résiste : sa page 2 dit « I left the code at the Postal Office », mais aucune clé tirée du corpus ne donne d'anglais — le clair est probablement en xérétique, ce qui en fait une énigme dans l'énigme.",
+		"verifie_en_jeu": "Les cinq clés connues rendent le clair anglais suivi de sa traduction ; une mauvaise clé ne produit aucune traduction."
+	}
+}

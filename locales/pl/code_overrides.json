@@ -1,0 +1,12 @@
+{
+	"_note": "Les commandes du terminal acceptent plusieurs motifs : ajoute les tiennes, les anglaises restent acceptées. `reecritures` sert aux cas qu'aucun relevé automatique ne trouve — voir locales/fr pour un exemple.",
+	"commandes_terminal": {
+		"help": [],
+		"unlock": [],
+		"lock": [],
+		"download": [],
+		"key": [],
+		"flux": []
+	},
+	"reecritures": {}
+}

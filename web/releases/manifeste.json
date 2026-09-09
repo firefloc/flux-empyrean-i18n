@@ -1,0 +1,35 @@
+{
+	"langues": [
+		{
+			"langue": "fr",
+			"fichiers": [
+				{
+					"chemin": "answers.lua",
+					"octets": 19255,
+					"sha256": "4c7e4cfb32568867"
+				},
+				{
+					"chemin": "gdpatch_mod.toml",
+					"octets": 232,
+					"sha256": "1d0c44ba5a14f016"
+				},
+				{
+					"chemin": "patcher.lua",
+					"octets": 2145,
+					"sha256": "a8e83c39d54a4908"
+				},
+				{
+					"chemin": "strings.lua",
+					"octets": 34511,
+					"sha256": "a80b1c2387165ae8"
+				},
+				{
+					"chemin": "texts.gd",
+					"octets": 159323,
+					"sha256": "d4bfcb9d0134e558"
+				}
+			],
+			"octets": 215466
+		}
+	]
+}

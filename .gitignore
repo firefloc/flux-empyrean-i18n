@@ -1,0 +1,16 @@
+# Dérivés de la copie du jeu du joueur : jamais versionnés.
+# Ils contiennent le texte anglais extrait du pack, qui appartient au développeur.
+work/
+work-new/
+work-demo/
+build/
+gdpatch-test/
+__pycache__/
+*.pyc
+
+# Caches de l'éditeur Godot, régénérés à l'ouverture.
+.godot/
+
+# Contrôle en jeu généré depuis work/frozen_segments.json : il porte les blocs
+# chiffrés du jeu, et `tools/check_ingame.sh` le régénère à chaque exécution.
+tools/ingame/bilan_integration.gd
