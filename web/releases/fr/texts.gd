@@ -2060,10 +2060,16 @@ func _basculer_langue() -> void:
 		print("VO indisponible : le texte d'origine n'a pas été injecté")
 		return
 	_en_version_originale = not _en_version_originale
-	var echange = texts
-	texts = texts_vo
-	texts_vo = echange
-	print("VO " + ("version originale" if _en_version_originale else "traduction"))
+	# On fusionne au lieu d'échanger. Certaines entrées n'existent que dans le
+	# dictionnaire courant : `TextManager` y injecte au démarrage le texte du
+	# tutoriel, absent du pack. Un échange sec les faisait disparaître — le texte
+	# flottant du tutoriel repassait en anglais et n'en revenait pas.
+	var avant := texts.duplicate(true)
+	for titre in texts_vo:
+		texts[titre] = texts_vo[titre]
+	texts_vo = avant
+	print("VO " + ("version originale" if _en_version_originale else "traduction")
+		+ " (" + str(texts.size()) + " documents)")
 	_rafraichir_le_journal()
 
 

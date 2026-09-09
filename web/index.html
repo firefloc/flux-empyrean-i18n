@@ -228,7 +228,9 @@
           <span class="chiffre">3</span>
           <h3 data-t="inst.3.titre"></h3>
           <p data-t="inst.3.corps"></p>
-          <p class="detail"><span data-t="inst.3.detail"></span><span id="install-plateforme" class="valeur"></span></p>
+          <p class="detail"><span data-t="inst.3.corps2"></span>
+            <span id="install-detectee" hidden><span data-t="inst.3.detail"></span><span
+              id="install-plateforme" class="valeur"></span></span></p>
         </div>
 
         <div class="fiche">
@@ -237,21 +239,23 @@
           <p data-t="inst.5.corps"></p>
         </div>
 
-        <div class="fiche large" id="install-steam" hidden>
+        <div class="fiche large" id="install-lancement" hidden>
           <span class="chiffre">4</span>
           <h3 data-t="inst.4.titre"></h3>
-          <p data-t="inst.4.linux.intro"></p>
-          <span class="commande copiable" data-copier>sh ./lancer_avec_gdpatch.sh %command%</span>
-          <p class="detail" data-t="inst.4.linux.detail"></p>
-        </div>
+          <p class="detail" id="install-choisir" hidden data-t="inst.4.choisir"></p>
 
-        <div class="fiche large" id="install-proton" hidden>
-          <span class="chiffre">4</span>
-          <h3 data-t="inst.4.titre"></h3>
-          <p data-t="inst.4.proton"></p>
-          <span class="commande copiable" data-copier>WINEDLLOVERRIDES="winmm=n,b" %command%</span>
-          <p class="detail" data-t="inst.4.proton.detail"></p>
-          <p class="detail alerte" data-t="inst.4.proton.avertissement"></p>
+          <div id="install-steam" hidden>
+            <p data-t="inst.4.linux.intro"></p>
+            <span class="commande copiable" data-copier>sh ./lancer_avec_gdpatch.sh %command%</span>
+          </div>
+
+          <div id="install-proton" hidden>
+            <p data-t="inst.4.proton"></p>
+            <span class="commande copiable" data-copier>WINEDLLOVERRIDES="winmm=n,b" %command%</span>
+          </div>
+
+          <p class="detail alerte" id="install-proton-avis" hidden
+             data-t="inst.4.proton.avertissement"></p>
         </div>
       </div>
     </div>
@@ -264,6 +268,7 @@ winmm.dll</pre>
       <p data-t="inst.repli.2"></p>
       <p data-t="inst.repli.3"></p>
       <p class="detail" data-t="inst.repli.4"></p>
+      <p class="detail" data-t="inst.repli.5"></p>
     </details>
   </div>
 </main>

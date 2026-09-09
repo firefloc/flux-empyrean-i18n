@@ -309,9 +309,16 @@ $$("install-poser").onclick = async () => {
       // montre donc les deux consignes plutôt qu'aucune : le joueur reconnaît
       // la sienne, alors qu'un écran vide le laisse au milieu du gué.
       $$("install-suite").hidden = false;
-      $$("install-plateforme").textContent = t("inst.plateforme.inconnue");
+      // Sans sélecteur de dossier, on ne connaît pas la plateforme : on montre
+      // les deux consignes sous un seul numéro, avec une phrase pour choisir.
+      // Sans dossier choisi, on ne détecte rien : plutôt que d'annoncer
+      // « inconnue », on n'annonce pas — la carte 4 dit déjà comment choisir.
+      $$("install-detectee").hidden = true;
+      $$("install-lancement").hidden = false;
+      $$("install-choisir").hidden = false;
       $$("install-steam").hidden = false;
       $$("install-proton").hidden = false;
+      $$("install-proton-avis").hidden = false;
       return;
     }
     etatInstall.dossierJeu = await window.showDirectoryPicker({ mode: "readwrite" });
@@ -326,8 +333,12 @@ $$("install-poser").onclick = async () => {
     $$("install-suite").hidden = false;
     $$("install-plateforme").textContent = LIBELLES[bilan.plateforme];
     $$("install-plateforme").dataset.plateforme = bilan.plateforme;
+    $$("install-detectee").hidden = false;
+    $$("install-lancement").hidden = false;
     $$("install-steam").hidden = bilan.plateforme !== "linux";
     $$("install-proton").hidden = bilan.plateforme !== "windows";
+    $$("install-proton-avis").hidden = bilan.plateforme !== "windows";
+    $$("install-choisir").hidden = true;
   } catch (e) {
     if (e.name === "AbortError") return;
     dire(e.message, "erreur");
