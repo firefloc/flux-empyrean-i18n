@@ -24,7 +24,7 @@
 	"inst.3.corps": "第一次启动会用你自己的副本生成翻译界面 — 几秒钟，只需一次。第二次启动才会显示。",
 	"inst.3.detail": "正因如此，模组不携带任何游戏文件：47 个场景在你的机器上生成。游戏更新时它们会自行重建，之后你无需再操心。检测到的平台：",
 	"inst.4.titre": "Steam 里的一行",
-	"inst.4.linux.detail": "为什么要经过脚本而不直接用加载器：Steam 的安装路径含有空格，而 LD_PRELOAD 会在空格处截断。没有它，加载器根本不会被注入，而且毫无提示。",
+	"inst.4.linux.detail": "页面已经把 lancer_avec_gdpatch.sh 写在加载器旁边。它通过 sh 启动，因此不需要可执行权限 — 浏览器写出的文件本来也无法获得。之所以需要它：Steam 的安装路径含有空格，而 LD_PRELOAD 会在空格处截断。于是把目录放进 LD_LIBRARY_PATH（用冒号分隔，空格无害），LD_PRELOAD 只接收一个裸文件名。",
 	"inst.4.proton": "在 Proton 或 Wine 下：右键点击游戏 → 属性 → 启动选项。",
 	"inst.4.proton.detail": "没有这一行，Wine 永远不会加载模组，而且什么也不会说。在真正的 Windows 上则无需任何操作。",
 	"inst.4.proton.avertissement": "需要知道：在 Proton 下游戏本身存在输入问题 — 菜单里点击无反应。已在不装模组的情况下验证，与翻译无关。可以试着按住右键的同时点左键、关闭 Steam Input，或更换 Proton 版本。原生 Linux 版没有这个问题。",
@@ -74,11 +74,9 @@
 	"ui.non_relue": "此界面为机器翻译，未经校对。欢迎提交修正。",
 	"inst.5.titre": "卡住了？按 F1",
 	"inst.5.corps": "F1 会把日志切回英文原文，再按一次切回。译文有可能弄错答案词；这样你可以看到原文、继续推进，并告诉我们哪里不对。英文文本从不随模组分发 — 它在启动时从你自己的副本中读取。",
-	"inst.4.linux.intro": "原生 Linux 版 — 按顺序做三件事：",
-	"inst.4.linux.etape1": "从 ",
-	"inst.4.linux.etape1b": " 下载 run_with_gdpatch.sh，放进游戏文件夹，与加载器并列。",
-	"inst.4.linux.etape2": "赋予可执行权限：右键 → 属性 → 权限 → 允许执行，或 chmod +x run_with_gdpatch.sh。",
-	"inst.4.linux.etape3": "在 Steam 中：右键点击游戏 → 属性 → 启动选项，粘贴：",
+	"inst.4.linux.intro": "原生 Linux 版 — Steam 里一行：右键点击游戏 → 属性 → 启动选项，粘贴：",
 	"inst.copie": "已复制",
-	"inst.copie.echec": "请手动选中并复制"
+	"inst.copie.echec": "请手动选中并复制",
+	"inst.zip.fait": "Zip 已下载。解压到游戏文件夹即可：GDPatch/mods/ 目录结构已经包含在内，无需重新整理。压缩包内还有 Linux 启动脚本。",
+	"inst.plateforme.inconnue": "未知 — 请在下方选择与你的版本相符的说明"
 }

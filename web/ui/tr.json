@@ -24,7 +24,7 @@
 	"inst.3.corps": "İlk başlatma çevrilmiş ekranları kendi kopyandan üretir — birkaç saniye, bir kez. İkincisi onları gösterir.",
 	"inst.3.detail": "Mod böylece hiçbir oyun dosyası taşımaz: 47 sahne senin makinende doğar. Oyun güncellendiğinde kendiliğinden yeniden üretilirler, bir daha düşünmezsin. Algılanan platform: ",
 	"inst.4.titre": "Steam'de bir satır",
-	"inst.4.linux.detail": "Neden doğrudan yükleyici değil de bir betik: Steam kurulum yolu boşluk içerir ve LD_PRELOAD boşluklarda kesilir. Betik olmadan yükleyici hiç enjekte edilmez — sessizce.",
+	"inst.4.linux.detail": "Sayfa lancer_avec_gdpatch.sh dosyasını yükleyicinin yanına zaten yazdı. sh ile başlatıldığı için çalıştırma iznine ihtiyacı yok — tarayıcının yazdığı bir dosya bu izni alamaz. Var olma nedeni: Steam kurulum yolu boşluk içeriyor ve LD_PRELOAD boşluklarda kesiliyor. Klasör LD_LIBRARY_PATH'e gidiyor; orada iki nokta üst üste ayırıyor ve boşluk sorun değil, LD_PRELOAD ise yalnızca çıplak bir dosya adı görüyor.",
 	"inst.4.proton": "Proton veya Wine altında: oyuna sağ tıkla → Özellikler → Başlatma seçenekleri.",
 	"inst.4.proton.detail": "Onsuz Wine modu asla yüklemez — ve hiçbir şey söylemez. Gerçek Windows'ta yapılacak bir şey yok.",
 	"inst.4.proton.avertissement": "Bilinmesi gereken: Proton altında oyunun kendisinde bir girdi sorunu var — menülerde tıklamalar yanıt vermiyor. Mod olmadan doğrulandı: sorun çeviri değil. Sol tıklarken sağ tuşu basılı tutmayı dene, Steam Input'u kapat ya da Proton sürümünü değiştir. Yerel Linux oyununda bu sorun yok.",
@@ -74,11 +74,9 @@
 	"ui.non_relue": "Bu arayüz makineyle çevrildi ve gözden geçirilmedi. Düzeltmeler memnuniyetle karşılanır.",
 	"inst.5.titre": "Takıldın mı? F1'e bas",
 	"inst.5.corps": "F1 günlüğü özgün İngilizceye çevirir ve geri döndürür. Bir çeviri cevap kelimesini kaçırabilir; böylece özgün metni görür, ilerler ve neyin yanlış olduğunu bildirirsin. İngilizce metin modla birlikte asla dağıtılmaz — açılışta kendi kopyandan okunur.",
-	"inst.4.linux.intro": "Yerel Linux oyunu — bu sırayla üç şey:",
-	"inst.4.linux.etape1": "run_with_gdpatch.sh dosyasını ",
-	"inst.4.linux.etape1b": " adresinden indir ve oyun klasörüne, yükleyicinin yanına koy.",
-	"inst.4.linux.etape2": "Çalıştırılabilir yap: sağ tık → Özellikler → İzinler → Çalıştırmaya izin ver, ya da chmod +x run_with_gdpatch.sh.",
-	"inst.4.linux.etape3": "Steam'de: oyuna sağ tıkla → Özellikler → Başlatma seçenekleri, ve yapıştır:",
+	"inst.4.linux.intro": "Yerel Linux oyunu — Steam'de tek satır: oyuna sağ tıkla → Özellikler → Başlatma seçenekleri, ve yapıştır:",
 	"inst.copie": "kopyalandı",
-	"inst.copie.echec": "elle seçip kopyala"
+	"inst.copie.echec": "elle seçip kopyala",
+	"inst.zip.fait": "Zip indirildi. Oyun klasörüne çıkar: GDPatch/mods/ ağacı zaten içinde, yeniden düzenlenecek bir şey yok. Linux başlatıcısı da içinde.",
+	"inst.plateforme.inconnue": "bilinmiyor — aşağıdan sürümüne uyan yönergeyi seç"
 }

@@ -220,9 +220,9 @@ The rest of this section is the same thing done by hand.
    On Windows — **including under Proton or Wine** — `gdpatch_loader.dll` must be
    **renamed to `winmm.dll`**: that is the name Windows loads it under. Left as-is, it
    never runs and says nothing. `install.py` and the web page rename it for you.
-2. On Linux and macOS, also get `run_with_gdpatch.sh` from
-   [gdpatch.dev](https://gdpatch.dev/) and put it in the same place. It is required
-   because the Steam install path contains a space and `LD_PRELOAD` splits on it.
+2. On Linux, nothing else to fetch: the page — and `install.py` — write
+   `lancer_avec_gdpatch.sh` next to the loader for you. It is launched through `sh`,
+   so it needs no execute permission, which a browser could not grant anyway.
 3. **The translation.** Download the release for your language and unzip it, then:
 
    ```sh
@@ -235,7 +235,7 @@ The rest of this section is the same thing done by hand.
 
    | Your game | What to paste |
    |---|---|
-   | Linux native | `./run_with_gdpatch.sh %command%` |
+   | Linux native | `sh ./lancer_avec_gdpatch.sh %command%` |
    | Windows under Proton or Wine | `WINEDLLOVERRIDES="winmm=n,b" %command%` |
    | Windows native | nothing — the loader hooks itself |
 
@@ -288,12 +288,17 @@ path for adding a language or replaying the in-game puzzle checks, not for playi
 The mod modifies no game file; it only adds three entries to the game folder:
 
 ```
-libgdpatch_loader.so      (or .dll / .dylib)
-run_with_gdpatch.sh
+libgdpatch_loader.so      (or winmm.dll on Windows)
+lancer_avec_gdpatch.sh    (Linux only, written for you)
 GDPatch/
 ```
 
-Deleting those three and removing `./run_with_gdpatch.sh %command%` from the Steam
+**Why a launcher at all**, since `LD_PRELOAD` would seem enough: the Steam install path
+contains a space, and `LD_PRELOAD` splits on spaces. The folder therefore goes into
+`LD_LIBRARY_PATH`, where colons separate and a space is harmless, and `LD_PRELOAD` only
+ever receives a bare filename. Verified from a directory whose name contains a space.
+
+Deleting those and removing the line from the Steam
 launch options restores the original game. A Steam file-integrity check does not remove
 them either — they are files Steam does not know about, not modified files.
 

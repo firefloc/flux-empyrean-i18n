@@ -76,6 +76,35 @@ const LIBELLES = {
   windows: "Windows — y compris sous Proton ou Wine",
 };
 
+// Le lanceur Linux, écrit par la page plutôt que téléchargé ailleurs.
+//
+// GDPatch documente un script à récupérer sur son site et à rendre exécutable.
+// Deux étapes de plus, et un fichier écrit par un navigateur ne peut de toute
+// façon pas recevoir le droit d'exécution. On écrit donc le nôtre — trois
+// lignes — et on le lance par `sh`, ce qui rend le droit d'exécution inutile.
+//
+// Pourquoi un script plutôt que LD_PRELOAD directement : le chemin
+// d'installation Steam contient une espace, et LD_PRELOAD découpe sur les
+// espaces. Le dossier va donc dans LD_LIBRARY_PATH, séparé par des deux-points
+// où l'espace ne gêne pas, et LD_PRELOAD ne reçoit qu'un nom de fichier nu.
+const LANCEUR = `#!/usr/bin/env sh
+# Injecte GDPatch puis lance le jeu. Écrit par la page de traduction.
+#
+#   Options de lancement Steam :  sh ./lancer_avec_gdpatch.sh %command%
+#
+# Le chemin d'installation Steam contient une espace, et LD_PRELOAD découpe sur
+# les espaces. On met donc le dossier dans LD_LIBRARY_PATH — séparé par des
+# deux-points, où l'espace ne gêne pas — et on ne laisse dans LD_PRELOAD qu'un
+# nom de fichier nu.
+#
+# Appelé par « sh », il n'a pas besoin d'être exécutable : un fichier écrit par
+# un navigateur ne peut pas l'être.
+dossier="$(cd "$(dirname "$0")" && pwd)"
+export LD_LIBRARY_PATH="$dossier:\${LD_LIBRARY_PATH}"
+export LD_PRELOAD="libgdpatch_loader.so:\${LD_PRELOAD}"
+exec "$@"
+`;
+
 async function ecrireFichier(dossier, chemin, contenu) {
   const morceaux = chemin.split("/");
   let courant = dossier;
@@ -116,6 +145,13 @@ async function installerDansLeDossier() {
     const reponse = await fetch(`releases/${etatInstall.langue}/${f.chemin}`);
     if (!reponse.ok) throw new Error(`fichier manquant sur la page : ${f.chemin}`);
     await ecrireFichier(dossier, f.chemin, await reponse.arrayBuffer());
+  }
+
+  // Sous Linux, le lanceur qui injecte le chargeur. Écrit à chaque fois : il ne
+  // contient rien de personnel et une version corrigée doit pouvoir remplacer
+  // l'ancienne sans que le joueur ait à s'en occuper.
+  if (plateforme === "linux") {
+    await ecrireFichier(jeu, "lancer_avec_gdpatch.sh", new TextEncoder().encode(LANCEUR));
   }
 
   // Le chargeur, si le joueur l'a déposé. On ne l'héberge pas.
@@ -200,6 +236,12 @@ async function telechargerZip() {
     const reponse = await fetch(`releases/${etatInstall.langue}/${f.chemin}`);
     entrees.push([`GDPatch/mods/flux_${etatInstall.langue}/${f.chemin}`, await reponse.arrayBuffer()]);
   }
+  // Le lanceur Linux voyage dans l'archive. Un joueur Linux sur Firefox n'a
+  // aucun autre moyen de l'obtenir : la page ne peut pas écrire dans son
+  // dossier, et on ne sait pas quelle plateforme il a. Le fichier ne gêne pas
+  // un joueur Windows, qui l'ignorera.
+  entrees.push(["lancer_avec_gdpatch.sh", new TextEncoder().encode(LANCEUR)]);
+
   const blob = zipSansCompression(entrees);
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
@@ -240,6 +282,9 @@ async function preparerInstalleur() {
   }
 
   if (!ECRITURE_DIRECTE) {
+    // On change la clé, pas le texte : l'application de la langue passe après
+    // et écrasait le libellé, et il doit survivre à un changement de langue.
+    $$("install-poser").dataset.t = "inst.2.bouton.zip";
     $$("install-poser").textContent = t("inst.2.bouton.zip");
     dire(
       "Ton navigateur ne sait pas écrire dans un dossier. Tu auras un zip à " +
@@ -259,11 +304,14 @@ $$("install-poser").onclick = async () => {
   try {
     if (!ECRITURE_DIRECTE) {
       await telechargerZip();
-      dire(
-        "Zip téléchargé. Décompresse-le dans le dossier du jeu : il contient déjà " +
-        "l'arborescence GDPatch/mods/, il n'y a rien à réorganiser."
-      );
+      dire(t("inst.zip.fait"));
+      // Sans sélecteur de dossier, on ne sait pas quelle plateforme il a. On
+      // montre donc les deux consignes plutôt qu'aucune : le joueur reconnaît
+      // la sienne, alors qu'un écran vide le laisse au milieu du gué.
       $$("install-suite").hidden = false;
+      $$("install-plateforme").textContent = t("inst.plateforme.inconnue");
+      $$("install-steam").hidden = false;
+      $$("install-proton").hidden = false;
       return;
     }
     etatInstall.dossierJeu = await window.showDirectoryPicker({ mode: "readwrite" });

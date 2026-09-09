@@ -24,7 +24,7 @@
 	"inst.3.corps": "El primer arranque construye las pantallas traducidas desde tu propia copia — unos segundos, una sola vez. El segundo las muestra.",
 	"inst.3.detail": "Así el mod no transporta ningún archivo del juego: las 47 escenas nacen en tu máquina. Se rehacen solas cuando el juego se actualiza, así que no volverás a pensar en ello. Plataforma detectada: ",
 	"inst.4.titre": "Una línea en Steam",
-	"inst.4.linux.detail": "Por qué un script y no el cargador directamente: la ruta de instalación de Steam contiene un espacio, y LD_PRELOAD corta en los espacios. Sin él, el cargador simplemente nunca se inyecta, en silencio.",
+	"inst.4.linux.detail": "La página ya escribió lancer_avec_gdpatch.sh junto al cargador. Se lanza con sh, así que no necesita permiso de ejecución — un archivo escrito por un navegador no puede tenerlo. Existe porque la ruta de instalación de Steam contiene un espacio y LD_PRELOAD corta en los espacios: la carpeta va en LD_LIBRARY_PATH, donde separan los dos puntos y el espacio no molesta, y LD_PRELOAD solo ve un nombre de archivo desnudo.",
 	"inst.4.proton": "Bajo Proton o Wine: clic derecho en el juego → Propiedades → Opciones de inicio.",
 	"inst.4.proton.detail": "Sin ella, Wine nunca carga el mod — y no dice nada. En Windows de verdad no hay nada que hacer.",
 	"inst.4.proton.avertissement": "Conviene saberlo: bajo Proton el juego mismo tiene un fallo de entrada — los clics no responden en los menús. Comprobado sin el mod: no es la traducción. Prueba a mantener el clic derecho mientras haces clic izquierdo, desactiva Steam Input, o cambia de versión de Proton. El juego Linux nativo no tiene este problema.",
@@ -74,11 +74,9 @@
 	"ui.non_relue": "Esta interfaz se tradujo automáticamente y no ha sido revisada. Se agradecen correcciones.",
 	"inst.5.titre": "¿Atascado? Pulsa F1",
 	"inst.5.corps": "F1 cambia el diario al inglés original, y vuelve. Una traducción puede errar una palabra-respuesta; así ves el original, te desbloqueas y señalas lo que falla. El texto inglés nunca se distribuye con el mod — se lee de tu propia copia al arrancar.",
-	"inst.4.linux.intro": "Juego Linux nativo — tres cosas, en este orden:",
-	"inst.4.linux.etape1": "Descarga run_with_gdpatch.sh desde ",
-	"inst.4.linux.etape1b": " y ponlo en la carpeta del juego, junto al cargador.",
-	"inst.4.linux.etape2": "Hazlo ejecutable: clic derecho → Propiedades → Permisos → Permitir ejecución, o chmod +x run_with_gdpatch.sh.",
-	"inst.4.linux.etape3": "En Steam: clic derecho en el juego → Propiedades → Opciones de inicio, y pega:",
+	"inst.4.linux.intro": "Juego Linux nativo — una línea en Steam: clic derecho en el juego → Propiedades → Opciones de inicio, y pega:",
 	"inst.copie": "copiado",
-	"inst.copie.echec": "selecciona y copia a mano"
+	"inst.copie.echec": "selecciona y copia a mano",
+	"inst.zip.fait": "Zip descargado. Descomprímelo en la carpeta del juego: ya trae el árbol GDPatch/mods/, no hay nada que reorganizar. También incluye el lanzador de Linux.",
+	"inst.plateforme.inconnue": "desconocida — elige abajo la instrucción que corresponda a tu versión"
 }

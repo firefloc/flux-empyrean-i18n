@@ -24,7 +24,7 @@
 	"inst.3.corps": "Le premier lancement fabrique les écrans traduits depuis ta propre copie — quelques secondes, une seule fois. Le second les affiche.",
 	"inst.3.detail": "C'est ce qui permet au mod de ne transporter aucun fichier du jeu : les 47 scènes naissent chez toi. Elles se refont toutes seules quand le jeu se met à jour, donc tu n'y repenseras plus. Plateforme détectée : ",
 	"inst.4.titre": "Une ligne dans Steam",
-	"inst.4.linux.detail": "Pourquoi un script plutôt que le chargeur directement : le chemin d'installation Steam contient une espace, et LD_PRELOAD découpe sur les espaces. Sans lui, le chargeur n'est tout simplement jamais injecté, en silence.",
+	"inst.4.linux.detail": "La page a déjà écrit lancer_avec_gdpatch.sh à côté du chargeur. Il est lancé par sh, donc il n'a pas besoin du droit d'exécution — un fichier écrit par un navigateur ne peut pas l'avoir. Il existe parce que le chemin d'installation Steam contient une espace et que LD_PRELOAD découpe sur les espaces : le dossier va dans LD_LIBRARY_PATH, où les deux-points séparent et où l'espace ne gêne pas, et LD_PRELOAD ne voit jamais qu'un nom de fichier nu.",
 	"inst.4.proton": "Sous Proton ou Wine : clic droit sur le jeu → Propriétés → Options de lancement.",
 	"inst.4.proton.detail": "Sans elle, Wine ne charge jamais le mod — et ne dit rien. Sous Windows véritable, il n'y a rien à faire.",
 	"inst.4.proton.avertissement": "À savoir : sous Proton, le jeu lui-même a un défaut d'entrée — les clics ne répondent pas dans les menus. Vérifié sans le mod : ce n'est pas la traduction. Essaie de maintenir le clic droit pendant le clic gauche, désactive Steam Input, ou change de version de Proton. Le jeu Linux natif n'a pas ce problème.",
@@ -74,11 +74,9 @@
 	"ui.non_relue": "Cette interface a été traduite par une machine et n’a pas été relue. Corrections bienvenues.",
 	"inst.5.titre": "Bloqué ? Appuie sur F1",
 	"inst.5.corps": "F1 bascule le journal en anglais d'origine, et le rebascule. Une traduction peut se tromper sur un mot-réponse ; ça te laisse voir l'original, te débloquer, et signaler ce qui cloche. Le texte anglais n'est jamais livré avec le mod — il est lu dans ta propre copie au démarrage.",
-	"inst.4.linux.intro": "Jeu Linux natif — trois choses, dans cet ordre :",
-	"inst.4.linux.etape1": "Télécharge run_with_gdpatch.sh depuis ",
-	"inst.4.linux.etape1b": " et pose-le dans le dossier du jeu, à côté du chargeur.",
-	"inst.4.linux.etape2": "Rends-le exécutable : clic droit → Propriétés → Permissions → Autoriser l'exécution, ou chmod +x run_with_gdpatch.sh.",
-	"inst.4.linux.etape3": "Dans Steam : clic droit sur le jeu → Propriétés → Options de lancement, et colle :",
+	"inst.4.linux.intro": "Jeu Linux natif — une ligne dans Steam : clic droit sur le jeu → Propriétés → Options de lancement, et colle :",
 	"inst.copie": "copié",
-	"inst.copie.echec": "sélectionne et copie à la main"
+	"inst.copie.echec": "sélectionne et copie à la main",
+	"inst.zip.fait": "Zip téléchargé. Décompresse-le dans le dossier du jeu : il contient déjà l'arborescence GDPatch/mods/, il n'y a rien à réorganiser. Il contient aussi le lanceur Linux.",
+	"inst.plateforme.inconnue": "inconnue — choisis ci-dessous la consigne qui correspond à ta version"
 }

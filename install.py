@@ -26,7 +26,23 @@ sys.path.insert(0, str(RACINE / "tools"))
 import jeu as J  # noqa: E402
 
 A_RETIRER = ("GDPatch", "libgdpatch_loader.so", "gdpatch_loader.dll", "winmm.dll",
-             "libgdpatch_loader.dylib", "run_with_gdpatch.sh")
+             "libgdpatch_loader.dylib", "run_with_gdpatch.sh",
+             "lancer_avec_gdpatch.sh")
+
+# Le chemin d'installation Steam contient une espace, et LD_PRELOAD découpe sur
+# les espaces. Le dossier va donc dans LD_LIBRARY_PATH, séparé par des
+# deux-points où l'espace ne gêne pas, et LD_PRELOAD ne reçoit qu'un nom nu.
+LANCEUR = """#!/usr/bin/env sh
+# Injecte GDPatch puis lance le jeu.
+#
+#   Options de lancement Steam :  sh ./lancer_avec_gdpatch.sh %command%
+#
+# Appelé par « sh », il n'a pas besoin d'être exécutable.
+dossier="$(cd "$(dirname "$0")" && pwd)"
+export LD_LIBRARY_PATH="$dossier:${LD_LIBRARY_PATH}"
+export LD_PRELOAD="libgdpatch_loader.so:${LD_PRELOAD}"
+exec "$@"
+"""
 
 
 def desinstaller(dossier: Path) -> None:
@@ -83,6 +99,13 @@ def installer(mod: Path, dossier: Path, langue: str) -> None:
                if plateforme == "Windows" else "")
         )
 
+    # Sous Linux, le lanceur qui injecte le chargeur — le même que celui que
+    # la page écrit. GDPatch en documente un à télécharger et à rendre
+    # exécutable ; celui-ci se lance par `sh`, donc le droit d'exécution est
+    # inutile, ce qui rend les deux chemins d'installation identiques.
+    if plateforme == "Linux":
+        (dossier / "lancer_avec_gdpatch.sh").write_text(LANCEUR, encoding="utf-8")
+
     destination = dossier / "GDPatch" / "mods" / f"flux_{langue}"
     if destination.exists():
         shutil.rmtree(destination)
@@ -103,11 +126,10 @@ def installer(mod: Path, dossier: Path, langue: str) -> None:
         print("Sous Windows véritable, il n'y a rien à faire.")
     else:
         print("Options de lancement Steam :")
-        print("  ./run_with_gdpatch.sh %command%")
+        print("  sh ./lancer_avec_gdpatch.sh %command%")
         print()
-        print("Récupère aussi run_with_gdpatch.sh sur gdpatch.dev et pose-le dans le")
-        print("dossier du jeu : le chemin d'installation Steam contient une espace, et")
-        print("LD_PRELOAD découpe dessus.")
+        print("Le lanceur vient d'être écrit à côté du chargeur. Il est appelé par sh,")
+        print("donc il n'a pas besoin du droit d'exécution.")
 
 
 def main() -> None:

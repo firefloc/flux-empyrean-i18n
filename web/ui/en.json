@@ -24,7 +24,7 @@
 	"inst.3.corps": "The first launch builds the translated screens from your own copy — a few seconds, once. The second one shows them.",
 	"inst.3.detail": "That is how the mod carries no game file: the 47 scenes are born on your machine. They rebuild themselves when the game updates, so you never think about it again. Detected platform: ",
 	"inst.4.titre": "One line in Steam",
-	"inst.4.linux.detail": "Why a script rather than the loader directly: the Steam install path contains a space, and LD_PRELOAD splits on spaces. Without it the loader is simply never injected, silently.",
+	"inst.4.linux.detail": "The page has already written lancer_avec_gdpatch.sh next to the loader. It is launched through sh, so it needs no execute permission — a file written by a browser cannot have one. It exists because the Steam install path contains a space and LD_PRELOAD splits on spaces: the folder goes into LD_LIBRARY_PATH, where colons separate and a space is harmless, and LD_PRELOAD only ever sees a bare filename.",
 	"inst.4.proton": "Under Proton or Wine: right-click the game → Properties → Launch options.",
 	"inst.4.proton.detail": "Without it, Wine never loads the mod — and says nothing. On real Windows there is nothing to do.",
 	"inst.4.proton.avertissement": "Worth knowing: under Proton, the game itself has an input problem — clicks do not register in menus. Verified without the mod: it is not the translation. Try holding right-click while left-clicking, disable Steam Input, or switch Proton build. The native Linux game does not have this.",
@@ -74,11 +74,9 @@
 	"ui.non_relue": "This interface was machine-translated and has not been reviewed. Corrections welcome.",
 	"inst.5.titre": "Stuck? Press F1",
 	"inst.5.corps": "F1 switches the journal back to the original English, and back again. A translation can get a puzzle word wrong; this lets you see the original, get unstuck, and report what is off. The English text is never shipped with the mod — it is read from your own copy at startup.",
-	"inst.4.linux.intro": "Native Linux game — three things, in this order:",
-	"inst.4.linux.etape1": "Download run_with_gdpatch.sh from ",
-	"inst.4.linux.etape1b": " and put it in the game folder, next to the loader.",
-	"inst.4.linux.etape2": "Make it executable: right-click → Properties → Permissions → Allow executing, or chmod +x run_with_gdpatch.sh.",
-	"inst.4.linux.etape3": "In Steam: right-click the game → Properties → Launch options, and paste:",
+	"inst.4.linux.intro": "Native Linux game — one line in Steam: right-click the game → Properties → Launch options, and paste:",
 	"inst.copie": "copied",
-	"inst.copie.echec": "select and copy manually"
+	"inst.copie.echec": "select and copy manually",
+	"inst.zip.fait": "Zip downloaded. Extract it into the game folder: it already has the GDPatch/mods/ tree, nothing to rearrange. It also contains the Linux launcher.",
+	"inst.plateforme.inconnue": "unknown — pick the instruction matching your version below"
 }

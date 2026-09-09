@@ -24,7 +24,7 @@
 	"inst.3.corps": "Pierwsze uruchomienie buduje przetłumaczone ekrany z twojej własnej kopii — kilka sekund, jednorazowo. Drugie je pokazuje.",
 	"inst.3.detail": "Dzięki temu mod nie przenosi żadnego pliku gry: 47 scen powstaje u ciebie. Odbudowują się same, gdy gra się aktualizuje, więc nie musisz o tym pamiętać. Wykryta platforma: ",
 	"inst.4.titre": "Jedna linia w Steam",
-	"inst.4.linux.detail": "Dlaczego skrypt, a nie loader wprost: ścieżka instalacji Steam zawiera spację, a LD_PRELOAD urywa się na spacjach. Bez niego loader po prostu nigdy się nie ładuje — bez słowa.",
+	"inst.4.linux.detail": "Strona już zapisała lancer_avec_gdpatch.sh obok loadera. Uruchamia się go przez sh, więc nie potrzebuje prawa wykonywania — plik zapisany przez przeglądarkę nie może go dostać. Istnieje, bo ścieżka instalacji Steam zawiera spację, a LD_PRELOAD urywa się na spacjach: folder trafia do LD_LIBRARY_PATH, gdzie rozdzielają dwukropki i spacja nie przeszkadza, a LD_PRELOAD widzi tylko samą nazwę pliku.",
 	"inst.4.proton": "Pod Protonem lub Wine: prawy przycisk na grze → Właściwości → Opcje uruchamiania.",
 	"inst.4.proton.detail": "Bez niej Wine nigdy nie ładuje moda — i nic nie mówi. Na prawdziwym Windowsie nie trzeba nic robić.",
 	"inst.4.proton.avertissement": "Warto wiedzieć: pod Protonem sama gra ma problem z obsługą wejścia — kliknięcia nie działają w menu. Sprawdzone bez moda: to nie tłumaczenie. Spróbuj przytrzymać prawy przycisk podczas klikania lewym, wyłącz Steam Input albo zmień wersję Protona. Natywna gra linuksowa tego nie ma.",
@@ -74,11 +74,9 @@
 	"ui.non_relue": "Ten interfejs przetłumaczyła maszyna i nie został sprawdzony. Poprawki mile widziane.",
 	"inst.5.titre": "Utknąłeś? Naciśnij F1",
 	"inst.5.corps": "F1 przełącza dziennik na oryginalny angielski i z powrotem. Tłumaczenie może pomylić słowo-odpowiedź; dzięki temu widzisz oryginał, ruszasz dalej i zgłaszasz, co nie gra. Angielski tekst nigdy nie jest dostarczany z modem — jest czytany z twojej kopii przy starcie.",
-	"inst.4.linux.intro": "Natywna gra linuksowa — trzy rzeczy, w tej kolejności:",
-	"inst.4.linux.etape1": "Pobierz run_with_gdpatch.sh z ",
-	"inst.4.linux.etape1b": " i połóż go w folderze gry, obok loadera.",
-	"inst.4.linux.etape2": "Nadaj mu prawo wykonywania: prawy przycisk → Właściwości → Uprawnienia → Zezwól na uruchamianie, albo chmod +x run_with_gdpatch.sh.",
-	"inst.4.linux.etape3": "W Steam: prawy przycisk na grze → Właściwości → Opcje uruchamiania, i wklej:",
+	"inst.4.linux.intro": "Natywna gra linuksowa — jedna linia w Steam: prawy przycisk na grze → Właściwości → Opcje uruchamiania, i wklej:",
 	"inst.copie": "skopiowano",
-	"inst.copie.echec": "zaznacz i skopiuj ręcznie"
+	"inst.copie.echec": "zaznacz i skopiuj ręcznie",
+	"inst.zip.fait": "Zip pobrany. Rozpakuj go w folderze gry: drzewo GDPatch/mods/ już w nim jest, nic nie trzeba przestawiać. Zawiera też launcher dla Linuksa.",
+	"inst.plateforme.inconnue": "nieznana — wybierz poniżej instrukcję pasującą do twojej wersji"
 }

@@ -85,11 +85,15 @@ const verifier = (condition, message) => {
 // 1. Un dossier de jeu Linux.
 const linux = await scenario(nav, ['flux-empyrean.x86_64', 'libsteam_api.so'], 'dossier Linux');
 verifier(linux.plateforme === 'linux', 'plateforme mal détectée');
-verifier(Object.keys(linux.ecrits).length === 5, '5 fichiers attendus');
+// Cinq fichiers de mod, plus le lanceur que la page écrit à la racine : sans
+// lui, un joueur Linux devrait aller chercher un script ailleurs et lui donner
+// le droit d'exécution, que le navigateur ne peut pas accorder.
+verifier(Object.keys(linux.ecrits).length === 6, '5 fichiers de mod + le lanceur');
 verifier(
-  Object.keys(linux.ecrits).every((c) => c.startsWith('GDPatch/mods/flux_fr/')),
-  'arborescence GDPatch/mods/flux_fr/ attendue'
+  Object.keys(linux.ecrits).filter((c) => c.startsWith('GDPatch/mods/flux_fr/')).length === 5,
+  'les cinq fichiers du mod sous GDPatch/mods/flux_fr/'
 );
+verifier('lancer_avec_gdpatch.sh' in linux.ecrits, 'le lanceur Linux doit être écrit');
 verifier(linux.steamVisible, 'la ligne Steam doit être affichée sous Linux');
 verifier(!linux.protonVisible, 'pas de consigne Proton pour un jeu Linux natif');
 verifier(/manque le chargeur/.test(linux.journal), 'le chargeur absent doit être signalé');
@@ -100,7 +104,9 @@ const windows = await scenario(
   nav, ['Flux Empyrean.exe', 'winmm.dll'], 'dossier Windows, chargeur en place sous son vrai nom'
 );
 verifier(windows.plateforme === 'windows', 'plateforme mal détectée');
-verifier(Object.keys(windows.ecrits).length === 5, '5 fichiers attendus');
+// Sous Windows le lanceur n'a pas lieu d'être : la DLL se branche seule.
+verifier(Object.keys(windows.ecrits).length === 5, '5 fichiers, sans lanceur');
+verifier(!('lancer_avec_gdpatch.sh' in windows.ecrits), 'pas de lanceur sous Windows');
 verifier(!windows.steamVisible, 'pas de ligne Steam sous Windows');
 verifier(windows.protonVisible, 'la consigne Proton doit être affichée sous Windows');
 verifier(/en place/.test(windows.journal), 'le chargeur présent doit être reconnu');

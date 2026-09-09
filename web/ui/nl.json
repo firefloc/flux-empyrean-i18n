@@ -24,7 +24,7 @@
 	"inst.3.corps": "De eerste start bouwt de vertaalde schermen uit je eigen kopie — een paar seconden, eenmalig. De tweede toont ze.",
 	"inst.3.detail": "Zo draagt de mod geen spelbestand mee: de 47 scènes ontstaan bij jou. Ze worden vanzelf opnieuw gebouwd als het spel wordt bijgewerkt, dus je denkt er nooit meer aan. Gedetecteerd platform: ",
 	"inst.4.titre": "Eén regel in Steam",
-	"inst.4.linux.detail": "Waarom een script en niet de loader rechtstreeks: het Steam-installatiepad bevat een spatie, en LD_PRELOAD kapt af op spaties. Zonder het script wordt de loader eenvoudigweg nooit geladen, zonder melding.",
+	"inst.4.linux.detail": "De pagina heeft lancer_avec_gdpatch.sh al naast de loader geschreven. Het wordt via sh gestart en heeft dus geen uitvoerrecht nodig — een door een browser geschreven bestand kan dat niet krijgen. Het bestaat omdat het Steam-installatiepad een spatie bevat en LD_PRELOAD op spaties afkapt: de map gaat in LD_LIBRARY_PATH, waar dubbele punten scheiden en een spatie onschadelijk is, en LD_PRELOAD ziet alleen een kale bestandsnaam.",
 	"inst.4.proton": "Onder Proton of Wine: rechtsklik op het spel → Eigenschappen → Opstartopties.",
 	"inst.4.proton.detail": "Zonder deze regel laadt Wine de mod nooit — en zegt niets. Op echt Windows hoef je niets te doen.",
 	"inst.4.proton.avertissement": "Goed om te weten: onder Proton heeft het spel zelf een invoerprobleem — klikken komen niet aan in de menu's. Zonder de mod gecontroleerd: het ligt niet aan de vertaling. Probeer de rechtermuisknop ingedrukt te houden terwijl je links klikt, schakel Steam Input uit, of wissel van Proton-versie. Het native Linux-spel heeft dit niet.",
@@ -74,11 +74,9 @@
 	"ui.non_relue": "Deze interface is machinaal vertaald en niet nagekeken. Correcties welkom.",
 	"inst.5.titre": "Vast? Druk op F1",
 	"inst.5.corps": "F1 zet het dagboek terug naar het Engelse origineel, en weer terug. Een vertaling kan een antwoordwoord missen; zo zie je het origineel, kom je verder en meld je wat niet klopt. De Engelse tekst wordt nooit met de mod meegeleverd — hij wordt bij het opstarten uit je eigen kopie gelezen.",
-	"inst.4.linux.intro": "Native Linux-spel — drie dingen, in deze volgorde:",
-	"inst.4.linux.etape1": "Download run_with_gdpatch.sh van ",
-	"inst.4.linux.etape1b": " en zet het in de spelmap, naast de loader.",
-	"inst.4.linux.etape2": "Maak het uitvoerbaar: rechtsklik → Eigenschappen → Rechten → Uitvoeren toestaan, of chmod +x run_with_gdpatch.sh.",
-	"inst.4.linux.etape3": "In Steam: rechtsklik op het spel → Eigenschappen → Opstartopties, en plak:",
+	"inst.4.linux.intro": "Native Linux-spel — één regel in Steam: rechtsklik op het spel → Eigenschappen → Opstartopties, en plak:",
 	"inst.copie": "gekopieerd",
-	"inst.copie.echec": "selecteer en kopieer handmatig"
+	"inst.copie.echec": "selecteer en kopieer handmatig",
+	"inst.zip.fait": "Zip gedownload. Pak het uit in de spelmap: de boom GDPatch/mods/ zit er al in, niets te herschikken. De Linux-starter zit er ook bij.",
+	"inst.plateforme.inconnue": "onbekend — kies hieronder de instructie die bij jouw versie past"
 }
