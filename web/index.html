@@ -5,10 +5,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Flux Empyrean — éditeur de traduction</title>
 <style>
+  /* Direction artistique reprise du jeu : un ciel de nuit sur une mer, le Flux
+     en vert d'aurore, et la typographie de terminal des écrans du jeu. On reste
+     sobre — c'est un outil de travail, pas une vitrine. */
   :root {
-    --fond: #0d1411; --panneau: #131c18; --bord: #24352c;
-    --texte: #cfe3d6; --attenue: #7d9488; --accent: #6ee7a8;
+    --fond: #070c14; --panneau: #0d141f; --bord: #1c2a3d;
+    --texte: #cfe0e8; --attenue: #6f8598; --accent: #6ee7a8;
+    --accent-sourd: #2b6f52;
     --alerte: #f0b429; --erreur: #f2705d;
+  }
+  /* Le Flux : une lueur qui ne bouge pas, posée haut derrière le contenu. */
+  body::before {
+    content: ""; position: fixed; inset: -20vh 0 auto 0; height: 70vh; z-index: -1;
+    background:
+      radial-gradient(60% 55% at 50% 0%, rgba(110, 231, 168, .10), transparent 70%),
+      radial-gradient(45% 40% at 78% 12%, rgba(70, 160, 220, .07), transparent 70%);
+    pointer-events: none;
   }
   * { box-sizing: border-box; }
   /* `display: flex` sur .etape battait l'attribut hidden : la consigne réservée
@@ -23,7 +35,15 @@
     border-bottom: 1px solid var(--bord); padding: 12px 20px;
     display: flex; gap: 10px; align-items: center; flex-wrap: wrap;
   }
-  h1 { font-size: 15px; margin: 0 12px 0 0; font-weight: 600; }
+  h1 { font-size: 15px; margin: 0 12px 0 0; font-weight: 600; letter-spacing: .04em; }
+  .titre { padding: 26px 20px 6px; max-width: 1600px; margin: 0 auto; }
+  .titre h1 {
+    font-size: 26px; margin: 0; font-weight: 600; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--texte);
+    text-shadow: 0 0 24px rgba(110, 231, 168, .25);
+  }
+  .titre p { margin: 6px 0 0; color: var(--attenue); font-size: 13px; }
+  .titre .flux { color: var(--accent); }
   button, select, input[type=search], input[type=text] {
     background: var(--fond); color: var(--texte); border: 1px solid var(--bord);
     border-radius: 4px; padding: 6px 10px; font: inherit; font-size: 13px;
@@ -64,23 +84,32 @@
   .badge.ok { background: #123322; color: var(--accent); }
   .probleme { color: var(--erreur); font-size: 12px; margin-top: 4px; }
   .vide { text-align: center; color: var(--attenue); padding: 60px 20px; }
-  nav { display: flex; gap: 8px; padding: 10px 20px 0; background: var(--panneau); }
+  nav { display: flex; gap: 8px; padding: 10px 20px 0; max-width: 1600px; margin: 0 auto;
+        border-bottom: 1px solid var(--bord); }
   nav button { border-radius: 4px 4px 0 0; border-bottom-color: transparent; }
-  nav button[aria-selected=true] { background: var(--fond); border-color: var(--bord);
-    border-bottom-color: var(--fond); color: var(--accent); font-weight: 600; }
-  .panneau { background: var(--panneau); border: 1px solid var(--bord); border-radius: 6px;
-    padding: 20px 24px; margin-bottom: 20px; }
+  nav button[aria-selected=true] { background: var(--panneau); border-color: var(--bord);
+    border-bottom-color: var(--panneau); color: var(--accent); font-weight: 600;
+    box-shadow: inset 0 2px 0 var(--accent-sourd); }
+  .panneau { background: linear-gradient(180deg, rgba(110,231,168,.03), transparent 40%),
+    var(--panneau); border: 1px solid var(--bord); border-radius: 8px;
+    padding: 22px 26px; margin-bottom: 20px; }
   .panneau h2 { font-size: 15px; margin: 0 0 12px; }
   .panneau p { color: var(--attenue); font-size: 13px; margin: 0 0 10px; }
   .panneau code { color: var(--accent); }
   .etape { display: flex; gap: 14px; align-items: baseline; margin: 14px 0; }
   .etape .num { color: var(--accent); font-weight: 600; min-width: 1.4em; }
   .etape .corps { flex: 1; }
-  .commande { background: var(--fond); border: 1px solid var(--bord); border-radius: 4px;
-    padding: 8px 10px; font-size: 13px; color: var(--texte); user-select: all; display: inline-block; }
+  .commande { background: #050a10; border: 1px solid var(--accent-sourd); border-radius: 4px;
+    padding: 8px 12px; font-size: 13px; color: var(--accent); user-select: all;
+    display: inline-block; margin: 4px 0; }
 </style>
 </head>
 <body>
+<div class="titre">
+  <h1><span class="flux">Flux</span> Empyrean — traduction</h1>
+  <p>Outil communautaire. Ton jeu ne quitte pas ton navigateur.</p>
+</div>
+
 <nav>
   <button id="onglet-installer" aria-selected="true">Installer la traduction</button>
   <button id="onglet-traduire" aria-selected="false">Traduire</button>
