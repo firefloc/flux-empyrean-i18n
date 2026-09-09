@@ -164,32 +164,29 @@ func _unhandled_input(evenement: InputEvent) -> void:
 			_basculer_langue()
 			get_viewport().set_input_as_handled()
 		elif evenement.keycode == KEY_F2:
-			_recharger_la_scene()
+			_recharger_les_textes()
 			get_viewport().set_input_as_handled()
 
 
-# F2 recharge le lieu courant.
+# F2 réapplique la langue courante à l'écran, sans rien recharger.
 #
-# Certains textes sont lus une seule fois et recopiés : le texte d'un disque est
-# pris au clic, l'animation machine à écrire le réécrit derrière nous. F1 ne les
-# rattrape pas. Recharger la scène les fait relire, dans la langue courante.
+# Recharger la scène marcherait aussi, mais coûterait la position du joueur —
+# au large, sur le bateau, c'est inacceptable. Et Godot ne sait pas recharger
+# une scène « sans ses entités » : une PackedScene s'instancie entière.
 #
-# Ce qui est perdu : la position dans le lieu. Ce qui ne l'est pas : les
-# découvertes et le journal, qui vivent dans des autoloads et survivent au
-# rechargement. C'est pour cela qu'on peut se le permettre.
-func _recharger_la_scene() -> void:
-	if get_tree().current_scene == null:
-		print("VO F2 : aucune scene courante a recharger")
-		return
-	print("VO F2 rechargement de " + str(get_tree().current_scene.scene_file_path))
-	get_tree().reload_current_scene()
-	# La scène repart de zéro : les libellés reviennent dans la langue du mod,
-	# et il faut rebasculer si on était en version originale.
-	if _en_version_originale:
-		await get_tree().process_frame
-		await get_tree().process_frame
-		if has_method("basculer_les_scenes"):
-			call("basculer_les_scenes", true)
+# Or on n'a pas besoin de recharger. Ce qui manque après une transition de
+# lieu, c'est que les libellés de la scène fraîchement chargée reviennent dans
+# la langue du mod alors qu'on avait demandé la version originale. Repasser sur
+# l'arbre suffit, et ne touche à rien d'autre.
+#
+# Ce que ça ne rattrape toujours pas : un texte déjà recopié dans une variable
+# — celui d'un disque, pris au clic. Pour celui-là, re-cliquer le relit.
+func _recharger_les_textes() -> void:
+	var libelles := 0
+	if has_method("basculer_les_scenes"):
+		libelles = call("basculer_les_scenes", _en_version_originale)
+	_rafraichir_le_journal()
+	print("VO F2 textes reappliques (" + str(libelles) + " libelles)")
 	_afficher_la_langue()
 '''
 
