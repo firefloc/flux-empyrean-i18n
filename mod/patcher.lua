@@ -44,6 +44,49 @@ GDPatch.patch_script_as_text("Scripts/texts.gdc", function(ctx, src)
 end)
 
 
+-- Les chaines noyees dans le code, et le dictionnaire qu'on en tire.
+--
+-- Jusqu'ici on jetait l'anglais au moment meme ou on l'avait en main : la
+-- substitution le remplacait et il disparaissait du programme compile. F1 ne
+-- pouvait donc rien rebasculer -- il n'y avait plus rien a echanger.
+--
+-- On le range desormais dans `vo_code.json`, a cote du mod, exactement comme
+-- les scenes rangent le leur. Ce fichier ne quitte pas la machine du joueur.
+--
+-- On n'enregistre que les substitutions **reussies** : une paire qui ne s'est
+-- pas appliquee n'est pas dans le jeu, et la faire figurer donnerait un compte
+-- flatteur et faux. Et seulement celles marquees relevables par
+-- gen_strings_lua.py -- les clés de la logique du jeu et les chaines a format
+-- en sont exclues au build.
+local vo_code = {}
+
+local function json_chaine(v)
+	local echappe = v:gsub('[%c"\\]', function(c)
+		if c == '"' then return '\\"' end
+		if c == "\\" then return "\\\\" end
+		if c == "\n" then return "\\n" end
+		if c == "\r" then return "\\r" end
+		if c == "\t" then return "\\t" end
+		return string.format("\\u%04x", c:byte())
+	end)
+	return '"' .. echappe .. '"'
+end
+
+-- Reecrit a chaque script patche : GDPatch n'offre pas de fin de course, et le
+-- fichier est petit. Le dernier passage laisse le relevé complet.
+local function ecrire_vo_code()
+	local f = io.open(dir .. "/vo_code.json", "w")
+	if not f then return end
+	local morceaux, n = {}, 0
+	for traduite, origine in pairs(vo_code) do
+		n = n + 1
+		morceaux[n] = json_chaine(traduite) .. ":" .. json_chaine(origine)
+	end
+	f:write("{" .. table.concat(morceaux, ",") .. "}")
+	f:close()
+	return n
+end
+
 local chaines = dofile(dir .. "/strings.lua")
 for script, paires in pairs(chaines) do
 	GDPatch.patch_script_as_text(script, function(ctx, src)
@@ -53,12 +96,18 @@ for script, paires in pairs(chaines) do
 			if n > 0 then
 				out = remplace
 				faits = faits + 1
+				-- paire[3] : relevable. Absent sur un strings.lua d'avant cette
+				-- version, auquel cas on ne releve rien plutot que de relever
+				-- une clé et de casser une enigme.
+				if paire[3] == true then vo_code[paire[2]] = paire[1] end
 			else
 				manques = manques + 1
 				print("MANQUE " .. ctx.path .. " :: " .. paire[1]:sub(1, 50))
 			end
 		end
 		print("CHAINES " .. ctx.path .. " : " .. faits .. " ok, " .. manques .. " manques")
+		local total = ecrire_vo_code()
+		if total then print("VO-CODE " .. total .. " paires relevees") end
 		return out
 	end)
 end

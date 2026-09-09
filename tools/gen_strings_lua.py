@@ -13,11 +13,27 @@ Usage: gen_strings_lua.py <sortie.lua>
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 WORK = ROOT / "work"
+
+
+# Le relevé de la VO n'est pas pris sur toutes les paires. Deux exclusions,
+# chacune correspondant à une façon de se tromper à l'écran :
+#
+#   - les chaînes que la logique du jeu lit comme clé — même garde-fou que pour
+#     les scènes, et même union calculée par `gen_scenes_gd.cles_de_logique()` ;
+#   - celles qui portent un marqueur de format : « %s ajouté au journal. » ne
+#     ressemble plus à rien une fois remplie, la comparaison ne la retrouve pas.
+FORMAT = re.compile(r"%[sdfx]|\{\}")
+
+
+def relevable(en: str, fr: str, cles: set[str]) -> bool:
+    return (en not in cles and fr not in cles
+            and not FORMAT.search(en) and not FORMAT.search(fr))
 
 
 def lua_str(s: str) -> str:
@@ -54,8 +70,18 @@ def main() -> int:
             "Emploie « » plutôt que des guillemets droits."
         )
 
-    lignes = ["-- Généré par tools/gen_strings_lua.py — ne pas éditer à la main.", "return {"]
-    total, scripts = 0, 0
+    from gen_scenes_gd import cles_de_logique
+    cles = cles_de_logique()
+
+    lignes = [
+        "-- Généré par tools/gen_strings_lua.py — ne pas éditer à la main.",
+        "--",
+        "-- Chaque entrée est {anglais, traduction, relevable}. Le troisième champ dit",
+        "-- si le patcher peut ranger la paire dans data/vo_code.json au moment où il",
+        "-- substitue : c'est ce dictionnaire qui permet à F1 de revenir à l'original.",
+        "return {",
+    ]
+    total, scripts, releves = 0, 0, 0
     for script, paires in sorted(fr.items()):
         utiles = [(en, f) for en, f in paires.items() if f and f != en]
         if not utiles:
@@ -65,13 +91,19 @@ def main() -> int:
         utiles.sort(key=lambda p: len(p[0]), reverse=True)
         lignes.append(f"\t[{lua_str(script)}] = {{")
         for en, f in utiles:
-            lignes.append(f"\t\t{{{lua_str(en)}, {lua_str(f)}}},")
+            ok = relevable(en, f, cles)
+            releves += int(ok)
+            lignes.append(
+                f"\t\t{{{lua_str(en)}, {lua_str(f)}, {'true' if ok else 'false'}}},"
+            )
             total += 1
         lignes.append("\t},")
         scripts += 1
     lignes.append("}")
     Path(sys.argv[1]).write_text("\n".join(lignes) + "\n", encoding="utf-8")
     print(f"{sys.argv[1]} : {total} remplacements sur {scripts} scripts")
+    print(f"{sys.argv[1]} : {releves} relevables pour F1, "
+          f"{total - releves} ecartees (cle du jeu ou marqueur de format)")
     return 0
 
 

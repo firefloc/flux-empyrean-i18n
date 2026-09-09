@@ -288,14 +288,35 @@ func _fabriquer_les_scenes() -> void:
 # telles quelles : mieux vaut une bascule partielle annoncee qu'une bascule a
 # moitie faite.
 func _charger_les_paires() -> void:
-\tif MOD_DIR.begins_with("@@") or not FileAccess.file_exists(_fichier_des_paires()):
+\tif MOD_DIR.begins_with("@@"):
 \t\treturn
-\tvar brut = JSON.parse_string(FileAccess.get_file_as_string(_fichier_des_paires()))
+\t# Deux relevés, deux origines, une seule table : les libellés des scènes,
+\t# pris quand le jeu les fabrique, et les chaînes noyées dans le code, prises
+\t# par patcher.lua quand il les substitue. Le parcours d'arbre ne fait pas la
+\t# différence, et n'a pas à la faire.
+\tvar scenes := _lire_paires(_fichier_des_paires())
+\tvar code := _lire_paires(MOD_DIR + "/vo_code.json")
+\tprint("VO paires chargees : %d de scene, %d de code" % [scenes, code])
+
+
+func _lire_paires(chemin: String) -> int:
+\tif not FileAccess.file_exists(chemin):
+\t\treturn 0
+\tvar brut = JSON.parse_string(FileAccess.get_file_as_string(chemin))
 \tif not brut is Dictionary:
-\t\treturn
+\t\treturn 0
+\tvar lues := 0
 \tfor traduite in brut:
-\t\t_vo_scenes[traduite] = brut[traduite]
-\t\t_fr_scenes[brut[traduite]] = traduite
+\t\tvar origine = brut[traduite]
+\t\t# Une paire dont les deux côtés sont identiques ne bascule rien, et une
+\t\t# traduction déjà connue sous un autre original serait ambiguë : on garde
+\t\t# la première vue plutôt que d'échanger au hasard.
+\t\tif not origine is String or origine == traduite or _vo_scenes.has(traduite):
+\t\t\tcontinue
+\t\t_vo_scenes[traduite] = origine
+\t\t_fr_scenes[origine] = traduite
+\t\tlues += 1
+\treturn lues
 
 
 # Remet le texte affiche dans l'autre langue, sur place. On parcourt l'arbre
