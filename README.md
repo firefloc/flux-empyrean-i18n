@@ -257,12 +257,18 @@ interface labels are recorded the moment the game builds its translated scenes, 
 the strings it is about to overwrite. Both come out of your own copy and neither leaves
 your machine; the distributed mod grows by a few KB of GDScript.
 
+Measured with a probe that presses F1 by itself: **103 label positions across the main
+menu (48), the pause screen (40) and the journal (15) switch to English and back**, with
+the document corpus intact both ways.
+
 Two things F1 deliberately leaves alone. Text a script has already copied into a
 variable, and the typewriter animation, which rewrites the label after us — those keep
-whatever they were showing. And a handful of strings are *keys*, not labels: `The Great
-Joke` is a document title as well as a button caption, and swapping it by value would
-break the discovery it unlocks. Those are excluded by name at build time rather than
-guessed at runtime.
+whatever they were showing. Neither was reachable on the three screens measured above,
+so their real cost is not yet quantified. And a handful of strings are *keys*, not
+labels: `The Great Joke` is a document title as well as a button caption, and swapping
+it by value would break the discovery it unlocks. Those are excluded by name at build
+time rather than guessed at runtime, and the probe asserts the discs and that key
+survive the round trip.
 
 **Launch the game twice.** The first launch builds the translated scenes from your own
 copy — a few seconds, once — and the interface turns French on the second. They rebuild
