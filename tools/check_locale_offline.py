@@ -81,7 +81,7 @@ def main() -> int:
             print(f"  [ERREUR] {e}")
         return 1
     print(f"langue {LOCALE.name} : forme et règles d'écriture correctes")
-    print("  (les contrôles d'énigmes demandent la copie du jeu : `./build.sh` en local)")
+    print("  (les contrôles d'énigmes demandent la copie du jeu : `build.py` en local)")
     return 0
 
 

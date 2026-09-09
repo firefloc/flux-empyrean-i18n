@@ -18,7 +18,7 @@ serait absurde — mais il contient la liste exacte de ce qu'il faut décider :
   « minos » ou « 1034 » casse l'énigme au lieu de l'ouvrir.
 - `code_overrides.json` liste les six commandes du terminal, même principe.
 - `documents.json`, `scenes.json`, `scripts.json` sont des conteneurs vides mais
-  valides, pour que `LOCALE=xx ./build.sh` marche dès le premier jour.
+  valides, pour que `build.py` marche dès le premier jour.
 - `glossary.json` pose les noms propres à ne jamais traduire, qui sont des faits
   du jeu et pas des choix de langue.
 
@@ -161,7 +161,7 @@ def main() -> None:
         print(
             f"\n{crees} langue(s) prête(s). Pour traduire : ouvre web/index.html, charge "
             "ton jeu,\npuis les fichiers de la langue. Pour construire : "
-            "LOCALE=<code> ./build.sh <exécutable> <code>"
+            "python3 build.py <exécutable> <code>"
         )
 
 

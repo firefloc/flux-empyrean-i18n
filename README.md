@@ -219,14 +219,14 @@ The rest of this section is the same thing done by hand.
 
    On Windows — **including under Proton or Wine** — `gdpatch_loader.dll` must be
    **renamed to `winmm.dll`**: that is the name Windows loads it under. Left as-is, it
-   never runs and says nothing. `install.sh` and the web page rename it for you.
+   never runs and says nothing. `install.py` and the web page rename it for you.
 2. On Linux and macOS, also get `run_with_gdpatch.sh` from
    [gdpatch.dev](https://gdpatch.dev/) and put it in the same place. It is required
    because the Steam install path contains a space and `LD_PRELOAD` splits on it.
 3. **The translation.** Download the release for your language and unzip it, then:
 
    ```sh
-   ./install.sh --depuis <unzipped folder> "<game folder>" fr
+   python3 install.py --depuis <unzipped folder> "<game folder>" fr
    ```
 
    Or copy the folder by hand to `<game folder>/GDPatch/mods/flux_fr`. That is all the
@@ -263,17 +263,17 @@ your disk, all of it generated locally from files you already own.
 ### If you build it yourself
 
 ```sh
-./build.sh "<game executable>" fr     # produces build/fr/
-./install.sh "<game folder>" fr
+python3 build.py "<game executable>" fr     # produces build/fr/
+python3 install.py "<game folder>" fr
 ```
 
 This needs Godot 4.7 on your `PATH`, Python 3, and the GDPatch loader already installed
-— `tools/dump_sources.sh` actually runs the game to decompile its scripts. It is the
+— `tools/dump_sources.py` actually runs the game to decompile its scripts. It is the
 path for adding a language or replaying the in-game puzzle checks, not for playing.
 
 ### Uninstall
 
-`./install.sh --desinstaller "<game folder>"`.
+`python3 install.py --desinstaller "<game folder>"`.
 
 The mod modifies no game file; it only adds three entries to the game folder:
 
@@ -369,7 +369,7 @@ shared by every language, because it describes the game, not a translation.
 ```sh
 cp -r locales/fr locales/de
 # translate the JSON files, then:
-LOCALE=de ./build.sh "<game executable>" de
+python3 build.py "<game executable>" de
 ```
 
 `tools/BRIEF_TRADUCTEUR.md` is the brief given to the translators, including what must
@@ -381,7 +381,7 @@ stay English and why.
 
 ```sh
 python3 tools/verify_locale.py          # full check of one language
-tools/check_ingame.sh                   # launches the game and reads the served corpus
+python3 tools/check_ingame.py <game folder>                   # launches the game and reads the served corpus
 ```
 
 `tools/ingame/qa_enigmes.gd` goes further: it instantiates each puzzle scene, injects an
@@ -423,7 +423,7 @@ below is stated from the platform it was actually run on.
 | pack extraction (browser and Python) | ✅ | ✅ same 21/21 frozen, 426/426 code strings | ✅ same binary, same reader |
 | the mod applying in game | ✅ 261 strings, 0 misses | ✅ corpus, 47 scenes built, 261 strings | ❌ never run |
 | scenes built by the game at first launch | ✅ 180/205 in tree | ✅ 47 files written, 0 failures | ❌ never run |
-| `build.sh` / `install.sh` | ✅ | n/a | ❌ **cannot run at all** |
+| `build.py` / `install.py` | ✅ | n/a | ❌ **cannot run at all** |
 
 The pack reader is genuinely platform-independent: the same file, read from the Linux
 `.x86_64` and the Windows `.exe`, yields identical results. That part is not a guess.
@@ -446,16 +446,19 @@ differ, in falling order of likelihood:
 - **Antivirus.** A game process writing 6 MB of files into its own folder at startup is
   precisely what heuristic scanners flag.
 
-**The tooling does not run on Windows at all.** Six shell scripts, 298 lines, orchestrate
-the pipeline. Two of them inject GDPatch with `LD_PRELOAD`, which does not exist on
-Windows — there, the loader is injected by renaming it to `winmm.dll`, a completely
-different mechanism. The 30 Python tools are already portable (their `/` are Godot
-resource paths, which are forward-slash on every platform, and every subprocess call
-passes an argument list rather than a shell string), so the work is bounded: rewrite the
-orchestration in Python. It is planned, it is not done.
+**The tooling is Python only, and that is deliberate.** The pipeline used to be six
+shell scripts, which ran on Linux and macOS and nowhere else. Two of them injected
+GDPatch with `LD_PRELOAD`, which does not exist on Windows — there the loader is
+injected by renaming it to `winmm.dll`, an entirely different mechanism. Both paths now
+live in `tools/jeu.py`, chosen from the game binary rather than from the host system,
+because under Proton it is the `.exe` that runs.
 
-Until then, a Windows fork can edit translations in the browser and install them, but
-cannot rebuild the mod.
+**It has still never been run on Windows.** The port removes the structural blocker; it
+does not prove the result. What could bite, in falling order of likelihood: `ResourceSaver`
+writing the 47 scenes under `Program Files` may need elevation; an antivirus may object
+to a game writing 6 MB into its own folder at startup; and Godot's command-line binary is
+called something like `Godot_v4.7-stable_win64.exe` and is rarely on `PATH` — set the
+`GODOT` variable, the tooling says so rather than failing on "command not found".
 
 ### A known bug that is not ours
 
