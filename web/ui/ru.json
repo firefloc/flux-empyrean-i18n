@@ -24,7 +24,7 @@
 	"inst.3.corps": "Первый запуск собирает переведённые экраны из вашей же копии — несколько секунд, один раз. Второй их показывает.",
 	"inst.3.detail": " Detected: ",
 	"inst.4.titre": "Одна строка в Steam",
-	"inst.4.linux.detail": "",
+	"inst.4.linux.detail": "Файл должен быть исполняемым, а браузер не может это задать. Выполните это один раз в папке игры — в ZIP-архиве право уже есть:",
 	"inst.4.proton": "Windows version under Proton or Wine — right-click the game → Properties → Launch options:",
 	"inst.4.proton.detail": "On real Windows there is nothing to do.",
 	"inst.4.proton.avertissement": "Under Proton the game itself does not respond to clicks in its menus. This happens without the translation too. Try holding right-click while left-clicking, disable Steam Input, or switch Proton version.",
@@ -77,8 +77,8 @@
 	"inst.4.linux.intro": "Linux version — right-click the game → Properties → Launch options:",
 	"inst.copie": "скопировано",
 	"inst.copie.echec": "выделите и скопируйте вручную",
-	"inst.zip.fait": "Zip скачан. Распакуйте его в папку игры: дерево GDPatch/mods/ уже внутри, ничего переставлять не нужно. В архиве есть и запускатель для Linux.",
+	"inst.zip.fait": "Архив загружен. Распакуйте его в папку игры: дерево GDPatch/mods/ уже внутри, ничего переставлять не нужно. В нём также есть запускающий скрипт для Linux, уже исполняемый.",
 	"inst.4.choisir": "Pick the line matching the version Steam gave you.",
-	"inst.repli.5": "Why a launcher on Linux: the Steam install path contains a space, and LD_PRELOAD splits on spaces. The folder therefore goes into LD_LIBRARY_PATH, where a space is harmless, and LD_PRELOAD only receives a bare filename. The launcher runs through sh, so it needs no execute permission — a browser could not grant one anyway. The English text used by F1 is read from your own copy at startup and never travels.",
+	"inst.repli.5": "Зачем в Linux нужен запускающий скрипт: Steam запускает игру через цепочку обёрток, которая стирает заданный до неё LD_PRELOAD. Официальный скрипт GDPatch обходит это, помещая себя после этой цепочки — поэтому он должен быть исполняемым, и поэтому наш скрипт из трёх строк работал только вне Steam. Английский текст, который использует F1, читается из вашей копии при запуске и никогда никуда не передаётся.",
 	"inst.3.corps2": "They rebuild themselves when the game updates, so you never think about it again."
 }

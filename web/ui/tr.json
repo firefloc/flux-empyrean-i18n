@@ -24,7 +24,7 @@
 	"inst.3.corps": "İlk başlatma çevrilmiş ekranları kendi kopyandan üretir — birkaç saniye, bir kez. İkincisi onları gösterir.",
 	"inst.3.detail": " Detected: ",
 	"inst.4.titre": "Steam'de bir satır",
-	"inst.4.linux.detail": "",
+	"inst.4.linux.detail": "Dosyanın çalıştırılabilir olması gerekir; bir tarayıcı bunu veremez. Oyun klasöründe bunu bir kez çalıştırın — ZIP arşivinde izin zaten var:",
 	"inst.4.proton": "Windows version under Proton or Wine — right-click the game → Properties → Launch options:",
 	"inst.4.proton.detail": "On real Windows there is nothing to do.",
 	"inst.4.proton.avertissement": "Under Proton the game itself does not respond to clicks in its menus. This happens without the translation too. Try holding right-click while left-clicking, disable Steam Input, or switch Proton version.",
@@ -77,8 +77,8 @@
 	"inst.4.linux.intro": "Linux version — right-click the game → Properties → Launch options:",
 	"inst.copie": "kopyalandı",
 	"inst.copie.echec": "elle seçip kopyala",
-	"inst.zip.fait": "Zip indirildi. Oyun klasörüne çıkar: GDPatch/mods/ ağacı zaten içinde, yeniden düzenlenecek bir şey yok. Linux başlatıcısı da içinde.",
+	"inst.zip.fait": "Zip indirildi. Oyun klasörüne çıkarın: GDPatch/mods/ ağacı zaten içinde, yeniden düzenlenecek bir şey yok. Ayrıca Linux başlatıcısını da içerir, hâlihazırda çalıştırılabilir.",
 	"inst.4.choisir": "Pick the line matching the version Steam gave you.",
-	"inst.repli.5": "Why a launcher on Linux: the Steam install path contains a space, and LD_PRELOAD splits on spaces. The folder therefore goes into LD_LIBRARY_PATH, where a space is harmless, and LD_PRELOAD only receives a bare filename. The launcher runs through sh, so it needs no execute permission — a browser could not grant one anyway. The English text used by F1 is read from your own copy at startup and never travels.",
+	"inst.repli.5": "Linux'ta neden bir başlatıcı gerekir: Steam oyunu, kendisinden önce ayarlanan LD_PRELOAD'ı silen bir sarmalayıcı zinciri üzerinden başlatır. GDPatch'in resmî betiği kendisini bu zincirin arkasına yerleştirerek bunu aşar — bu yüzden çalıştırılabilir olmalıdır ve bu yüzden kendi üç satırlık betiğimiz yalnızca Steam dışında çalışıyordu. F1'in kullandığı İngilizce metin, açılışta kendi kopyanızdan okunur ve hiçbir yere gitmez.",
 	"inst.3.corps2": "They rebuild themselves when the game updates, so you never think about it again."
 }

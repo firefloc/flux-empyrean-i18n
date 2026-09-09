@@ -24,7 +24,7 @@
 	"inst.3.corps": "Le premier lancement fabrique les écrans traduits depuis ta propre copie — quelques secondes, une seule fois. Le second les affiche.",
 	"inst.3.detail": " Détecté : ",
 	"inst.4.titre": "Une ligne dans Steam",
-	"inst.4.linux.detail": "",
+	"inst.4.linux.detail": "Le fichier doit être exécutable, et un navigateur ne peut pas le rendre tel. À passer une fois dans le dossier du jeu — l'archive ZIP, elle, porte déjà le droit :",
 	"inst.4.proton": "Version Windows sous Proton ou Wine — clic droit sur le jeu → Propriétés → Options de lancement :",
 	"inst.4.proton.detail": "Sous Windows véritable, il n'y a rien à faire.",
 	"inst.4.proton.avertissement": "Sous Proton, le jeu lui-même ne répond pas aux clics dans ses menus. Ça arrive aussi sans la traduction. Essaie de maintenir le clic droit pendant le clic gauche, désactive Steam Input, ou change de version de Proton.",
@@ -77,8 +77,8 @@
 	"inst.4.linux.intro": "Version Linux — clic droit sur le jeu → Propriétés → Options de lancement :",
 	"inst.copie": "copié",
 	"inst.copie.echec": "sélectionne et copie à la main",
-	"inst.zip.fait": "Zip téléchargé. Décompresse-le dans le dossier du jeu : il contient déjà l'arborescence GDPatch/mods/, il n'y a rien à réorganiser. Il contient aussi le lanceur Linux.",
+	"inst.zip.fait": "Archive téléchargée. Décompresse-la dans le dossier du jeu : l'arborescence GDPatch/mods/ y est déjà, rien à replacer. Elle contient aussi le lanceur Linux, déjà exécutable.",
 	"inst.4.choisir": "Choisis la ligne qui correspond à la version que Steam t'a livrée.",
-	"inst.repli.5": "Pourquoi un lanceur sous Linux : le chemin d'installation Steam contient une espace, et LD_PRELOAD découpe sur les espaces. Le dossier va donc dans LD_LIBRARY_PATH, où l'espace est inoffensive, et LD_PRELOAD ne reçoit qu'un nom de fichier nu. Le lanceur passe par sh, donc il n'a pas besoin du droit d'exécution — un navigateur ne pourrait pas l'accorder de toute façon. Le texte anglais qu'utilise F1 est lu dans ta propre copie au démarrage et ne voyage jamais.",
+	"inst.repli.5": "Pourquoi un lanceur sous Linux : Steam démarre le jeu à travers une chaîne d'intermédiaires qui efface le LD_PRELOAD posé en amont. Le script officiel de GDPatch contourne cela en se replaçant après cette chaîne — d'où le droit d'exécution nécessaire, et d'où l'échec d'un script maison de trois lignes, qui ne marchait qu'en dehors de Steam. Le texte anglais utilisé par F1 est lu dans ta propre copie au démarrage et ne circule jamais.",
 	"inst.3.corps2": "Ils se refont tout seuls quand le jeu se met à jour, donc tu n'y repenseras plus."
 }

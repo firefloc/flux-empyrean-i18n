@@ -93,7 +93,13 @@ verifier(
   Object.keys(linux.ecrits).filter((c) => c.startsWith('GDPatch/mods/flux_fr/')).length === 5,
   'les cinq fichiers du mod sous GDPatch/mods/flux_fr/'
 );
-verifier('lancer_avec_gdpatch.sh' in linux.ecrits, 'le lanceur Linux doit être écrit');
+const LANCEUR_ATTENDU = fs.statSync(new URL('../web/vendor/run_with_gdpatch.sh', import.meta.url)).size;
+verifier('run_with_gdpatch.sh' in linux.ecrits, 'le lanceur Linux doit être écrit');
+verifier(
+  linux.ecrits['run_with_gdpatch.sh'] === LANCEUR_ATTENDU,
+  `le lanceur doit être le script officiel servi depuis vendor/ (${LANCEUR_ATTENDU} o)`
+);
+verifier(!('lancer_avec_gdpatch.sh' in linux.ecrits), 'plus de lanceur maison');
 verifier(linux.steamVisible, 'la ligne Steam doit être affichée sous Linux');
 verifier(!linux.protonVisible, 'pas de consigne Proton pour un jeu Linux natif');
 verifier(/manque le chargeur/.test(linux.journal), 'le chargeur absent doit être signalé');
@@ -106,7 +112,7 @@ const windows = await scenario(
 verifier(windows.plateforme === 'windows', 'plateforme mal détectée');
 // Sous Windows le lanceur n'a pas lieu d'être : la DLL se branche seule.
 verifier(Object.keys(windows.ecrits).length === 5, '5 fichiers, sans lanceur');
-verifier(!('lancer_avec_gdpatch.sh' in windows.ecrits), 'pas de lanceur sous Windows');
+verifier(!('run_with_gdpatch.sh' in windows.ecrits), 'pas de lanceur sous Windows');
 verifier(!windows.steamVisible, 'pas de ligne Steam sous Windows');
 verifier(windows.protonVisible, 'la consigne Proton doit être affichée sous Windows');
 verifier(/en place/.test(windows.journal), 'le chargeur présent doit être reconnu');

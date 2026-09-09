@@ -76,34 +76,27 @@ const LIBELLES = {
   windows: "Windows — y compris sous Proton ou Wine",
 };
 
-// Le lanceur Linux, écrit par la page plutôt que téléchargé ailleurs.
+// Le lanceur Linux : le script officiel de GDPatch, servi tel quel.
 //
-// GDPatch documente un script à récupérer sur son site et à rendre exécutable.
-// Deux étapes de plus, et un fichier écrit par un navigateur ne peut de toute
-// façon pas recevoir le droit d'exécution. On écrit donc le nôtre — trois
-// lignes — et on le lance par `sh`, ce qui rend le droit d'exécution inutile.
+// La page en écrivait un de trois lignes, lancé par `sh` pour se passer du
+// droit d'exécution qu'un navigateur ne peut pas donner. Il marchait hors
+// Steam, et seulement là : la chaîne `reaper → steam-launch-wrapper → jeu`
+// efface le `LD_PRELOAD` posé en amont. C'est précisément ce que la boucle de
+// rotation du script officiel contourne — elle se replace après le wrapper.
 //
-// Pourquoi un script plutôt que LD_PRELOAD directement : le chemin
-// d'installation Steam contient une espace, et LD_PRELOAD découpe sur les
-// espaces. Le dossier va donc dans LD_LIBRARY_PATH, séparé par des deux-points
-// où l'espace ne gêne pas, et LD_PRELOAD ne reçoit qu'un nom de fichier nu.
-const LANCEUR = `#!/usr/bin/env sh
-# Injecte GDPatch puis lance le jeu. Écrit par la page de traduction.
-#
-#   Options de lancement Steam :  sh ./lancer_avec_gdpatch.sh %command%
-#
-# Le chemin d'installation Steam contient une espace, et LD_PRELOAD découpe sur
-# les espaces. On met donc le dossier dans LD_LIBRARY_PATH — séparé par des
-# deux-points, où l'espace ne gêne pas — et on ne laisse dans LD_PRELOAD qu'un
-# nom de fichier nu.
-#
-# Appelé par « sh », il n'a pas besoin d'être exécutable : un fichier écrit par
-# un navigateur ne peut pas l'être.
-dossier="$(cd "$(dirname "$0")" && pwd)"
-export LD_LIBRARY_PATH="$dossier:\${LD_LIBRARY_PATH}"
-export LD_PRELOAD="libgdpatch_loader.so:\${LD_PRELOAD}"
-exec "$@"
-`;
+// D'où deux conséquences qu'on assume plutôt que de les contourner :
+//   - le script doit être exécutable, donc l'archive porte le bit et la page
+//     affiche le `chmod` pour le chemin « dossier du jeu » ;
+//   - il est sous LGPL-2.1, emprunté à UnityDoorstop. On le sert verbatim
+//     depuis `vendor/`, en-tête de licence comprise, plutôt que de le recopier.
+const LANCEUR_CHEMIN = "vendor/run_with_gdpatch.sh";
+const LANCEUR_NOM = "run_with_gdpatch.sh";
+
+async function lireLanceur() {
+  const reponse = await fetch(LANCEUR_CHEMIN, { cache: "no-store" });
+  if (!reponse.ok) throw new Error(`lanceur introuvable sur la page : ${LANCEUR_CHEMIN}`);
+  return new Uint8Array(await reponse.arrayBuffer());
+}
 
 async function ecrireFichier(dossier, chemin, contenu) {
   const morceaux = chemin.split("/");
@@ -150,8 +143,12 @@ async function installerDansLeDossier() {
   // Sous Linux, le lanceur qui injecte le chargeur. Écrit à chaque fois : il ne
   // contient rien de personnel et une version corrigée doit pouvoir remplacer
   // l'ancienne sans que le joueur ait à s'en occuper.
+  //
+  // Le navigateur ne peut pas le rendre exécutable ; la page affiche donc le
+  // `chmod` à passer. Sans lui, le script ne se relance pas après le wrapper
+  // Steam et le jeu démarre non traduit, sans message.
   if (plateforme === "linux") {
-    await ecrireFichier(jeu, "lancer_avec_gdpatch.sh", new TextEncoder().encode(LANCEUR));
+    await ecrireFichier(jeu, LANCEUR_NOM, await lireLanceur());
   }
 
   // Le chargeur, si le joueur l'a déposé. On ne l'héberge pas.
@@ -186,7 +183,7 @@ function zipSansCompression(entrees) {
     return (c ^ 0xffffffff) >>> 0;
   };
 
-  for (const [nom, contenu] of entrees) {
+  for (const [nom, contenu, executable] of entrees) {
     const nomOctets = enc.encode(nom);
     const donnees = new Uint8Array(contenu);
     const somme = crc32(donnees);
@@ -202,12 +199,19 @@ function zipSansCompression(entrees) {
 
     const fiche = new DataView(new ArrayBuffer(46));
     fiche.setUint32(0, 0x02014b50, true);
-    fiche.setUint16(4, 20, true);
+    // « Version créée par » : 0x03 en octet haut annonce Unix, ce qui donne un
+    // sens aux attributs externes ci-dessous. Sans ça, `unzip` ignore les
+    // permissions et le lanceur ressort non exécutable.
+    fiche.setUint16(4, executable ? 0x031e : 20, true);
     fiche.setUint16(6, 20, true);
     fiche.setUint32(16, somme, true);
     fiche.setUint32(20, donnees.length, true);
     fiche.setUint32(24, donnees.length, true);
     fiche.setUint16(28, nomOctets.length, true);
+    // Attributs externes : mode Unix dans les 16 bits hauts. 0o100755 = fichier
+    // régulier exécutable. C'est le seul chemin d'installation qui peut donner
+    // ce droit — l'API du navigateur qui écrit dans un dossier ne le peut pas.
+    if (executable) fiche.setUint32(38, (0o100755 << 16) >>> 0, true);
     fiche.setUint32(42, decalage, true);
     central.push(new Uint8Array(fiche.buffer), nomOctets);
 
@@ -236,11 +240,12 @@ async function telechargerZip() {
     const reponse = await fetch(`releases/${etatInstall.langue}/${f.chemin}`);
     entrees.push([`GDPatch/mods/flux_${etatInstall.langue}/${f.chemin}`, await reponse.arrayBuffer()]);
   }
-  // Le lanceur Linux voyage dans l'archive. Un joueur Linux sur Firefox n'a
-  // aucun autre moyen de l'obtenir : la page ne peut pas écrire dans son
+  // Le lanceur Linux voyage dans l'archive, avec son droit d'exécution : un
+  // joueur Linux sur Firefox n'a
+  // aucun autre moyen de l'obtenir — la page ne peut pas écrire dans son
   // dossier, et on ne sait pas quelle plateforme il a. Le fichier ne gêne pas
   // un joueur Windows, qui l'ignorera.
-  entrees.push(["lancer_avec_gdpatch.sh", new TextEncoder().encode(LANCEUR)]);
+  entrees.push([LANCEUR_NOM, await lireLanceur(), true]);
 
   const blob = zipSansCompression(entrees);
   const a = document.createElement("a");
