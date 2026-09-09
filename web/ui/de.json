@@ -24,8 +24,7 @@
 	"inst.3.corps": "Der erste Start baut die übersetzten Bildschirme aus deiner eigenen Kopie — ein paar Sekunden, einmalig. Der zweite zeigt sie.",
 	"inst.3.detail": "So kommt die Mod ohne Spieldateien aus: die 47 Szenen entstehen bei dir. Sie bauen sich neu auf, wenn das Spiel aktualisiert wird, du denkst also nie wieder daran. Erkannte Plattform: ",
 	"inst.4.titre": "Eine Zeile in Steam",
-	"inst.4.linux": "Natives Linux-Spiel: Rechtsklick auf das Spiel → Eigenschaften → Startoptionen.",
-	"inst.4.linux.detail": "Dieses Skript kommt von gdpatch.dev und liegt neben dem Loader. Es ist nötig, weil der Steam-Installationspfad ein Leerzeichen enthält, an dem LD_PRELOAD trennt.",
+	"inst.4.linux.detail": "Warum ein Skript statt des Loaders direkt: der Steam-Installationspfad enthält ein Leerzeichen, und LD_PRELOAD trennt an Leerzeichen. Ohne das Skript wird der Loader schlicht nie eingebunden — lautlos.",
 	"inst.4.proton": "Unter Proton oder Wine: Rechtsklick auf das Spiel → Eigenschaften → Startoptionen.",
 	"inst.4.proton.detail": "Ohne sie lädt Wine die Mod nie — und sagt nichts. Unter echtem Windows ist nichts zu tun.",
 	"inst.4.proton.avertissement": "Gut zu wissen: unter Proton hat das Spiel selbst ein Eingabeproblem — Klicks kommen in den Menüs nicht an. Ohne die Mod überprüft: es liegt nicht an der Übersetzung. Halte die rechte Maustaste beim Linksklick gedrückt, deaktiviere Steam Input, oder wechsle die Proton-Version. Das native Linux-Spiel hat das nicht.",
@@ -74,5 +73,12 @@
 	"intro.gel": "Bernsteinfarbene Zeilen sind eingefroren: Chiffreblöcke, Kunstsprache, Rebusse. Das Spiel entfernt vor dem Entschlüsseln alles, was kein Buchstabe ist — ein Buchstabe mehr verschiebt die ganze Nachricht. Der Editor macht sie schreibgeschützt.",
 	"ui.non_relue": "Diese Oberfläche wurde maschinell übersetzt und nicht geprüft. Korrekturen willkommen.",
 	"inst.5.titre": "Feststeckend? Drücke F1",
-	"inst.5.corps": "F1 schaltet das Journal auf das englische Original um und wieder zurück. Eine Übersetzung kann ein Antwortwort verfehlen; so siehst du das Original, kommst weiter und kannst melden, was nicht stimmt. Der englische Text wird nie mit der Mod ausgeliefert — er wird beim Start aus deiner eigenen Kopie gelesen."
+	"inst.5.corps": "F1 schaltet das Journal auf das englische Original um und wieder zurück. Eine Übersetzung kann ein Antwortwort verfehlen; so siehst du das Original, kommst weiter und kannst melden, was nicht stimmt. Der englische Text wird nie mit der Mod ausgeliefert — er wird beim Start aus deiner eigenen Kopie gelesen.",
+	"inst.4.linux.intro": "Natives Linux-Spiel — drei Dinge, in dieser Reihenfolge:",
+	"inst.4.linux.etape1": "Lade run_with_gdpatch.sh von ",
+	"inst.4.linux.etape1b": " herunter und lege es in den Spielordner, neben den Loader.",
+	"inst.4.linux.etape2": "Mach es ausführbar: Rechtsklick → Eigenschaften → Zugriffsrechte → Ausführen erlauben, oder chmod +x run_with_gdpatch.sh.",
+	"inst.4.linux.etape3": "In Steam: Rechtsklick auf das Spiel → Eigenschaften → Startoptionen, und einfügen:",
+	"inst.copie": "kopiert",
+	"inst.copie.echec": "bitte manuell markieren und kopieren"
 }

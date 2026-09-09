@@ -24,8 +24,7 @@
 	"inst.3.corps": "A primeira execução constrói as telas traduzidas a partir da sua própria cópia — alguns segundos, uma única vez. A segunda as mostra.",
 	"inst.3.detail": "É assim que o mod não carrega nenhum arquivo do jogo: as 47 cenas nascem na sua máquina. Elas se refazem sozinhas quando o jogo é atualizado, então você não pensa mais nisso. Plataforma detectada: ",
 	"inst.4.titre": "Uma linha na Steam",
-	"inst.4.linux": "Jogo Linux nativo: clique direito no jogo → Propriedades → Opções de inicialização.",
-	"inst.4.linux.detail": "Esse script vem do gdpatch.dev e fica ao lado do carregador. É necessário porque o caminho de instalação da Steam contém um espaço, no qual o LD_PRELOAD corta.",
+	"inst.4.linux.detail": "Por que um script e não o carregador direto: o caminho de instalação da Steam contém um espaço, e o LD_PRELOAD corta nos espaços. Sem ele, o carregador simplesmente nunca é injetado, em silêncio.",
 	"inst.4.proton": "Sob Proton ou Wine: clique direito no jogo → Propriedades → Opções de inicialização.",
 	"inst.4.proton.detail": "Sem ela, o Wine nunca carrega o mod — e não diz nada. No Windows de verdade não há nada a fazer.",
 	"inst.4.proton.avertissement": "Vale saber: sob Proton o próprio jogo tem um defeito de entrada — os cliques não respondem nos menus. Verificado sem o mod: não é a tradução. Tente segurar o botão direito enquanto clica com o esquerdo, desative o Steam Input, ou troque de versão do Proton. O jogo Linux nativo não tem esse problema.",
@@ -74,5 +73,12 @@
 	"intro.gel": "As linhas em âmbar estão congeladas: blocos cifrados, língua construída, charadas. O jogo remove tudo que não é letra antes de decifrar — uma letra a mais desloca a mensagem inteira. O editor as deixa somente leitura.",
 	"ui.non_relue": "Esta interface foi traduzida por máquina e não foi revisada. Correções são bem-vindas.",
 	"inst.5.titre": "Travado? Aperte F1",
-	"inst.5.corps": "F1 alterna o diário para o inglês original, e volta. Uma tradução pode errar uma palavra-resposta; assim você vê o original, se desbloqueia e aponta o que está errado. O texto em inglês nunca vem com o mod — é lido da sua própria cópia ao iniciar."
+	"inst.5.corps": "F1 alterna o diário para o inglês original, e volta. Uma tradução pode errar uma palavra-resposta; assim você vê o original, se desbloqueia e aponta o que está errado. O texto em inglês nunca vem com o mod — é lido da sua própria cópia ao iniciar.",
+	"inst.4.linux.intro": "Jogo Linux nativo — três coisas, nesta ordem:",
+	"inst.4.linux.etape1": "Baixe run_with_gdpatch.sh em ",
+	"inst.4.linux.etape1b": " e coloque-o na pasta do jogo, ao lado do carregador.",
+	"inst.4.linux.etape2": "Torne-o executável: clique direito → Propriedades → Permissões → Permitir execução, ou chmod +x run_with_gdpatch.sh.",
+	"inst.4.linux.etape3": "Na Steam: clique direito no jogo → Propriedades → Opções de inicialização, e cole:",
+	"inst.copie": "copiado",
+	"inst.copie.echec": "selecione e copie manualmente"
 }

@@ -168,6 +168,14 @@
   .commande { background: #050a10; border: 1px solid var(--accent-sourd); border-radius: 4px;
     padding: 8px 12px; font-size: 13px; color: var(--accent); user-select: all;
     display: inline-block; margin: 4px 0; }
+  .commande.copiable { cursor: pointer; position: relative; }
+  .commande.copiable:hover { border-color: var(--accent); }
+  .commande.copiable::after { content: attr(data-etat); position: absolute; left: 100%;
+    margin-left: 10px; color: var(--attenue); font-size: 11px; white-space: nowrap; }
+  .fiche.large { grid-column: 1 / -1; }
+  .marche { margin: 10px 0 0; padding-left: 20px; font-size: 13px; color: var(--attenue); }
+  .marche li { margin-bottom: 10px; }
+  .marche a { color: var(--accent); }
 </style>
 </head>
 <body>
@@ -229,19 +237,26 @@
           <p data-t="inst.5.corps"></p>
         </div>
 
-        <div class="fiche" id="install-steam" hidden>
+        <div class="fiche large" id="install-steam" hidden>
           <span class="chiffre">4</span>
           <h3 data-t="inst.4.titre"></h3>
-          <p data-t="inst.4.linux"></p>
-          <span class="commande">./run_with_gdpatch.sh %command%</span>
+          <p data-t="inst.4.linux.intro"></p>
+          <ol class="marche">
+            <li><span data-t="inst.4.linux.etape1"></span>
+              <a href="https://gdpatch.dev/using/install/linux" target="_blank"
+                 rel="noopener">gdpatch.dev</a><span data-t="inst.4.linux.etape1b"></span></li>
+            <li data-t="inst.4.linux.etape2"></li>
+            <li><span data-t="inst.4.linux.etape3"></span>
+              <span class="commande copiable" data-copier>./run_with_gdpatch.sh %command%</span></li>
+          </ol>
           <p class="detail" data-t="inst.4.linux.detail"></p>
         </div>
 
-        <div class="fiche" id="install-proton" hidden>
+        <div class="fiche large" id="install-proton" hidden>
           <span class="chiffre">4</span>
           <h3 data-t="inst.4.titre"></h3>
           <p data-t="inst.4.proton"></p>
-          <span class="commande">WINEDLLOVERRIDES="winmm=n,b" %command%</span>
+          <span class="commande copiable" data-copier>WINEDLLOVERRIDES="winmm=n,b" %command%</span>
           <p class="detail" data-t="inst.4.proton.detail"></p>
           <p class="detail alerte" data-t="inst.4.proton.avertissement"></p>
         </div>
@@ -336,6 +351,22 @@ winmm.dll</pre>
     select.onchange = (e) => changerLangue(e.target.value);
     demarrerI18n();
   })();
+</script>
+<script>
+  // Une commande à coller se copie d'un clic. La coller à la main depuis une
+  // page web est le genre de friction qui fait abandonner à la dernière étape.
+  document.addEventListener("click", async (evenement) => {
+    const cible = evenement.target.closest("[data-copier]");
+    if (!cible) return;
+    try {
+      await navigator.clipboard.writeText(cible.textContent.trim());
+      cible.dataset.etat = t("inst.copie");
+    } catch {
+      // Presse-papiers refusé : la sélection reste possible, on le dit.
+      cible.dataset.etat = t("inst.copie.echec");
+    }
+    setTimeout(() => (cible.dataset.etat = ""), 2500);
+  });
 </script>
 <script src="installeur.js"></script>
 <script src="vendor/fzstd.js"></script>

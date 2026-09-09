@@ -71,11 +71,25 @@ async function charger(code) {
 
 let LANGUE = langueChoisie();
 
+// Les noms de fichiers reviennent dans plusieurs textes et ne se traduisent
+// pas. Les laisser en clair dans chaque langue, c'est douze occasions de se
+// tromper à la prochaine renommée — et ils s'affichaient tels quels, entre
+// accolades, faute d'être fournis à l'application automatique.
+const CONSTANTES = {
+  so: "libgdpatch_loader.so",
+  dll: "gdpatch_loader.dll",
+  linux: "flux-empyrean.x86_64",
+  windows: "Flux Empyrean.exe",
+  gdpatch: "GDPatch/",
+  data: "GDPatch/mods/flux_<langue>/data/",
+};
+
 /** Un texte de l'interface, avec ses trous remplis. L'anglais sert de filet. */
 function t(cle, valeurs = {}) {
   const brut = TEXTES[LANGUE]?.[cle] ?? TEXTES.en[cle] ?? cle;
+  const remplis = { ...CONSTANTES, ...valeurs };
   return brut.replace(/\{(\w+)\}/g, (entier, nom) =>
-    nom in valeurs ? String(valeurs[nom]) : entier
+    nom in remplis ? String(remplis[nom]) : entier
   );
 }
 
