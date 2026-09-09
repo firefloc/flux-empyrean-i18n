@@ -36,6 +36,32 @@ def sans_accents(s: str) -> str:
     return "".join(c for c in unicodedata.normalize("NFD", s) if not unicodedata.combining(c))
 
 
+def paires_par_anglais() -> dict[str, set[str]]:
+    """Toutes les traductions vues pour chaque phrase anglaise, tous corpus confondus."""
+    par_anglais: dict[str, set[str]] = {}
+    try:
+        anglais_scenes = json.loads(
+            (WORK / "strings_scenes.json").read_text(encoding="utf-8"))
+        scenes = json.loads(
+            (WORK / "translation_scenes.json").read_text(encoding="utf-8"))
+        scenes = scenes.get("chaines", scenes)
+        code = json.loads(
+            (WORK / "strings_scripts_traduites.json").read_text(encoding="utf-8"))
+        code = code.get("chaines", code)
+    except FileNotFoundError:
+        return {}
+    for scene, indices in scenes.items():
+        for indice, francais in indices.items():
+            anglais = anglais_scenes.get(scene, {}).get(indice)
+            if anglais and francais:
+                par_anglais.setdefault(anglais, set()).add(francais)
+    for _script, paires in code.items():
+        for anglais, francais in paires.items():
+            if francais and francais != anglais:
+                par_anglais.setdefault(anglais, set()).add(francais)
+    return par_anglais
+
+
 def main() -> int:
     erreurs: list[str] = []
     documents = json.loads((LOCALE / "documents.json").read_text(encoding="utf-8"))
@@ -136,6 +162,26 @@ def main() -> int:
                 "déclaré comme réponse acceptée dans aliases.json — l'énigme "
                 "deviendrait insoluble"
             )
+
+    # La même phrase anglaise, traduite deux fois différemment.
+    #
+    # Les scènes et le code sont deux corpus séparés, traduits dans deux
+    # fichiers, et rien ne les confrontait. Or le jeu place parfois la même
+    # chaîne aux deux endroits : `main_menu.tscn` étiquette un bouton, et
+    # `main_menu.gd` le réétiquette selon l'état. Deux traductions, et le
+    # libellé change sous les yeux du joueur.
+    #
+    # Ce n'est pas bloquant — les deux sont du français correct — mais personne
+    # ne le verrait sans qu'on le dise.
+    doubles: dict[str, set[str]] = {}
+    for anglais, francais in paires_par_anglais().items():
+        if len(francais) > 1:
+            doubles[anglais] = francais
+    for anglais, francais in sorted(doubles.items()):
+        print(f"  [ATTENTION] « {anglais} » est traduit de deux façons : "
+              + ", ".join(f"« {f} »" for f in sorted(francais))
+              + " — le jeu l'affiche depuis une scène et depuis un script, "
+                "et le libellé changera selon l'état")
 
     if erreurs:
         print(f"langue {LOCALE.name} : {len(erreurs)} problème(s) bloquant(s)\n")
