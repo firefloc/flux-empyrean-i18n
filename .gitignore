@@ -14,3 +14,8 @@ __pycache__/
 # Contrôle en jeu généré depuis work/frozen_segments.json : il porte les blocs
 # chiffrés du jeu, et `tools/check_ingame.sh` le régénère à chaque exécution.
 tools/ingame/bilan_integration.gd
+
+# Journal de travail et analyse de risque : documents internes, pas de la
+# documentation de contributeur. Ils restent en local.
+ETAT.md
+JURIDIQUE.md

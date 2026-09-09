@@ -405,10 +405,9 @@ older date while the mod targeted the current Steam build, which produced one ph
 "missing string". Any in-game check should start by confirming `md5sum` matches between
 the two.
 
-`ETAT.md` (in French) keeps the detailed log: what the translators caught that the
-tooling had missed, the arbitrations made, and the incidents — including the one where
-the test harness unlocked Steam achievements by calling the game's own progression
-functions.
+Every claim above was measured against a real copy of the game, on the platform named.
+Where something has not been tested, the [Windows section](#what-has-not-been-tested-on-windows)
+says so.
 
 ---
 
@@ -487,12 +486,9 @@ and dictionary keys the game requires to stay English.
 **The translation itself is a derivative work.** Under French law, translating requires
 the consent of the author of the original work (CPI art. L.122-4, and L.122-6 for
 software); being free of charge and culturally motivated changes nothing.
-`JURIDIQUE.md` (in French) details the situation and holds the message to ChillCash
-asking for permission.
-
-Until that permission is given, this repository's recommendation is simple: **publish
-the tooling, hold the language data**. That is what makes the "community tool" framing
-honest — the tool is ours, the translation is not.
+Permission has been sought from ChillCash. Until it is given or refused, this
+translation exists on the same footing as any fan translation: made with care, offered
+freely, and withdrawn on request.
 
 ChillCash is credited as the author of the original work. If ChillCash would rather this
 did not exist, it comes down.
