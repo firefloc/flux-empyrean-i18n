@@ -42,7 +42,9 @@ function dire(message, ton = "neutre") {
 
 async function chargerManifeste() {
   if (etatInstall.manifeste) return etatInstall.manifeste;
-  const reponse = await fetch("releases/manifeste.json");
+  // Sans « no-store », le navigateur sert un manifeste périmé et propose une
+  // langue dont les fichiers n'existent plus. Il change à chaque publication.
+  const reponse = await fetch("releases/manifeste.json", { cache: "no-store" });
   if (!reponse.ok) throw new Error("aucune traduction publiée sur cette page");
   etatInstall.manifeste = await reponse.json();
   return etatInstall.manifeste;
@@ -88,8 +90,10 @@ async function ecrireFichier(dossier, chemin, contenu) {
 
 async function installerDansLeDossier() {
   const manifeste = await chargerManifeste();
-  const langue = manifeste.langues.find((l) => l.langue === etatInstall.langue);
-  if (!langue) throw new Error(`langue « ${etatInstall.langue} » absente du manifeste`);
+  const langue = manifeste.langues.find(
+    (l) => l.langue === etatInstall.langue && Array.isArray(l.fichiers)
+  );
+  if (!langue) throw new Error(`aucun mod construit pour « ${etatInstall.langue} »`);
 
   const jeu = etatInstall.dossierJeu;
   const noms = [];
@@ -190,6 +194,7 @@ function zipSansCompression(entrees) {
 async function telechargerZip() {
   const manifeste = await chargerManifeste();
   const langue = manifeste.langues.find((l) => l.langue === etatInstall.langue);
+  if (!langue?.fichiers) throw new Error(`aucun mod construit pour « ${etatInstall.langue} »`);
   const entrees = [];
   for (const f of langue.fichiers) {
     const reponse = await fetch(`releases/${etatInstall.langue}/${f.chemin}`);
@@ -209,22 +214,33 @@ async function preparerInstalleur() {
   const select = $$("install-langue");
   try {
     const manifeste = await chargerManifeste();
+    // Le manifeste liste toutes les langues du projet, y compris celles qu'on
+    // peut seulement traduire. Ici on n'offre que celles dont le mod est
+    // construit : proposer les autres mènerait à une installation vide.
+    const installables = manifeste.langues.filter((l) => Array.isArray(l.fichiers));
     select.textContent = "";
-    for (const l of manifeste.langues) {
+    for (const l of installables) {
       const option = document.createElement("option");
       option.value = l.langue;
       option.textContent = `${l.langue} — ${Math.round(l.octets / 1024)} Ko`;
       select.appendChild(option);
     }
-    etatInstall.langue = manifeste.langues[0]?.langue ?? null;
+    etatInstall.langue = installables[0]?.langue ?? null;
     $$("install-poser").disabled = !etatInstall.langue;
+    if (!installables.length) {
+      dire(
+        "Aucune traduction n'est encore construite pour l'installation. " +
+        "L'onglet Traduire, lui, reste ouvert à toutes les langues.",
+        "alerte"
+      );
+    }
   } catch (e) {
     dire(e.message, "alerte");
     $$("install-poser").disabled = true;
   }
 
   if (!ECRITURE_DIRECTE) {
-    $$("install-poser").textContent = "Télécharger le mod (.zip)";
+    $$("install-poser").textContent = t("inst.2.bouton.zip");
     dire(
       "Ton navigateur ne sait pas écrire dans un dossier. Tu auras un zip à " +
       "décompresser dans le dossier du jeu — Chrome et Edge le font à ta place.",

@@ -1,7 +1,22 @@
 {
 	"langues": [
 		{
+			"langue": "de",
+			"editable": true,
+			"pages_traduites": 0,
+			"pages_totales": 0
+		},
+		{
+			"langue": "es",
+			"editable": true,
+			"pages_traduites": 0,
+			"pages_totales": 0
+		},
+		{
 			"langue": "fr",
+			"editable": true,
+			"pages_traduites": 601,
+			"pages_totales": 601,
 			"fichiers": [
 				{
 					"chemin": "answers.lua",
@@ -29,8 +44,67 @@
 					"sha256": "d4bfcb9d0134e558"
 				}
 			],
-			"octets": 215827,
-			"editable": true
+			"octets": 215827
+		},
+		{
+			"langue": "it",
+			"editable": true,
+			"pages_traduites": 0,
+			"pages_totales": 0
+		},
+		{
+			"langue": "ja",
+			"editable": true,
+			"pages_traduites": 0,
+			"pages_totales": 0
+		},
+		{
+			"langue": "ko",
+			"editable": true,
+			"pages_traduites": 0,
+			"pages_totales": 0
+		},
+		{
+			"langue": "nl",
+			"editable": true,
+			"pages_traduites": 0,
+			"pages_totales": 0
+		},
+		{
+			"langue": "pl",
+			"editable": true,
+			"pages_traduites": 0,
+			"pages_totales": 0
+		},
+		{
+			"langue": "pt-BR",
+			"editable": true,
+			"pages_traduites": 0,
+			"pages_totales": 0
+		},
+		{
+			"langue": "ru",
+			"editable": true,
+			"pages_traduites": 0,
+			"pages_totales": 0
+		},
+		{
+			"langue": "tr",
+			"editable": true,
+			"pages_traduites": 0,
+			"pages_totales": 0
+		},
+		{
+			"langue": "uk",
+			"editable": true,
+			"pages_traduites": 0,
+			"pages_totales": 0
+		},
+		{
+			"langue": "zh-Hans",
+			"editable": true,
+			"pages_traduites": 0,
+			"pages_totales": 0
 		}
 	]
 }

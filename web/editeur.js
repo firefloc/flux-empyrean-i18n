@@ -25,6 +25,90 @@ const etat = {
 
 const $ = (id) => document.getElementById(id);
 
+// --- Brouillon local ---------------------------------------------------------
+//
+// Traduire 601 pages ne se fait pas d'une traite. Sans mémoire, fermer l'onglet
+// perdait tout — et il n'y a pas de serveur pour rattraper ça. Le navigateur
+// garde donc le travail en cours, par langue, sur la machine du contributeur.
+//
+// On enregistre aussi le texte anglais extrait, pour ne pas avoir à redésigner
+// le fichier du jeu à chaque reprise. C'est la copie du joueur, dans son propre
+// navigateur : elle n'en sort pas plus que le reste.
+
+const CLE_BROUILLON = "flux-empyrean:brouillon";
+const CLE_SOURCE = "flux-empyrean:source";
+
+function enregistrer() {
+  try {
+    localStorage.setItem(CLE_BROUILLON, JSON.stringify({
+      code: etat.codeLangue,
+      quand: Date.now(),
+      langue: etat.langue,
+    }));
+    marquerEnregistrement();
+  } catch (e) {
+    // Quota dépassé : on le dit plutôt que de laisser croire que c'est sauvé.
+    $("brouillon").textContent = t("brouillon.plein");
+    $("brouillon").style.color = "var(--erreur)";
+  }
+}
+
+let minuterie = null;
+function enregistrerBientot() {
+  clearTimeout(minuterie);
+  minuterie = setTimeout(enregistrer, 800);
+}
+
+function marquerEnregistrement() {
+  const zone = $("brouillon");
+  zone.style.color = "var(--attenue)";
+  zone.textContent = t("brouillon.enregistre", {
+    heure: new Date().toLocaleTimeString(LANGUE, { hour: "2-digit", minute: "2-digit" }),
+  });
+}
+
+function brouillonEnregistre() {
+  try {
+    const brut = localStorage.getItem(CLE_BROUILLON);
+    return brut ? JSON.parse(brut) : null;
+  } catch {
+    return null;
+  }
+}
+
+function enregistrerSource(extrait) {
+  try {
+    localStorage.setItem(CLE_SOURCE, JSON.stringify({
+      moteur: extrait.moteur,
+      nombreDeFichiers: extrait.nombreDeFichiers,
+      documents: extrait.documents,
+      scenes: extrait.scenes,
+      scripts: extrait.scripts,
+      gel: [...extrait.gel],
+      verrous: extrait.verrous,
+    }));
+  } catch {
+    // Tant pis : le contributeur redésignera son jeu. Le brouillon, lui, tient.
+  }
+}
+
+function sourceEnregistree() {
+  try {
+    const brut = localStorage.getItem(CLE_SOURCE);
+    if (!brut) return null;
+    const lu = JSON.parse(brut);
+    lu.gel = new Map(lu.gel);
+    return lu;
+  } catch {
+    return null;
+  }
+}
+
+function oublier() {
+  localStorage.removeItem(CLE_BROUILLON);
+  localStorage.removeItem(CLE_SOURCE);
+}
+
 /** Choisit des fichiers et les rend décodés en JSON, indexés par nom. */
 function choisirFichiers(multiple = true) {
   return new Promise((resolve) => {
@@ -101,6 +185,7 @@ $("charger-source").onclick = async () => {
     dire("ouverture du pack…");
     const extrait = await extraire(fichier, dire);
     adopter(extrait);
+    enregistrerSource(extrait);
 
     const documents = extrait.documents.length;
     const pages = extrait.documents.reduce((n, d) => n + d.pages.length, 0);
@@ -134,9 +219,9 @@ $("charger-source").onclick = async () => {
 // choisit la langue et elle se charge.
 async function languesPubliees() {
   try {
-    const reponse = await fetch("releases/manifeste.json");
+    const reponse = await fetch("releases/manifeste.json", { cache: "no-store" });
     if (!reponse.ok) return [];
-    return (await reponse.json()).langues.map((l) => l.langue);
+    return (await reponse.json()).langues.filter((l) => l.editable);
   } catch {
     return [];
   }
@@ -333,7 +418,7 @@ function dessiner() {
   if (!visibles.length) {
     const vide = document.createElement("p");
     vide.className = "vide";
-    vide.textContent = "Rien à afficher avec ce filtre.";
+    vide.textContent = t("trad.vide");
     zone.appendChild(vide);
     return;
   }
@@ -341,7 +426,8 @@ function dessiner() {
   const table = document.createElement("table");
   const entete = document.createElement("thead");
   const ligneEntete = document.createElement("tr");
-  for (const libelle of ["Original", "Traduction", "État"]) {
+  for (const libelle of [t("trad.colonne.original"), t("trad.colonne.traduction"),
+                         t("trad.colonne.etat")]) {
     const th = document.createElement("th");
     th.textContent = libelle;
     ligneEntete.appendChild(th);
@@ -350,8 +436,12 @@ function dessiner() {
   table.appendChild(entete);
   const corps = document.createElement("tbody");
 
+  // Tout est affiché. Le plafond de 400 lignes était une prudence inutile — le
+  // corpus entier fait 601 pages, et la saisie ne redessine que sa propre ligne.
+  // Le cacher forçait à filtrer pour voir la fin du corpus, ce qui est exactement
+  // le contraire de ce qu'on demande à un relecteur.
   let groupeCourant = null;
-  for (const l of visibles.slice(0, 400)) {
+  for (const l of visibles) {
     if (l.groupe !== groupeCourant) {
       groupeCourant = l.groupe;
       const sep = document.createElement("tr");
@@ -385,7 +475,10 @@ function dessiner() {
       zoneTexte.readOnly = true;
       zoneTexte.value = l.anglais;
       memoriser(l, l.anglais);
-      zoneTexte.title = "Segment gelé : recopié à l'identique, toute modification casserait une énigme.";
+      zoneTexte.title =
+        "Bloc chiffré ou langue construite : le jeu le déchiffre lettre à lettre. " +
+        "Une seule lettre changée rend l'énigme insoluble, donc il est recopié tel quel.";
+      tr.classList.add("figee");
     }
     const alerte = document.createElement("div");
     alerte.className = "probleme";
@@ -394,7 +487,11 @@ function dessiner() {
       alerte.textContent = p.join(" · ");
       zoneTexte.style.borderColor = p.length ? "var(--erreur)" : "";
     };
-    zoneTexte.oninput = () => { memoriser(l, zoneTexte.value); rafraichir(); };
+    zoneTexte.oninput = () => {
+      memoriser(l, zoneTexte.value);
+      rafraichir();
+      enregistrerBientot();
+    };
     zoneTexte.onblur = () => dessinerCompteur(lignes());
     rafraichir();
     tdCible.append(zoneTexte, alerte);
@@ -407,20 +504,15 @@ function dessiner() {
       s.textContent = libelle;
       tdEtat.append(s, " ");
     };
-    if (l.geles.length) badge("gele", "gelé");
+    if (pageEntiereGelee) badge("gele", t("trad.badge.gele"));
+    else if (l.geles.length) badge("gele", t("trad.badge.partiel"));
     for (const v of l.verrous) badge("verrou", v);
-    if (!l.geles.length && !l.verrous.length && l.cible) badge("ok", "ok");
+    if (!l.geles.length && !l.verrous.length && l.cible) badge("ok", t("trad.badge.ok"));
 
     tr.append(tdSource, tdCible, tdEtat);
     corps.appendChild(tr);
   }
   table.appendChild(corps);
-  if (visibles.length > 400) {
-    const note = document.createElement("p");
-    note.className = "vide";
-    note.textContent = `${visibles.length} lignes — les 400 premières sont affichées. Affine le filtre.`;
-    zone.appendChild(note);
-  }
   zone.appendChild(table);
 }
 
@@ -435,9 +527,9 @@ function dessinerCompteur(toutes) {
   const enProbleme = toutes.filter((l) => problemes(l).length).length;
   const geles = toutes.length - aFaire.length;
   $("compteur").textContent =
-    `${traduites} / ${aFaire.length} traduites` +
-    (geles ? ` · ${geles} gelée${geles > 1 ? "s" : ""}` : "") +
-    (enProbleme ? ` · ${enProbleme} à corriger` : "");
+    t("trad.compteur", { faits: traduites, total: aFaire.length }) +
+    (geles ? t("trad.compteur.gelees", { n: geles }) : "") +
+    (enProbleme ? t("trad.compteur.problemes", { n: enProbleme }) : "");
 }
 
 /** Les trois fichiers de langue, prêts à être déposés dans le dépôt. */
@@ -519,13 +611,89 @@ $("contribuer").onclick = async () => {
 };
 
 
-// Les traductions publiées, proposées dès l'ouverture de la page.
+// Les langues du projet, commencées ou non, proposées dès l'ouverture.
+//
+// Une langue vide a autant sa place qu'une langue finie : c'est le seul moyen
+// pour quelqu'un de s'y mettre. On annonce son avancement pour qu'il sache où
+// il met les pieds.
+const NOMS = {
+  fr: "français", de: "allemand", es: "espagnol", it: "italien", nl: "néerlandais",
+  "pt-BR": "portugais (BR)", ru: "russe", pl: "polonais", tr: "turc", uk: "ukrainien",
+  ja: "japonais", ko: "coréen", "zh-Hans": "chinois simplifié",
+};
+
 (async () => {
   const select = $("charger-publiee");
-  for (const code of await languesPubliees()) {
-    const option = document.createElement("option");
-    option.value = code;
-    option.textContent = `Repartir de « ${code} »`;
-    select.appendChild(option);
-  }
+  const langues = await languesPubliees();
+  const commencees = langues.filter((l) => l.pages_traduites > 0);
+  const vierges = langues.filter((l) => !l.pages_traduites);
+
+  const groupe = (libelle, liste) => {
+    if (!liste.length) return;
+    const bloc = document.createElement("optgroup");
+    bloc.label = libelle;
+    for (const l of liste) {
+      const option = document.createElement("option");
+      option.value = l.langue;
+      const nom = NOMS[l.langue] || l.langue;
+      option.textContent = l.pages_traduites
+        ? t("trad.repartir.pourcent",
+            { nom, pourcent: Math.round((100 * l.pages_traduites) / l.pages_totales) })
+        : t("trad.repartir.vide", { nom });
+      bloc.appendChild(option);
+    }
+    select.appendChild(bloc);
+  };
+  groupe(t("trad.repartir.reprendre"), commencees);
+  groupe(t("trad.repartir.commencer"), vierges);
 })();
+
+// Reprendre le travail en cours, s'il y en a un.
+(() => {
+  const brouillon = brouillonEnregistre();
+  const source = sourceEnregistree();
+  if (!brouillon) return;
+
+  const quand = new Date(brouillon.quand).toLocaleString(LANGUE,
+    { dateStyle: "short", timeStyle: "short" });
+  const nom = NOMS[brouillon.code] || brouillon.code;
+  const bandeau = $("reprise");
+  bandeau.hidden = false;
+  $("reprise-texte").textContent =
+    t("reprise.texte", { nom, quand }) + (source ? "." : t("reprise.sansSource"));
+
+  $("reprise-oui").onclick = async () => {
+    etat.langue = brouillon.langue;
+    etat.codeLangue = brouillon.code;
+    $("code-langue").value = brouillon.code;
+    if (source) {
+      adopter(source);
+      $("intro").style.display = "none";
+      for (const id of ["charger-langue", "charger-publiee", "flux", "filtre",
+                        "telecharger", "contribuer", "code-langue"]) {
+        $(id).disabled = false;
+      }
+      $("journal").hidden = false;
+      $("journal").style.color = "var(--attenue)";
+      $("journal").textContent =
+        `Godot ${source.moteur} · ${source.nombreDeFichiers} fichiers · ` +
+        `relu depuis ton navigateur, sans rouvrir le jeu`;
+      dessiner();
+    }
+    bandeau.hidden = true;
+    marquerEnregistrement();
+  };
+
+  $("reprise-non").onclick = () => {
+    if (!confirm(t("reprise.confirmer"))) return;
+    oublier();
+    bandeau.hidden = true;
+  };
+})();
+
+
+// Changer la langue de l'interface redessine ce qui est à l'écran : les entêtes
+// de colonnes, les badges et le compteur en font partie.
+document.addEventListener("langue-changee", () => {
+  if (etat.source.documents) dessiner();
+});

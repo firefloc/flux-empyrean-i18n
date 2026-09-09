@@ -36,10 +36,45 @@ SORTIE_LANGUES = ROOT / "web" / "locales"
 EDITABLES = ("documents.json", "scenes.json", "scripts.json", "aliases.json")
 
 
+def compter(code: str) -> tuple[int, int]:
+    """Ce qui est traduit sur ce qui reste à faire, pour situer un contributeur."""
+    fichier = LOCALES / code / "documents.json"
+    if not fichier.exists():
+        return 0, 0
+    documents = json.loads(fichier.read_text(encoding="utf-8"))
+    pages = [p for d in documents.values() for p in d.get("pages", [])]
+    return sum(1 for p in pages if p.strip()), len(pages)
+
+
+def publier_langue(code: str) -> dict:
+    """Rend une langue éditable, qu'elle soit commencée ou non.
+
+    Une langue vide a autant sa place ici qu'une langue finie : c'est même le
+    seul moyen pour quelqu'un de s'y mettre. Le squelette porte déjà la
+    checklist des mots-réponses, qui est ce qu'on aurait aimé avoir au départ.
+    """
+    editables = SORTIE_LANGUES / code
+    if editables.exists():
+        shutil.rmtree(editables)
+    editables.mkdir(parents=True)
+    edites = 0
+    for nom in EDITABLES:
+        source_langue = LOCALES / code / nom
+        if source_langue.exists():
+            shutil.copyfile(source_langue, editables / nom)
+            edites += 1
+    faits, total = compter(code)
+    return {
+        "langue": code,
+        "editable": edites == len(EDITABLES),
+        "pages_traduites": faits,
+        "pages_totales": total,
+    }
+
+
 def publier(code: str) -> dict | None:
     source = BUILD / code
     if not (source / "patcher.lua").exists():
-        print(f"  {code} : aucun mod construit — lance d'abord ./build.sh", file=sys.stderr)
         return None
 
     destination = SORTIE / code
@@ -64,39 +99,39 @@ def publier(code: str) -> dict | None:
             }
         )
 
-    # Et les fichiers éditables, à côté, pour l'onglet de traduction.
-    editables = SORTIE_LANGUES / code
-    if editables.exists():
-        shutil.rmtree(editables)
-    editables.mkdir(parents=True)
-    edites = 0
-    for nom in EDITABLES:
-        source_langue = LOCALES / code / nom
-        if source_langue.exists():
-            shutil.copyfile(source_langue, editables / nom)
-            edites += 1
-
     total = sum(f["octets"] for f in fichiers)
-    print(f"  {code} : {len(fichiers)} fichiers de mod, {total // 1024} Ko, "
-          f"{edites} fichiers éditables")
-    return {"langue": code, "fichiers": fichiers, "octets": total,
-            "editable": edites == len(EDITABLES)}
+    return {"fichiers": fichiers, "octets": total}
 
 
 def main() -> None:
-    codes = sys.argv[1:] or sorted(
-        p.name for p in BUILD.iterdir() if p.is_dir() and (p / "patcher.lua").exists()
-    )
+    # Toutes les langues du dépôt sont éditables ; seules celles qui ont un mod
+    # construit sont installables. Les deux listes ne se recouvrent pas, et
+    # confondre les deux priverait un contributeur de toutes les langues vides.
+    codes = sys.argv[1:] or sorted(p.name for p in LOCALES.iterdir() if p.is_dir())
     if not codes:
-        raise SystemExit("aucun mod construit dans build/")
+        raise SystemExit("aucune langue dans locales/")
 
     SORTIE.mkdir(parents=True, exist_ok=True)
-    langues = [r for code in codes if (r := publier(code))]
+    SORTIE_LANGUES.mkdir(parents=True, exist_ok=True)
+
+    langues = []
+    for code in codes:
+        entree = publier_langue(code)
+        mod = publier(code)
+        if mod:
+            entree.update(mod)
+        langues.append(entree)
+        etat = (f"{entree['pages_traduites']}/{entree['pages_totales']} pages"
+                if entree["pages_totales"] else "vide")
+        print(f"  {code:8s} {etat:18s} "
+              f"{'mod ' + str(mod['octets'] // 1024) + ' Ko' if mod else 'pas de mod construit'}")
+
     (SORTIE / "manifeste.json").write_text(
         json.dumps({"langues": langues}, ensure_ascii=False, indent="\t") + "\n",
         encoding="utf-8",
     )
-    print(f"manifeste : {len(langues)} langue(s) installables depuis la page")
+    installables = sum(1 for l in langues if "fichiers" in l)
+    print(f"\n{len(langues)} langue(s) éditables, {installables} installable(s)")
 
 
 if __name__ == "__main__":

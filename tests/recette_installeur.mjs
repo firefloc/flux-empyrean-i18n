@@ -40,7 +40,7 @@ window.showDirectoryPicker = async () => dossier('');
 `;
 
 async function scenario(nav, noms, titre) {
-  const page = await nav.newPage();
+  const page = await nav.newPage({ locale: 'fr-FR' });
   const erreurs = [];
   page.on('pageerror', (e) => erreurs.push(e.message));
   page.on('console', (m) => { if (m.type() === 'error') erreurs.push(m.text()); });

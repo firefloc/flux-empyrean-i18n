@@ -22,7 +22,8 @@ if (!JEU) {
 const { firefox } = await import(process.env.PLAYWRIGHT || 'playwright');
 
 const navigateur = await firefox.launch();
-const page = await navigateur.newPage({ viewport: { width: 1600, height: 1000 } });
+// Locale forcée : les libellés dépendent de la langue de l'interface.
+const page = await navigateur.newPage({ locale: 'fr-FR', viewport: { width: 1600, height: 1000 } });
 const erreurs = [];
 page.on('pageerror', (e) => erreurs.push('pageerror: ' + e.message));
 page.on('console', (m) => { if (m.type() === 'error') erreurs.push('console: ' + m.text()); });
