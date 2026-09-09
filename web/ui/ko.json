@@ -24,7 +24,7 @@
 	"inst.3.corps": "첫 실행이 여러분의 사본에서 번역 화면을 만들어 냅니다 — 몇 초, 한 번뿐입니다. 두 번째 실행에서 표시됩니다.",
 	"inst.3.detail": " Detected: ",
 	"inst.4.titre": "Steam에 한 줄",
-	"inst.4.linux.detail": "",
+	"inst.4.linux.detail": "이 파일에는 실행 권한이 필요하지만 브라우저는 권한을 부여할 수 없습니다. 게임 폴더에서 한 번 실행하세요 — ZIP으로 내려받았다면 권한이 이미 있습니다:",
 	"inst.4.proton": "Windows version under Proton or Wine — right-click the game → Properties → Launch options:",
 	"inst.4.proton.detail": "On real Windows there is nothing to do.",
 	"inst.4.proton.avertissement": "Under Proton the game itself does not respond to clicks in its menus. This happens without the translation too. Try holding right-click while left-clicking, disable Steam Input, or switch Proton version.",
@@ -77,8 +77,8 @@
 	"inst.4.linux.intro": "Linux version — right-click the game → Properties → Launch options:",
 	"inst.copie": "복사됨",
 	"inst.copie.echec": "직접 선택해 복사하세요",
-	"inst.zip.fait": "Zip 을 내려받았습니다. 게임 폴더에 풀어 주세요: GDPatch/mods/ 구조가 이미 들어 있어 정리할 것이 없습니다. 리눅스용 실행 스크립트도 함께 들어 있습니다.",
+	"inst.zip.fait": "Zip을 내려받았습니다. 게임 폴더에 풀어 주세요. GDPatch/mods/ 구조가 이미 들어 있어 따로 옮길 것이 없습니다. 리눅스 실행 스크립트도 실행 권한이 붙은 채로 들어 있습니다.",
 	"inst.4.choisir": "Pick the line matching the version Steam gave you.",
-	"inst.repli.5": "Why a launcher on Linux: the Steam install path contains a space, and LD_PRELOAD splits on spaces. The folder therefore goes into LD_LIBRARY_PATH, where a space is harmless, and LD_PRELOAD only receives a bare filename. The launcher runs through sh, so it needs no execute permission — a browser could not grant one anyway. The English text used by F1 is read from your own copy at startup and never travels.",
+	"inst.repli.5": "리눅스에서 실행 스크립트가 필요한 이유: 스팀은 앞서 설정된 LD_PRELOAD를 지우는 래퍼 사슬을 거쳐 게임을 실행합니다. GDPatch의 공식 스크립트는 그 사슬 뒤에 자신을 다시 배치해 이를 우회합니다. 그래서 실행 권한이 필요하고, 그래서 직접 만든 세 줄짜리 스크립트는 스팀 밖에서만 작동했습니다. F1이 사용하는 영어 원문은 시작할 때 사용자 본인의 사본에서 읽어오며 어디로도 전송되지 않습니다.",
 	"inst.3.corps2": "They rebuild themselves when the game updates, so you never think about it again."
 }

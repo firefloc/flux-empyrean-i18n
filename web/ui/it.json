@@ -24,7 +24,7 @@
 	"inst.3.corps": "Il primo avvio costruisce le schermate tradotte dalla tua copia — pochi secondi, una volta sola. Il secondo le mostra.",
 	"inst.3.detail": " Detected: ",
 	"inst.4.titre": "Una riga in Steam",
-	"inst.4.linux.detail": "",
+	"inst.4.linux.detail": "Il file deve essere eseguibile e un browser non può renderlo tale. Esegui questo una volta nella cartella del gioco — l'archivio ZIP contiene già il permesso:",
 	"inst.4.proton": "Windows version under Proton or Wine — right-click the game → Properties → Launch options:",
 	"inst.4.proton.detail": "On real Windows there is nothing to do.",
 	"inst.4.proton.avertissement": "Under Proton the game itself does not respond to clicks in its menus. This happens without the translation too. Try holding right-click while left-clicking, disable Steam Input, or switch Proton version.",
@@ -77,8 +77,8 @@
 	"inst.4.linux.intro": "Linux version — right-click the game → Properties → Launch options:",
 	"inst.copie": "copiato",
 	"inst.copie.echec": "seleziona e copia a mano",
-	"inst.zip.fait": "Zip scaricato. Estrailo nella cartella del gioco: contiene già l'albero GDPatch/mods/, non c'è nulla da riorganizzare. Include anche l'avviatore Linux.",
+	"inst.zip.fait": "Zip scaricato. Estrailo nella cartella del gioco: contiene già l'albero GDPatch/mods/, niente da riorganizzare. Contiene anche l'avviatore Linux, già eseguibile.",
 	"inst.4.choisir": "Pick the line matching the version Steam gave you.",
-	"inst.repli.5": "Why a launcher on Linux: the Steam install path contains a space, and LD_PRELOAD splits on spaces. The folder therefore goes into LD_LIBRARY_PATH, where a space is harmless, and LD_PRELOAD only receives a bare filename. The launcher runs through sh, so it needs no execute permission — a browser could not grant one anyway. The English text used by F1 is read from your own copy at startup and never travels.",
+	"inst.repli.5": "Perché un avviatore su Linux: Steam avvia il gioco attraverso una catena di wrapper che cancella qualsiasi LD_PRELOAD impostato prima. Lo script ufficiale di GDPatch aggira il problema rimettendosi dopo quella catena — per questo deve essere eseguibile, e per questo un nostro script di tre righe funzionava solo fuori da Steam. Il testo inglese usato da F1 viene letto dalla tua copia all'avvio e non viaggia mai.",
 	"inst.3.corps2": "They rebuild themselves when the game updates, so you never think about it again."
 }

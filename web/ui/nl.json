@@ -24,7 +24,7 @@
 	"inst.3.corps": "De eerste start bouwt de vertaalde schermen uit je eigen kopie — een paar seconden, eenmalig. De tweede toont ze.",
 	"inst.3.detail": " Detected: ",
 	"inst.4.titre": "Eén regel in Steam",
-	"inst.4.linux.detail": "",
+	"inst.4.linux.detail": "Het bestand moet uitvoerbaar zijn, en een browser kan dat niet instellen. Voer dit één keer uit in de spelmap — het ZIP-bestand bevat de rechten al:",
 	"inst.4.proton": "Windows version under Proton or Wine — right-click the game → Properties → Launch options:",
 	"inst.4.proton.detail": "On real Windows there is nothing to do.",
 	"inst.4.proton.avertissement": "Under Proton the game itself does not respond to clicks in its menus. This happens without the translation too. Try holding right-click while left-clicking, disable Steam Input, or switch Proton version.",
@@ -77,8 +77,8 @@
 	"inst.4.linux.intro": "Linux version — right-click the game → Properties → Launch options:",
 	"inst.copie": "gekopieerd",
 	"inst.copie.echec": "selecteer en kopieer handmatig",
-	"inst.zip.fait": "Zip gedownload. Pak het uit in de spelmap: de boom GDPatch/mods/ zit er al in, niets te herschikken. De Linux-starter zit er ook bij.",
+	"inst.zip.fait": "Zip gedownload. Pak het uit in de spelmap: de map GDPatch/mods/ zit er al in, niets te verplaatsen. Het bevat ook de Linux-starter, al uitvoerbaar.",
 	"inst.4.choisir": "Pick the line matching the version Steam gave you.",
-	"inst.repli.5": "Why a launcher on Linux: the Steam install path contains a space, and LD_PRELOAD splits on spaces. The folder therefore goes into LD_LIBRARY_PATH, where a space is harmless, and LD_PRELOAD only receives a bare filename. The launcher runs through sh, so it needs no execute permission — a browser could not grant one anyway. The English text used by F1 is read from your own copy at startup and never travels.",
+	"inst.repli.5": "Waarom een starter op Linux: Steam start het spel via een keten van wrappers die een eerder ingestelde LD_PRELOAD wist. Het officiële GDPatch-script omzeilt dit door zichzelf achter die keten te plaatsen — daarom moet het uitvoerbaar zijn, en daarom werkte een eigen script van drie regels alleen buiten Steam. De Engelse tekst die F1 gebruikt wordt bij het opstarten uit je eigen kopie gelezen en reist nooit mee.",
 	"inst.3.corps2": "They rebuild themselves when the game updates, so you never think about it again."
 }

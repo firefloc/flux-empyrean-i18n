@@ -29,20 +29,30 @@ A_RETIRER = ("GDPatch", "libgdpatch_loader.so", "gdpatch_loader.dll", "winmm.dll
              "libgdpatch_loader.dylib", "run_with_gdpatch.sh",
              "lancer_avec_gdpatch.sh")
 
-# Le chemin d'installation Steam contient une espace, et LD_PRELOAD découpe sur
-# les espaces. Le dossier va donc dans LD_LIBRARY_PATH, séparé par des
-# deux-points où l'espace ne gêne pas, et LD_PRELOAD ne reçoit qu'un nom nu.
-LANCEUR = """#!/usr/bin/env sh
-# Injecte GDPatch puis lance le jeu.
+# Le lanceur Linux est le script officiel de GDPatch, servi tel quel depuis
+# `web/vendor/`. La page l'écrit aussi : un seul fichier, deux chemins
+# d'installation, donc pas de version qui dérive.
 #
-#   Options de lancement Steam :  sh ./lancer_avec_gdpatch.sh %command%
-#
-# Appelé par « sh », il n'a pas besoin d'être exécutable.
-dossier="$(cd "$(dirname "$0")" && pwd)"
-export LD_LIBRARY_PATH="$dossier:${LD_LIBRARY_PATH}"
-export LD_PRELOAD="libgdpatch_loader.so:${LD_PRELOAD}"
-exec "$@"
-"""
+# On en avait écrit un de trois lignes, lancé par `sh` pour se passer du droit
+# d'exécution. Il ne marchait qu'en dehors de Steam : la chaîne
+# `reaper → steam-launch-wrapper → jeu` efface le LD_PRELOAD posé en amont, et
+# c'est exactement ce que la boucle de rotation du script officiel contourne.
+LANCEUR_SOURCE = RACINE / "web" / "vendor" / "run_with_gdpatch.sh"
+LANCEUR_NOM = "run_with_gdpatch.sh"
+
+
+def poser_le_lanceur(dossier: Path) -> None:
+    """Écrit le lanceur officiel et le rend exécutable.
+
+    Le droit d'exécution n'est pas décoratif : la rotation d'arguments relance
+    le script par son chemin. Sans le bit, Steam démarre le jeu non traduit et
+    ne dit rien.
+    """
+    if not LANCEUR_SOURCE.is_file():
+        raise SystemExit(f"lanceur introuvable : {LANCEUR_SOURCE}")
+    cible = dossier / LANCEUR_NOM
+    cible.write_bytes(LANCEUR_SOURCE.read_bytes())
+    cible.chmod(0o755)
 
 
 def desinstaller(dossier: Path) -> None:
@@ -104,7 +114,7 @@ def installer(mod: Path, dossier: Path, langue: str) -> None:
     # exécutable ; celui-ci se lance par `sh`, donc le droit d'exécution est
     # inutile, ce qui rend les deux chemins d'installation identiques.
     if plateforme == "Linux":
-        (dossier / "lancer_avec_gdpatch.sh").write_text(LANCEUR, encoding="utf-8")
+        poser_le_lanceur(dossier)
 
     destination = dossier / "GDPatch" / "mods" / f"flux_{langue}"
     if destination.exists():
@@ -126,10 +136,11 @@ def installer(mod: Path, dossier: Path, langue: str) -> None:
         print("Sous Windows véritable, il n'y a rien à faire.")
     else:
         print("Options de lancement Steam :")
-        print("  sh ./lancer_avec_gdpatch.sh %command%")
+        print("  ./run_with_gdpatch.sh %command%")
         print()
-        print("Le lanceur vient d'être écrit à côté du chargeur. Il est appelé par sh,")
-        print("donc il n'a pas besoin du droit d'exécution.")
+        print("Le lanceur officiel de GDPatch vient d'être écrit à côté du chargeur,")
+        print("et rendu exécutable — Steam le relance après ses propres intermédiaires,")
+        print("qui effacent sinon le LD_PRELOAD.")
 
 
 def main() -> None:

@@ -24,7 +24,7 @@
 	"inst.3.corps": "第一次启动会用你自己的副本生成翻译界面 — 几秒钟，只需一次。第二次启动才会显示。",
 	"inst.3.detail": " Detected: ",
 	"inst.4.titre": "Steam 里的一行",
-	"inst.4.linux.detail": "",
+	"inst.4.linux.detail": "该文件需要可执行权限，而浏览器无法授予。请在游戏文件夹中执行一次 — ZIP 下载已包含该权限：",
 	"inst.4.proton": "Windows version under Proton or Wine — right-click the game → Properties → Launch options:",
 	"inst.4.proton.detail": "On real Windows there is nothing to do.",
 	"inst.4.proton.avertissement": "Under Proton the game itself does not respond to clicks in its menus. This happens without the translation too. Try holding right-click while left-clicking, disable Steam Input, or switch Proton version.",
@@ -77,8 +77,8 @@
 	"inst.4.linux.intro": "Linux version — right-click the game → Properties → Launch options:",
 	"inst.copie": "已复制",
 	"inst.copie.echec": "请手动选中并复制",
-	"inst.zip.fait": "Zip 已下载。解压到游戏文件夹即可：GDPatch/mods/ 目录结构已经包含在内，无需重新整理。压缩包内还有 Linux 启动脚本。",
+	"inst.zip.fait": "已下载 Zip。请解压到游戏文件夹：其中已包含 GDPatch/mods/ 目录结构，无需重新整理。它还包含 Linux 启动脚本，且已带可执行权限。",
 	"inst.4.choisir": "Pick the line matching the version Steam gave you.",
-	"inst.repli.5": "Why a launcher on Linux: the Steam install path contains a space, and LD_PRELOAD splits on spaces. The folder therefore goes into LD_LIBRARY_PATH, where a space is harmless, and LD_PRELOAD only receives a bare filename. The launcher runs through sh, so it needs no execute permission — a browser could not grant one anyway. The English text used by F1 is read from your own copy at startup and never travels.",
+	"inst.repli.5": "为什么 Linux 需要启动脚本：Steam 通过一连串包装程序启动游戏，会清除在此之前设置的 LD_PRELOAD。GDPatch 的官方脚本把自己重新放到这条链之后来绕开该问题——这正是它必须可执行的原因，也是我们自己三行脚本只能在 Steam 之外生效的原因。F1 使用的英文原文在启动时从你自己的副本中读取，绝不外传。",
 	"inst.3.corps2": "They rebuild themselves when the game updates, so you never think about it again."
 }
