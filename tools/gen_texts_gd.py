@@ -71,8 +71,18 @@ func _basculer_langue() -> void:
 	for titre in texts_vo:
 		texts[titre] = texts_vo[titre]
 	texts_vo = avant
+
+	# Les libellés d'interface ne vivent pas dans le corpus mais dans les
+	# scènes, et rien ne les relit après coup : on les remplace sur place dans
+	# l'arbre affiché. La fonction est produite par gen_scenes_gd.py, qui seul
+	# dispose des paires — sans elle, la bascule reste celle des documents.
+	var libelles := 0
+	if has_method("basculer_les_scenes"):
+		libelles = call("basculer_les_scenes", _en_version_originale)
+
 	print("VO " + ("version originale" if _en_version_originale else "traduction")
-		+ " (" + str(texts.size()) + " documents)")
+		+ " (" + str(texts.size()) + " documents, "
+		+ str(libelles) + " libelles)")
 	_rafraichir_le_journal()
 
 

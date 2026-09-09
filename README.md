@@ -246,15 +246,23 @@ The rest of this section is the same thing done by hand.
 > left-clicking, disable Steam Input, or try another Proton build. The Linux native
 > depot works, and is where everything here was validated.
 
-**Stuck on a puzzle? Press F1.** The journal switches back to the original English
-and back again, live. A translation can get an answer word wrong, and then you cannot
-tell whether it is the puzzle or the patch — this settles it, and lets you report what
-is off.
+**Stuck on a puzzle? Press F1.** The documents *and* the interface labels switch back
+to the original English, and back again, live. A translation can get an answer word
+wrong, and then you cannot tell whether it is the puzzle or the patch — this settles
+it, and lets you report what is off.
 
-The English text is **never shipped with the mod**: `patcher.lua` takes it from the
-original `Scripts/texts.gdc` in your own pack as it replaces it, keeps it under another
-name, and hands it to the runtime. 105 KB of English that never leaves your machine,
-and the distributed mod grows by 2 KB of GDScript.
+The English text is **never shipped with the mod**: `patcher.lua` takes the documents
+from the original `Scripts/texts.gdc` in your own pack as it replaces it, and the
+interface labels are recorded the moment the game builds its translated scenes, from
+the strings it is about to overwrite. Both come out of your own copy and neither leaves
+your machine; the distributed mod grows by a few KB of GDScript.
+
+Two things F1 deliberately leaves alone. Text a script has already copied into a
+variable, and the typewriter animation, which rewrites the label after us — those keep
+whatever they were showing. And a handful of strings are *keys*, not labels: `The Great
+Joke` is a document title as well as a button caption, and swapping it by value would
+break the discovery it unlocks. Those are excluded by name at build time rather than
+guessed at runtime.
 
 **Launch the game twice.** The first launch builds the translated scenes from your own
 copy — a few seconds, once — and the interface turns French on the second. They rebuild
