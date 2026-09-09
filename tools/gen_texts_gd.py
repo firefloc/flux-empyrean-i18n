@@ -186,8 +186,46 @@ func _recharger_les_textes() -> void:
 	if has_method("basculer_les_scenes"):
 		libelles = call("basculer_les_scenes", _en_version_originale)
 	_rafraichir_le_journal()
-	print("VO F2 textes reappliques (" + str(libelles) + " libelles)")
+	var flottants := _rejouer_les_textes_flottants()
+	print("VO F2 textes reappliques (" + str(libelles) + " libelles, "
+		+ str(flottants) + " flottants)")
 	_afficher_la_langue()
+
+
+# Les textes flottants du monde — ceux d'un disque qu'on vient d'ouvrir.
+#
+# Ils sont hors de portée d'un parcours d'arbre : `text_shower` est un Label3D
+# éphémère qui joue sa machine à écrire puis se libère, et la phrase a été lue
+# dans le corpus au moment du clic. Rien à échanger, donc.
+#
+# Mais `Disc.show_text()` est une méthode publique qui relit
+# `Texts.texts[titre][passage]` à l'appel, et — c'est ce qui la rend utilisable
+# ici — elle ne touche pas à la découverte : `discover()` est appelé ailleurs,
+# par le clic. La rappeler ne débloque donc aucun succès.
+func _rejouer_les_textes_flottants() -> int:
+	var rejoues := 0
+	var pile: Array[Node] = [get_tree().root]
+	while not pile.is_empty():
+		var n: Node = pile.pop_back()
+		# Un disque, et lui seul : `is_discovered` distingue un Disc d'un autre
+		# nœud qui aurait un `show_text`.
+		if n.has_method("show_text") and n.has_method("is_discovered"):
+			var montre := n.get_node_or_null("TextShower")
+			if montre != null:
+				# On ne le libère pas sur-le-champ : son animation tient des
+				# rappels sur lui-même, et les couper net planterait. On le cache
+				# — sinon les deux phrases se superposeraient — et on le renomme,
+				# sans quoi le garde-fou de `show_text()` refuserait de rejouer.
+				# Il se libère ensuite tout seul, à la fin de son tween.
+				montre.name = "TextShowerRemplace"
+				if montre is Node3D:
+					montre.visible = false
+				montre.queue_free()
+				n.call("show_text")
+				rejoues += 1
+		for e in n.get_children():
+			pile.append(e)
+	return rejoues
 '''
 
 
