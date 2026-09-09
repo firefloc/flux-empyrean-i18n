@@ -16,7 +16,7 @@ const etat = {
   source: { documents: null, scenes: null, scripts: null },
   geles: null,
   verrous: null,
-  langue: { documents: {}, scenes: {}, scripts: {} },
+  langue: { documents: {}, scenes: {}, scripts: {}, aliases: {} },
   codeLangue: "fr",
   flux: "documents",
   filtre: "",
@@ -118,7 +118,8 @@ $("charger-source").onclick = async () => {
     journal.style.color = complet ? "var(--attenue)" : "var(--alerte)";
 
     $("intro").style.display = "none";
-    for (const id of ["charger-langue", "flux", "filtre", "telecharger", "contribuer", "code-langue"]) {
+    for (const id of ["charger-langue", "charger-publiee", "flux", "filtre",
+                      "telecharger", "contribuer", "code-langue"]) {
       $(id).disabled = false;
     }
     dessiner();
@@ -127,6 +128,36 @@ $("charger-source").onclick = async () => {
     dire(`Lecture impossible : ${e.message}`);
   }
 };
+
+// Les traductions publiées sur la page, proposées directement. Un contributeur
+// qui veut améliorer le français n'a pas à aller chercher trois fichiers : il
+// choisit la langue et elle se charge.
+async function languesPubliees() {
+  try {
+    const reponse = await fetch("releases/manifeste.json");
+    if (!reponse.ok) return [];
+    return (await reponse.json()).langues.map((l) => l.langue);
+  } catch {
+    return [];
+  }
+}
+
+async function chargerLanguePubliee(code) {
+  const fichiers = ["documents.json", "scenes.json", "scripts.json", "aliases.json"];
+  const lus = {};
+  for (const nom of fichiers) {
+    const reponse = await fetch(`locales/${code}/${nom}`);
+    if (!reponse.ok) throw new Error(`locales/${code}/${nom} absent de la page`);
+    lus[nom] = await reponse.json();
+  }
+  etat.langue.documents = lus["documents.json"];
+  etat.langue.scenes = lus["scenes.json"].chaines ?? lus["scenes.json"];
+  etat.langue.scripts = relireScripts(lus["scripts.json"].chaines ?? lus["scripts.json"]);
+  etat.langue.aliases = lus["aliases.json"] ?? {};
+  etat.codeLangue = code;
+  $("code-langue").value = code;
+  dessiner();
+}
 
 $("charger-langue").onclick = async () => {
   const fichiers = await choisirFichiers();
@@ -150,6 +181,23 @@ function relireScripts(parCle) {
   }
   return sortie;
 }
+
+$("charger-publiee").onchange = async (e) => {
+  const code = e.target.value;
+  if (!code) return;
+  const journal = $("journal");
+  journal.hidden = false;
+  try {
+    journal.style.color = "var(--attenue)";
+    journal.textContent = `chargement de la traduction « ${code} »…`;
+    await chargerLanguePubliee(code);
+    journal.textContent =
+      `Traduction « ${code} » chargée. Corrige ce que tu veux, puis propose-la au projet.`;
+  } catch (err) {
+    journal.style.color = "var(--erreur)";
+    journal.textContent = err.message;
+  }
+};
 
 $("flux").onchange = (e) => { etat.flux = e.target.value; dessiner(); };
 $("filtre").oninput = (e) => { etat.filtre = e.target.value.toLowerCase(); dessiner(); };
@@ -228,10 +276,19 @@ function problemes(l) {
   }
   for (const token of l.verrous) {
     const dansAnglais = l.anglais.toLowerCase().includes(token.toLowerCase());
-    const dansCible = l.cible.toLowerCase().includes(token.toLowerCase());
-    if (dansAnglais && !dansCible) {
-      out.push(`le mot-réponse « ${token} » a disparu : déclare son équivalent dans termes_de_reponse`);
-    }
+    if (!dansAnglais) continue;
+    const cible = l.cible.toLowerCase();
+    if (cible.includes(token.toLowerCase())) continue;
+    // Le mot anglais peut disparaître sans casser l'énigme : le mod patche la
+    // comparaison pour accepter les équivalents déclarés dans `aliases.json`.
+    // Ne pas le savoir, c'est crier sur une traduction correcte — et pousser
+    // quelqu'un à « réparer » ce qui marche.
+    const equivalents = etat.langue.aliases?.[token] || [];
+    if (equivalents.some((e) => cible.includes(String(e).toLowerCase()))) continue;
+    out.push(
+      `le mot-réponse « ${token} » a disparu, et aucun de ses équivalents n'est là : ` +
+      "ajoute-en un dans aliases.json, sinon l'énigme ne se résoudra qu'en anglais"
+    );
   }
   if (etat.flux === "scripts") {
     if (l.cible.includes('"')) out.push("guillemet droit interdit ici — emploie « » ou ’");
@@ -300,7 +357,7 @@ function dessiner() {
       const sep = document.createElement("tr");
       const cell = document.createElement("td");
       cell.colSpan = 3;
-      cell.style.cssText = "color:var(--accent);padding-top:18px;font-weight:600";
+      cell.className = "groupe";
       // textContent, jamais innerHTML : ces libellés viennent des fichiers du
       // joueur, on ne les interprète pas comme du balisage.
       cell.textContent = l.groupe;
@@ -319,7 +376,11 @@ function dessiner() {
     tdCible.className = "cible";
     const zoneTexte = document.createElement("textarea");
     zoneTexte.value = l.cible;
-    zoneTexte.rows = Math.min(10, Math.max(2, Math.ceil(l.anglais.length / 70)));
+    // La hauteur suit le nombre de lignes réellement rendues à gauche, pas une
+    // estimation : sans ça, les deux colonnes ne s'alignent jamais.
+    const lignesSource = l.anglais.split("\n").length +
+      Math.floor(l.anglais.length / 62);
+    zoneTexte.rows = Math.min(14, Math.max(2, lignesSource));
     if (pageEntiereGelee) {
       zoneTexte.readOnly = true;
       zoneTexte.value = l.anglais;
@@ -364,10 +425,19 @@ function dessiner() {
 }
 
 function dessinerCompteur(toutes) {
-  const traduites = toutes.filter((l) => l.cible).length;
+  // Une page entièrement gelée est recopiée à l'identique : la compter comme
+  // traduite gonflerait le score. On la reconnaît à sa structure, pas à son
+  // contenu — sinon le total bougerait au fil du remplissage.
+  const entierementGelee = (l) =>
+    l.geles.length > 0 && l.geles.join("") === l.anglais.replace(/\s/g, "");
+  const aFaire = toutes.filter((l) => !entierementGelee(l));
+  const traduites = aFaire.filter((l) => l.cible).length;
   const enProbleme = toutes.filter((l) => problemes(l).length).length;
+  const geles = toutes.length - aFaire.length;
   $("compteur").textContent =
-    `${traduites} / ${toutes.length} traduites` + (enProbleme ? ` · ${enProbleme} à corriger` : "");
+    `${traduites} / ${aFaire.length} traduites` +
+    (geles ? ` · ${geles} gelée${geles > 1 ? "s" : ""}` : "") +
+    (enProbleme ? ` · ${enProbleme} à corriger` : "");
 }
 
 /** Les trois fichiers de langue, prêts à être déposés dans le dépôt. */
@@ -447,3 +517,15 @@ $("contribuer").onclick = async () => {
     "Fichiers téléchargés, et GitHub ouvert dans un onglet. Dépose-les sur la page, " +
     "décris ta modification, et valide : la pull request part toute seule.";
 };
+
+
+// Les traductions publiées, proposées dès l'ouverture de la page.
+(async () => {
+  const select = $("charger-publiee");
+  for (const code of await languesPubliees()) {
+    const option = document.createElement("option");
+    option.value = code;
+    option.textContent = `Repartir de « ${code} »`;
+    select.appendChild(option);
+  }
+})();

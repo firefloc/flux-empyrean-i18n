@@ -28,6 +28,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 BUILD = ROOT / "build"
 SORTIE = ROOT / "web" / "releases"
+LOCALES = ROOT / "locales"
+# Les fichiers de langue eux-mêmes, pour que l'éditeur puisse les charger sans
+# qu'un contributeur ait à aller les chercher dans le dépôt. Ce sont les mêmes
+# que ceux d'une pull request : source de vérité, pas le mod construit.
+SORTIE_LANGUES = ROOT / "web" / "locales"
+EDITABLES = ("documents.json", "scenes.json", "scripts.json", "aliases.json")
 
 
 def publier(code: str) -> dict | None:
@@ -58,9 +64,23 @@ def publier(code: str) -> dict | None:
             }
         )
 
+    # Et les fichiers éditables, à côté, pour l'onglet de traduction.
+    editables = SORTIE_LANGUES / code
+    if editables.exists():
+        shutil.rmtree(editables)
+    editables.mkdir(parents=True)
+    edites = 0
+    for nom in EDITABLES:
+        source_langue = LOCALES / code / nom
+        if source_langue.exists():
+            shutil.copyfile(source_langue, editables / nom)
+            edites += 1
+
     total = sum(f["octets"] for f in fichiers)
-    print(f"  {code} : {len(fichiers)} fichiers, {total // 1024} Ko")
-    return {"langue": code, "fichiers": fichiers, "octets": total}
+    print(f"  {code} : {len(fichiers)} fichiers de mod, {total // 1024} Ko, "
+          f"{edites} fichiers éditables")
+    return {"langue": code, "fichiers": fichiers, "octets": total,
+            "editable": edites == len(EDITABLES)}
 
 
 def main() -> None:

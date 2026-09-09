@@ -29,7 +29,8 @@
 					"sha256": "d4bfcb9d0134e558"
 				}
 			],
-			"octets": 215827
+			"octets": 215827,
+			"editable": true
 		}
 	]
 }
